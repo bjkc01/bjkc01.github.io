@@ -1,89 +1,543 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Bijay Khatri | Portfolio</title>
+<!doctype html>
+<html lang="en" class="h-full scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bijay Kumar Khatri | Cybersecurity Portfolio</title>
+
+    <!-- Tailwind via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f6f8;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
+      :root {
+        --bg-primary: #0a0f1a;
+        --bg-secondary: #111827;
+        --text-primary: #e2e8f0;
+        --accent-primary: #22d3ee;
+        --accent-secondary: #06b6d4;
+      }
 
-        header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 40px 20px;
-        }
+      body {
+        box-sizing: border-box;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        font-family: "Inter", sans-serif;
+      }
 
-        section {
-            padding: 40px 20px;
-        }
+      * {
+        scrollbar-width: thin;
+        scrollbar-color: #22d3ee #1f2937;
+      }
+      *::-webkit-scrollbar {
+        width: 8px;
+      }
+      *::-webkit-scrollbar-track {
+        background: #1f2937;
+      }
+      *::-webkit-scrollbar-thumb {
+        background: #22d3ee;
+        border-radius: 4px;
+      }
 
-        h1 {
-            margin: 0;
-        }
+      .mono {
+        font-family: "JetBrains Mono", monospace;
+      }
 
-        .card {
-            background: white;
-            margin: 20px auto;
-            padding: 20px;
-            max-width: 600px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
+      .gradient-text {
+        background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 50%, #0891b2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
 
-        footer {
-            background-color: #2c3e50;
-            color: white;
-            padding: 20px;
-            margin-top: 40px;
-        }
+      .cyber-grid {
+        background-image: linear-gradient(rgba(34, 211, 238, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(34, 211, 238, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+      }
 
-        a {
-            color: #3498db;
-            text-decoration: none;
+      .glow-effect {
+        box-shadow: 0 0 20px rgba(34, 211, 238, 0.3), 0 0 40px rgba(34, 211, 238, 0.1);
+      }
+
+      .card-hover {
+        transition: all 0.3s ease;
+      }
+      .card-hover:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 40px rgba(34, 211, 238, 0.15);
+      }
+
+      .nav-link {
+        position: relative;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #22d3ee, #06b6d4);
+        transition: width 0.3s ease;
+      }
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      .terminal-cursor {
+        animation: blink 1s step-end infinite;
+      }
+      @keyframes blink {
+        50% {
+          opacity: 0;
         }
+      }
+
+      .skill-badge {
+        transition: all 0.2s ease;
+      }
+      .skill-badge:hover {
+        background: rgba(34, 211, 238, 0.2);
+        transform: scale(1.05);
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body class="h-full">
+    <!-- NAV -->
+    <nav
+      class="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg border-b"
+      style="background: rgba(10, 15, 26, 0.9); border-color: rgba(34, 211, 238, 0.1)"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <a href="#home" class="flex items-center gap-2">
+            <div
+              class="w-8 h-8 rounded-lg flex items-center justify-center glow-effect"
+              style="background: linear-gradient(135deg, #22d3ee, #06b6d4)"
+              aria-hidden="true"
+            >
+              <svg class="w-5 h-5 text-gray-900" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"
+                />
+              </svg>
+            </div>
+            <span class="font-bold text-lg mono" style="color: #e2e8f0">BKK</span>
+          </a>
 
-<header>
-    <h1>Bijay Kumar Khatri</h1>
-    <p>IT Specialist | Cybersecurity Student</p>
-</header>
+          <div class="hidden md:flex items-center gap-8">
+            <a class="nav-link text-sm font-medium transition-colors text-slate-400 hover:text-cyan-300" href="#home">Home</a>
+            <a class="nav-link text-sm font-medium transition-colors text-slate-400 hover:text-cyan-300" href="#about">About</a>
+            <a class="nav-link text-sm font-medium transition-colors text-slate-400 hover:text-cyan-300" href="#experience">Experience</a>
+            <a class="nav-link text-sm font-medium transition-colors text-slate-400 hover:text-cyan-300" href="#projects">Projects</a>
+            <a class="nav-link text-sm font-medium transition-colors text-slate-400 hover:text-cyan-300" href="#skills">Skills</a>
+            <a class="nav-link text-sm font-medium transition-colors text-slate-400 hover:text-cyan-300" href="#contact">Contact</a>
+          </div>
 
-<section>
-    <div class="card">
-        <h2>About Me</h2>
-        <p>
-            I am an IT Specialist with interest in Cybersecurity and Python programming.
-            Currently learning offensive and defensive security.
-        </p>
-    </div>
+          <button
+            id="mobile-menu-btn"
+            class="md:hidden p-2 rounded-lg text-slate-400"
+            aria-label="Open menu"
+            aria-expanded="false"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
 
-    <div class="card">
-        <h2>Skills</h2>
-        <p>Python, Networking, Cybersecurity Basics, GitHub</p>
-    </div>
+      <!-- Mobile menu -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden border-t"
+        style="background: rgba(10, 15, 26, 0.98); border-color: rgba(34, 211, 238, 0.1)"
+      >
+        <div class="px-4 py-3 space-y-2">
+          <a class="block px-3 py-2 rounded-lg text-sm text-slate-400 hover:text-cyan-300" href="#home">Home</a>
+          <a class="block px-3 py-2 rounded-lg text-sm text-slate-400 hover:text-cyan-300" href="#about">About</a>
+          <a class="block px-3 py-2 rounded-lg text-sm text-slate-400 hover:text-cyan-300" href="#experience">Experience</a>
+          <a class="block px-3 py-2 rounded-lg text-sm text-slate-400 hover:text-cyan-300" href="#projects">Projects</a>
+          <a class="block px-3 py-2 rounded-lg text-sm text-slate-400 hover:text-cyan-300" href="#skills">Skills</a>
+          <a class="block px-3 py-2 rounded-lg text-sm text-slate-400 hover:text-cyan-300" href="#contact">Contact</a>
+        </div>
+      </div>
+    </nav>
 
-    <div class="card">
-        <h2>Projects</h2>
-        <p>Coming soon...</p>
-    </div>
+    <!-- HERO -->
+    <section id="home" class="relative min-h-screen flex items-center cyber-grid pt-16">
+      <div class="absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-10" style="background: #22d3ee"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full blur-3xl opacity-10" style="background: #06b6d4"></div>
+      </div>
 
-    <div class="card">
-        <h2>Contact</h2>
-        <p>Email: your-email@example.com</p>
-        <p>GitHub: <a href="https://github.com/bjkc01" target="_blank">github.com/bjkc01</a></p>
-    </div>
-</section>
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div class="grid lg:grid-cols-2 gap-10 items-start">
+          <div>
+            <div
+              class="inline-flex items-center gap-2 px-4 py-2 rounded-lg mb-6"
+              style="background: rgba(34, 211, 238, 0.05); border: 1px solid rgba(34, 211, 238, 0.2)"
+            >
+              <span class="w-2 h-2 rounded-full" style="background: #22d3ee"></span>
+              <span class="text-sm mono text-slate-400">Actively seeking internships</span>
+            </div>
 
-<footer>
-    <p>© 2026 Bijay Khatri</p>
-</footer>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4">
+              Bijay Kumar<br />
+              <span class="gradient-text">Khatri</span>
+            </h1>
 
-</body>
+            <div class="flex items-center gap-2 mb-6 mono">
+              <span class="text-cyan-300">$</span>
+              <span class="text-lg sm:text-xl text-slate-400">Cybersecurity Analyst | Vulnerability Researcher | Cloud Security</span>
+              <span class="terminal-cursor text-cyan-300">_</span>
+            </div>
+
+            <p class="text-lg mb-8 leading-relaxed text-slate-400">
+              Passionate cybersecurity professional with hands-on experience in vulnerability research, incident response, and cloud security.
+              Recognized by international media and trusted by Fortune 500 companies for responsible disclosure.
+            </p>
+
+            <div class="flex flex-wrap gap-4">
+              <a
+                href="#contact"
+                class="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-transform hover:-translate-y-0.5 glow-effect"
+                style="background: linear-gradient(135deg, #22d3ee, #06b6d4); color: #0a0f1a"
+              >
+                <span>Contact Me</span>
+              </a>
+
+              <a
+                href="#projects"
+                class="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-colors border-2 border-cyan-300 text-cyan-300 hover:bg-cyan-300/10"
+              >
+                <span>View Projects</span>
+              </a>
+
+              <a
+                href="#experience"
+                class="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-colors border-2 border-slate-700 text-slate-400 hover:border-cyan-300 hover:text-cyan-300"
+              >
+                <span>View Resume</span>
+              </a>
+            </div>
+
+            <div class="grid grid-cols-3 gap-6 mt-12 pt-8" style="border-top: 1px solid rgba(34, 211, 238, 0.1)">
+              <div>
+                <div class="text-3xl font-bold gradient-text mono">100+</div>
+                <div class="text-sm mt-1 text-slate-500">Vulnerabilities Found</div>
+              </div>
+              <div>
+                <div class="text-3xl font-bold gradient-text mono">$35K+</div>
+                <div class="text-sm mt-1 text-slate-500">Bug Bounties Earned</div>
+              </div>
+              <div>
+                <div class="text-3xl font-bold gradient-text mono">5th</div>
+                <div class="text-sm mt-1 text-slate-500">CCDC Blue Team</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            <div class="rounded-2xl p-8 card-hover" style="background: #111827; border: 1px solid rgba(34, 211, 238, 0.1)">
+              <p class="text-sm mb-4 mono text-slate-500">CREDENTIALS</p>
+              <h3 class="text-2xl font-semibold mb-6">Bijay Kumar Khatri</h3>
+
+              <div class="space-y-4 mb-6 text-slate-400">
+                <div class="flex items-start gap-3">
+                  <span class="text-cyan-300">◆</span>
+                  <span>Meta Gold League Researcher</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="text-cyan-300">◆</span>
+                  <span>$35K+ in Bug Bounties</span>
+                </div>
+                <div class="flex items-start gap-3">
+                  <span class="text-cyan-300">◆</span>
+                  <span>100+ Vulnerabilities Reported</span>
+                </div>
+              </div>
+
+              <a
+                href="https://www.linkedin.com/in/bijaykcc/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 w-full justify-center px-4 py-2 rounded-lg text-sm transition-colors border"
+                style="background: rgba(34, 211, 238, 0.1); color: #22d3ee; border-color: rgba(34, 211, 238, 0.2)"
+              >
+                Connect on LinkedIn
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2">
+          <a href="#about" class="flex flex-col items-center gap-2 text-slate-500">
+            <span class="text-xs mono">scroll</span>
+            <span class="text-xl animate-bounce">↓</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="py-24" style="background: #111827">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 rounded-full text-sm font-medium mb-4 mono text-cyan-300" style="background: rgba(34, 211, 238, 0.1)">
+            // about_me
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-bold">Professional Summary</h2>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-8">
+          <div class="lg:col-span-2">
+            <div class="rounded-2xl p-8 card-hover" style="background: #0a0f1a; border: 1px solid rgba(34, 211, 238, 0.1)">
+              <p class="text-lg leading-relaxed mb-6 text-slate-400">
+                I am a dedicated Cybersecurity professional currently pursuing my Bachelor of Science in Computer Information Systems with a Cybersecurity
+                concentration at the University of Akron. My passion lies in protecting digital infrastructure and identifying vulnerabilities before
+                malicious actors can exploit them.
+              </p>
+              <p class="text-lg leading-relaxed mb-6 text-slate-400">
+                With hands-on experience as an Independent Whitehat Security Researcher for Meta, I've reported over 100 validated vulnerabilities across
+                web, mobile, and API platforms, earning recognition in their Silver and Gold League programs.
+              </p>
+              <p class="text-lg leading-relaxed text-slate-400">
+                Beyond technical skills, I bring strong communication abilities, a commitment to responsible disclosure, and experience in security
+                awareness training.
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            <div class="rounded-2xl p-6 card-hover" style="background: #0a0f1a; border: 1px solid rgba(34, 211, 238, 0.1)">
+              <h3 class="font-semibold mb-3">Education</h3>
+              <p class="text-sm text-slate-400">B.S. Computer Information Systems</p>
+              <p class="text-sm text-cyan-300">Cybersecurity Concentration</p>
+              <p class="text-sm mt-2 text-slate-500">University of Akron</p>
+              <p class="text-sm text-slate-500">Expected Dec 2027</p>
+              <div class="mt-3 inline-flex items-center gap-2 px-3 py-1 rounded-full" style="background: rgba(34, 211, 238, 0.1)">
+                <span class="text-xs font-medium text-cyan-300">Dean's List 2024–2025</span>
+              </div>
+            </div>
+
+            <div class="rounded-2xl p-6 card-hover" style="background: #0a0f1a; border: 1px solid rgba(34, 211, 238, 0.1)">
+              <h3 class="font-semibold mb-3">Recognition</h3>
+              <ul class="space-y-2 text-sm text-slate-400">
+                <li>Featured by BBC & international media</li>
+                <li>Meta & Google hackathon invitee</li>
+                <li>Meta Gold League Researcher</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="py-24 cyber-grid" style="background: #0a0f1a">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 rounded-full text-sm font-medium mb-4 mono text-cyan-300" style="background: rgba(34, 211, 238, 0.1)">
+            // work_experience
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-bold">Professional Experience</h2>
+        </div>
+
+        <div class="space-y-8">
+          <div class="rounded-2xl p-8 card-hover" style="background: #0a0f1a; border: 1px solid rgba(34, 211, 238, 0.1)">
+            <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-6">
+              <div>
+                <h3 class="text-xl font-bold">Independent Whitehat Security Researcher</h3>
+                <p class="text-lg text-cyan-300">Meta (Facebook)</p>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="px-3 py-1 rounded-full text-sm font-medium text-cyan-300" style="background: rgba(34, 211, 238, 0.1)">2021 - Present</span>
+                <span class="px-3 py-1 rounded-full text-sm font-medium text-yellow-300" style="background: rgba(250, 204, 21, 0.1)">Gold League</span>
+              </div>
+            </div>
+
+            <ul class="space-y-3 mb-6 text-slate-400 list-disc pl-5">
+              <li>Reported 100+ verified vulnerabilities across web, mobile, and API platforms.</li>
+              <li>Collaborated with security teams to validate issues and confirm remediation.</li>
+              <li>Tooling: Burp Suite, Nmap, Wireshark, custom Python and JS scripts, OSINT.</li>
+            </ul>
+
+            <div class="flex flex-wrap gap-2 text-xs">
+              <span class="px-3 py-1 rounded-lg bg-slate-800 text-slate-400">Burp Suite</span>
+              <span class="px-3 py-1 rounded-lg bg-slate-800 text-slate-400">Nmap</span>
+              <span class="px-3 py-1 rounded-lg bg-slate-800 text-slate-400">Wireshark</span>
+              <span class="px-3 py-1 rounded-lg bg-slate-800 text-slate-400">Python</span>
+              <span class="px-3 py-1 rounded-lg bg-slate-800 text-slate-400">API Testing</span>
+            </div>
+          </div>
+
+          <div class="rounded-2xl p-8 card-hover" style="background: #0a0f1a; border: 1px solid rgba(34, 211, 238, 0.1)">
+            <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-6">
+              <div>
+                <h3 class="text-xl font-bold">Information Technology & Security Intern</h3>
+                <p class="text-lg text-cyan-300">G. Stephens, Inc.</p>
+              </div>
+              <span class="px-3 py-1 rounded-full text-sm font-medium text-cyan-300" style="background: rgba(34, 211, 238, 0.1)">2025 - Present</span>
+            </div>
+
+            <ul class="space-y-3 mb-6 text-slate-400 list-disc pl-5">
+              <li>Administered AD, Intune, and Azure environments with secure identity practices.</li>
+              <li>Improved security using Huntress, Defender, and NinjaOne.</li>
+              <li>Led SharePoint Online migrations and permission audits.</li>
+            </ul>
+
+            <div class="flex flex-wrap gap-2 text-xs">
+              <span class="px-3 py-1 rounded-lg bg-slate-800 text-slate-400">Azure AD</span>
+              <span class="px-3 py-1 rounded-lg bg-slate-800 text-slate-400">Intune</span>
+              <span class="px-3 py-1 rounded-lg bg-slate-800 text-slate-400">Huntress</span>
+              <span class="px-3 py-1 rounded-lg bg-slate-800 text-slate-400">MS Defender</span>
+              <span class="px-3 py-1 rounded-lg bg-slate-800 text-slate-400">NIST</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="py-24 cyber-grid" style="background: #0a0f1a">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 rounded-full text-sm font-medium mb-4 mono text-cyan-300" style="background: rgba(34, 211, 238, 0.1)">
+            // featured_projects
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-bold">Security Projects</h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="rounded-2xl overflow-hidden card-hover" style="background: #111827; border: 1px solid rgba(34, 211, 238, 0.1)">
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-3">SecureVault Password Manager</h3>
+              <p class="mb-4 text-slate-400">
+                A secure, locally-encrypted password manager implementing AES-256 encryption, PBKDF2 key derivation, and a zero-knowledge design.
+              </p>
+              <div class="flex flex-wrap gap-2 text-xs">
+                <span class="px-3 py-1 rounded-lg bg-slate-800 text-slate-400">Python</span>
+                <span class="px-3 py-1 rounded-lg bg-slate-800 text-slate-400">AES-256</span>
+                <span class="px-3 py-1 rounded-lg bg-slate-800 text-slate-400">SQLite</span>
+                <span class="px-3 py-1 rounded-lg bg-slate-800 text-slate-400">PBKDF2</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="rounded-2xl overflow-hidden card-hover" style="background: #111827; border: 1px solid rgba(34, 211, 238, 0.1)">
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-3">SharePoint Migration & Security Initiative</h3>
+              <p class="mb-4 text-slate-400">
+                Led a secure SharePoint migration, implementing RBAC policies and security controls to reduce unauthorized access attempts.
+              </p>
+              <div class="flex flex-wrap gap-2 text-xs">
+                <span class="px-3 py-1 rounded-lg bg-slate-800 text-slate-400">SharePoint</span>
+                <span class="px-3 py-1 rounded-lg bg-slate-800 text-slate-400">Azure</span>
+                <span class="px-3 py-1 rounded-lg bg-slate-800 text-slate-400">PowerShell</span>
+                <span class="px-3 py-1 rounded-lg bg-slate-800 text-slate-400">RBAC</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="py-24 cyber-grid" style="background: #0a0f1a">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <span class="inline-block px-4 py-2 rounded-full text-sm font-medium mb-4 mono text-cyan-300" style="background: rgba(34, 211, 238, 0.1)">
+            // technical_skills
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-bold">Skills & Expertise</h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="rounded-2xl p-6 card-hover" style="background: #111827; border: 1px solid rgba(34, 211, 238, 0.1)">
+            <h3 class="font-bold text-lg mb-4">Security Operations</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-badge px-3 py-1.5 rounded-lg text-sm mono" style="background: rgba(34, 211, 238, 0.1); color: #22d3ee">Incident Response</span>
+              <span class="skill-badge px-3 py-1.5 rounded-lg text-sm mono" style="background: rgba(34, 211, 238, 0.1); color: #22d3ee">Vuln Assessment</span>
+              <span class="skill-badge px-3 py-1.5 rounded-lg text-sm mono" style="background: rgba(34, 211, 238, 0.1); color: #22d3ee">Threat Modeling</span>
+            </div>
+          </div>
+
+          <div class="rounded-2xl p-6 card-hover" style="background: #111827; border: 1px solid rgba(34, 211, 238, 0.1)">
+            <h3 class="font-bold text-lg mb-4">Security Tools</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-badge px-3 py-1.5 rounded-lg text-sm mono" style="background: rgba(34, 211, 238, 0.1); color: #22d3ee">Burp Suite</span>
+              <span class="skill-badge px-3 py-1.5 rounded-lg text-sm mono" style="background: rgba(34, 211, 238, 0.1); color: #22d3ee">Nmap</span>
+              <span class="skill-badge px-3 py-1.5 rounded-lg text-sm mono" style="background: rgba(34, 211, 238, 0.1); color: #22d3ee">Wireshark</span>
+            </div>
+          </div>
+
+          <div class="rounded-2xl p-6 card-hover" style="background: #111827; border: 1px solid rgba(34, 211, 238, 0.1)">
+            <h3 class="font-bold text-lg mb-4">Cloud & Identity</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-badge px-3 py-1.5 rounded-lg text-sm mono" style="background: rgba(34, 211, 238, 0.1); color: #22d3ee">Azure</span>
+              <span class="skill-badge px-3 py-1.5 rounded-lg text-sm mono" style="background: rgba(34, 211, 238, 0.1); color: #22d3ee">Azure AD</span>
+              <span class="skill-badge px-3 py-1.5 rounded-lg text-sm mono" style="background: rgba(34, 211, 238, 0.1); color: #22d3ee">Intune</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-24" style="background: #111827">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10">
+          <span class="inline-block px-4 py-2 rounded-full text-sm font-medium mb-4 mono text-cyan-300" style="background: rgba(34, 211, 238, 0.1)">
+            // contact
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-bold">Get in Touch</h2>
+          <p class="mt-3 text-slate-400">Add your email and links below.</p>
+        </div>
+
+        <div class="max-w-2xl mx-auto rounded-2xl p-8" style="background: #0a0f1a; border: 1px solid rgba(34, 211, 238, 0.1)">
+          <div class="space-y-4 text-slate-400">
+            <p><span class="mono text-cyan-300">Email:</span> your-email@example.com</p>
+            <p><span class="mono text-cyan-300">LinkedIn:</span> <a class="text-cyan-300 hover:underline" href="https://www.linkedin.com/in/bijaykcc/" target="_blank" rel="noopener noreferrer">bijaykcc</a></p>
+            <p><span class="mono text-cyan-300">GitHub:</span> <a class="text-cyan-300 hover:underline" href="https://github.com/your-username" target="_blank" rel="noopener noreferrer">your-username</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="py-10 text-center text-slate-500">
+      <p class="mono text-xs">© <span id="year"></span> Bijay Kumar Khatri</p>
+    </footer>
+
+    <script>
+      const mobileBtn = document.getElementById("mobile-menu-btn")
+      const mobileMenu = document.getElementById("mobile-menu")
+
+      function closeMobileMenu() {
+        mobileMenu.classList.add("hidden")
+        mobileBtn.setAttribute("aria-expanded", "false")
+      }
+
+      mobileBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden")
+        mobileBtn.setAttribute("aria-expanded", mobileMenu.classList.contains("hidden") ? "false" : "true")
+      })
+
+      mobileMenu.querySelectorAll("a").forEach((a) => {
+        a.addEventListener("click", closeMobileMenu)
+      })
+
+      document.getElementById("year").textContent = new Date().getFullYear()
+    </script>
+  </body>
 </html>

@@ -1,552 +1,323 @@
-<!doctype html>
-<html lang="en" class="scroll-smooth">
+<!DOCTYPE html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bijay Kumar Khatri | Cybersecurity Portfolio</title>
-
-    <script src="https://cdn.tailwindcss.com"></script>
-
+    <meta
+      name="description"
+      content="Cybersecurity portfolio for Bijay Kumar Khatri featuring vulnerability research, cloud security experience, technical projects, and professional contact information."
+    />
+    <meta
+      name="keywords"
+      content="Bijay Kumar Khatri, cybersecurity, portfolio, vulnerability research, bug bounty, cloud security, identity security"
+    />
+    <meta name="author" content="Bijay Kumar Khatri" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
-
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Inter', 'sans-serif'],
-            },
-            colors: {
-              ink: '#070b14',
-              panel: '#0d1322',
-              panelSoft: '#11192d',
-              line: 'rgba(255,255,255,0.08)',
-              glow: '#76e4ff',
-              glowSoft: '#b7f4ff',
-              textMain: '#f8fafc',
-              textSoft: '#9fb0c7',
-              textMuted: '#70829d',
-            },
-            boxShadow: {
-              glow: '0 0 0 1px rgba(255,255,255,0.05), 0 12px 40px rgba(2, 8, 23, 0.55)',
-              button: '0 12px 32px rgba(118, 228, 255, 0.18)',
-            },
-            animation: {
-              float: 'float 8s ease-in-out infinite',
-              pulseSlow: 'pulseSlow 6s ease-in-out infinite',
-              shimmer: 'shimmer 2.8s linear infinite',
-              fadeUp: 'fadeUp 0.8s ease forwards',
-            },
-            keyframes: {
-              float: {
-                '0%, 100%': { transform: 'translateY(0px)' },
-                '50%': { transform: 'translateY(-14px)' },
-              },
-              pulseSlow: {
-                '0%, 100%': { opacity: 0.35 },
-                '50%': { opacity: 0.7 },
-              },
-              shimmer: {
-                '0%': { backgroundPosition: '-200% 0' },
-                '100%': { backgroundPosition: '200% 0' },
-              },
-              fadeUp: {
-                '0%': { opacity: 0, transform: 'translateY(18px)' },
-                '100%': { opacity: 1, transform: 'translateY(0)' },
-              },
-            },
-          },
-        },
-      }
-    </script>
-
-    <style>
-      :root {
-        color-scheme: dark;
-      }
-
-      body {
-        background:
-          radial-gradient(circle at top left, rgba(118, 228, 255, 0.10), transparent 24%),
-          radial-gradient(circle at 80% 20%, rgba(154, 140, 255, 0.10), transparent 18%),
-          linear-gradient(180deg, #060913 0%, #070b14 35%, #09111f 100%);
-        color: #f8fafc;
-        font-family: 'Inter', sans-serif;
-        overflow-x: hidden;
-      }
-
-      * {
-        scrollbar-width: thin;
-        scrollbar-color: rgba(118, 228, 255, 0.5) rgba(255, 255, 255, 0.06);
-      }
-
-      *::-webkit-scrollbar {
-        width: 10px;
-      }
-
-      *::-webkit-scrollbar-track {
-        background: rgba(255, 255, 255, 0.04);
-      }
-
-      *::-webkit-scrollbar-thumb {
-        background: rgba(118, 228, 255, 0.45);
-        border-radius: 999px;
-      }
-
-      .grid-noise::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background-image:
-          linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-        background-size: 38px 38px;
-        mask-image: radial-gradient(circle at center, black 40%, transparent 92%);
-        pointer-events: none;
-      }
-
-      .glass {
-        background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
-        border: 1px solid rgba(255,255,255,0.08);
-        backdrop-filter: blur(18px);
-        -webkit-backdrop-filter: blur(18px);
-      }
-
-      .section-card {
-        background: linear-gradient(180deg, rgba(13, 19, 34, 0.92), rgba(10, 15, 28, 0.94));
-        border: 1px solid rgba(255,255,255,0.08);
-        box-shadow: 0 0 0 1px rgba(255,255,255,0.03), 0 20px 60px rgba(0,0,0,0.35);
-      }
-
-      .heading-gradient {
-        background: linear-gradient(90deg, #ffffff 0%, #dff8ff 35%, #76e4ff 70%, #c4b5fd 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-
-      .pill-shimmer {
-        background: linear-gradient(110deg, rgba(118,228,255,0.08) 8%, rgba(255,255,255,0.18) 18%, rgba(118,228,255,0.08) 33%);
-        background-size: 200% 100%;
-      }
-
-      .card-hover {
-        transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease, background 220ms ease;
-      }
-
-      .card-hover:hover {
-        transform: translateY(-4px);
-        border-color: rgba(118, 228, 255, 0.25);
-        box-shadow: 0 18px 48px rgba(0, 0, 0, 0.34), 0 0 0 1px rgba(118, 228, 255, 0.09);
-      }
-
-      .reveal {
-        opacity: 0;
-        transform: translateY(24px);
-        transition: opacity 0.8s ease, transform 0.8s ease;
-      }
-
-      .reveal.in-view {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      .hero-ring {
-        position: absolute;
-        border: 1px solid rgba(255,255,255,0.08);
-        border-radius: 999px;
-        filter: blur(0.2px);
-      }
-    </style>
+    <link rel="stylesheet" href="style.css" />
   </head>
-
   <body>
-    <div class="fixed inset-0 -z-10 overflow-hidden">
-      <div class="absolute -top-28 left-1/2 h-[34rem] w-[34rem] -translate-x-1/2 rounded-full bg-cyan-300/12 blur-3xl animate-pulseSlow"></div>
-      <div class="absolute top-[22rem] -left-24 h-80 w-80 rounded-full bg-violet-400/10 blur-3xl animate-float"></div>
-      <div class="absolute right-0 top-40 h-72 w-72 rounded-full bg-sky-300/10 blur-3xl animate-float"></div>
-    </div>
+    <div class="page-shell">
+      <header class="site-header">
+        <div class="container">
+          <nav class="nav" aria-label="Primary">
+            <a class="brand" href="#top" aria-label="Go to top">
+              <span class="brand-mark">BKK</span>
+              <span class="brand-copy">
+                <strong>Bijay Khatri</strong>
+                <span>Cybersecurity Portfolio</span>
+              </span>
+            </a>
 
-    <nav class="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6 lg:px-8">
-      <div class="mx-auto flex max-w-7xl items-center justify-between rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 shadow-glow backdrop-blur-xl">
-        <a href="#home" class="flex items-center gap-3">
-          <div class="flex h-10 w-10 items-center justify-center rounded-2xl bg-white/10 ring-1 ring-white/10">
-            <span class="text-sm font-semibold tracking-[0.24em] text-glow">BKK</span>
-          </div>
-          <div>
-            <p class="text-sm font-semibold text-white">Bijay Khatri</p>
-            <p class="text-xs text-textMuted">Cybersecurity Portfolio</p>
-          </div>
-        </a>
+            <button
+              class="nav-toggle"
+              id="nav-toggle"
+              type="button"
+              aria-expanded="false"
+              aria-controls="nav-links"
+              aria-label="Open navigation menu"
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
 
-        <div class="hidden items-center gap-8 md:flex">
-          <a class="text-sm text-textSoft transition hover:text-white" href="#about">About</a>
-          <a class="text-sm text-textSoft transition hover:text-white" href="#experience">Experience</a>
-          <a class="text-sm text-textSoft transition hover:text-white" href="#projects">Projects</a>
-          <a class="text-sm text-textSoft transition hover:text-white" href="#skills">Skills</a>
-          <a class="text-sm text-textSoft transition hover:text-white" href="#contact">Contact</a>
-        </div>
-
-        <div class="hidden md:block">
-          <a href="#contact" class="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white transition hover:border-cyan-300/40 hover:bg-cyan-300/10">Let’s Talk</a>
-        </div>
-
-        <button id="mobile-menu-btn" class="rounded-xl border border-white/10 bg-white/5 p-2 text-white md:hidden" aria-label="Open menu" aria-expanded="false">
-          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-        </button>
-      </div>
-
-      <div id="mobile-menu" class="mx-auto mt-3 hidden max-w-7xl rounded-2xl border border-white/10 bg-slate-950/90 p-4 shadow-glow backdrop-blur-xl md:hidden">
-        <div class="flex flex-col gap-2">
-          <a class="rounded-xl px-3 py-2 text-sm text-textSoft hover:bg-white/5 hover:text-white" href="#about">About</a>
-          <a class="rounded-xl px-3 py-2 text-sm text-textSoft hover:bg-white/5 hover:text-white" href="#experience">Experience</a>
-          <a class="rounded-xl px-3 py-2 text-sm text-textSoft hover:bg-white/5 hover:text-white" href="#projects">Projects</a>
-          <a class="rounded-xl px-3 py-2 text-sm text-textSoft hover:bg-white/5 hover:text-white" href="#skills">Skills</a>
-          <a class="rounded-xl px-3 py-2 text-sm text-textSoft hover:bg-white/5 hover:text-white" href="#contact">Contact</a>
-        </div>
-      </div>
-    </nav>
-
-    <main id="home" class="relative">
-      <section class="relative overflow-hidden px-4 pt-36 sm:px-6 lg:px-8">
-        <div class="grid-noise absolute inset-0 -z-10"></div>
-        <div class="hero-ring left-1/2 top-24 h-[28rem] w-[28rem] -translate-x-1/2"></div>
-        <div class="hero-ring left-1/2 top-20 h-[38rem] w-[38rem] -translate-x-1/2 opacity-60"></div>
-
-        <div class="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[1.25fr_0.95fr]">
-          <div class="reveal in-view max-w-3xl">
-            <div class="mb-6 inline-flex items-center gap-3 rounded-full border border-cyan-300/15 pill-shimmer animate-shimmer px-4 py-2 text-sm text-cyan-100">
-              <span class="inline-block h-2 w-2 rounded-full bg-cyan-300"></span>
-              Available for internships and cybersecurity opportunities
+            <div class="nav-links" id="nav-links">
+              <a href="#about">About</a>
+              <a href="#experience">Experience</a>
+              <a href="#projects">Projects</a>
+              <a href="#skills">Skills</a>
+              <a href="#contact">Contact</a>
+              <a class="button button--ghost" href="Resume_Khatri_Bijay_CIS_Cybersecurity.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
             </div>
-
-            <p class="mb-5 text-sm font-medium uppercase tracking-[0.35em] text-textMuted">Cybersecurity · Cloud · Vulnerability Research</p>
-            <h1 class="max-w-4xl text-5xl font-semibold leading-[0.95] text-white sm:text-6xl lg:text-7xl">
-              Building a <span class="heading-gradient">modern security portfolio</span> with clarity, motion, and proof of impact.
-            </h1>
-
-            <p class="mt-7 max-w-2xl text-lg leading-8 text-textSoft sm:text-xl">
-              I help secure digital systems through vulnerability research, identity hardening, cloud administration, and practical security operations. My work combines hands on technical depth with clean communication and responsible disclosure.
-            </p>
-
-            <div class="mt-10 flex flex-wrap gap-4">
-              <a href="#projects" class="inline-flex items-center rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-900 shadow-button transition hover:-translate-y-0.5">Explore Projects</a>
-              <a href="#contact" class="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:border-cyan-300/30 hover:bg-cyan-300/10">Contact Me</a>
-              <a href="Resume_Khatri_Bijay_CIS_Cybersecurity.pdf" target="_blank" class="inline-flex items-center rounded-full border border-white/10 bg-transparent px-6 py-3 text-sm font-semibold text-textSoft transition hover:border-white/20 hover:text-white">Open Resume</a>
-            </div>
-
-            <div class="mt-14 grid gap-4 sm:grid-cols-3">
-              <div class="section-card rounded-3xl p-5">
-                <p class="text-3xl font-semibold text-white">100+</p>
-                <p class="mt-2 text-sm text-textMuted">Validated vulnerabilities reported across platforms</p>
-              </div>
-              <div class="section-card rounded-3xl p-5">
-                <p class="text-3xl font-semibold text-white">$35K+</p>
-                <p class="mt-2 text-sm text-textMuted">Bug bounty rewards earned through responsible disclosure</p>
-              </div>
-              <div class="section-card rounded-3xl p-5">
-                <p class="text-3xl font-semibold text-white">5th</p>
-                <p class="mt-2 text-sm text-textMuted">CCDC Blue Team placement and defensive operations experience</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="reveal lg:justify-self-end">
-            <div class="glass card-hover relative overflow-hidden rounded-[2rem] p-6 shadow-glow">
-              <div class="absolute inset-0 bg-gradient-to-br from-cyan-300/10 via-transparent to-violet-300/10"></div>
-              <div class="relative">
-                <div class="mb-6 flex items-center justify-between">
-                  <div>
-                    <p class="text-xs uppercase tracking-[0.28em] text-textMuted">Profile Snapshot</p>
-                    <h2 class="mt-2 text-2xl font-semibold text-white">Bijay Kumar Khatri</h2>
-                  </div>
-                  <span class="rounded-full border border-emerald-300/20 bg-emerald-300/10 px-3 py-1 text-xs text-emerald-200">Live</span>
-                </div>
-
-                <div class="space-y-3 rounded-3xl border border-white/8 bg-black/20 p-5">
-                  <div class="flex items-start justify-between gap-4 border-b border-white/8 pb-3">
-                    <span class="text-sm text-textSoft">Current focus</span>
-                    <span class="text-right text-sm text-white">Cybersecurity internships, vulnerability research, cloud security</span>
-                  </div>
-                  <div class="flex items-start justify-between gap-4 border-b border-white/8 pb-3">
-                    <span class="text-sm text-textSoft">Recognition</span>
-                    <span class="text-right text-sm text-white">Meta Gold League, media coverage, hackathon invites</span>
-                  </div>
-                  <div class="flex items-start justify-between gap-4">
-                    <span class="text-sm text-textSoft">Education</span>
-                    <span class="text-right text-sm text-white">B.S. CIS, Cybersecurity Concentration, University of Akron</span>
-                  </div>
-                </div>
-
-                <div class="mt-6 grid gap-3 sm:grid-cols-2">
-                  <div class="rounded-3xl border border-white/8 bg-white/5 p-4">
-                    <p class="text-xs uppercase tracking-[0.22em] text-textMuted">Experience</p>
-                    <p class="mt-2 text-lg font-medium text-white">Meta + G. Stephens</p>
-                  </div>
-                  <div class="rounded-3xl border border-white/8 bg-white/5 p-4">
-                    <p class="text-xs uppercase tracking-[0.22em] text-textMuted">Tooling</p>
-                    <p class="mt-2 text-lg font-medium text-white">Burp, Azure, Intune, Defender</p>
-                  </div>
-                </div>
-
-                <a href="https://www.linkedin.com/in/bijaykcc/" target="_blank" rel="noopener noreferrer" class="mt-6 inline-flex w-full items-center justify-center rounded-full border border-cyan-300/20 bg-cyan-300/10 px-5 py-3 text-sm font-medium text-cyan-100 transition hover:border-cyan-300/40 hover:bg-cyan-300/15">
-                  Connect on LinkedIn
-                </a>
-              </div>
-            </div>
-          </div>
+          </nav>
         </div>
-      </section>
+      </header>
 
-      <section id="about" class="px-4 py-24 sm:px-6 lg:px-8">
-        <div class="mx-auto max-w-7xl">
-          <div class="mb-12 reveal">
-            <p class="mb-3 text-sm uppercase tracking-[0.3em] text-textMuted">About</p>
-            <h2 class="max-w-3xl text-3xl font-semibold text-white sm:text-5xl">A portfolio that explains not just what I do, but how I think about security.</h2>
-          </div>
-
-          <div class="grid gap-6 lg:grid-cols-[1.25fr_0.8fr]">
-            <article class="section-card card-hover reveal rounded-[2rem] p-8 sm:p-10">
-              <p class="text-lg leading-8 text-textSoft">
-                I am a cybersecurity professional currently pursuing a Bachelor of Science in Computer Information Systems with a cybersecurity concentration at the University of Akron. My work centers on vulnerability discovery, secure system administration, incident response readiness, and practical cloud security.
+      <main id="top">
+        <section class="hero section">
+          <div class="container hero-grid">
+            <div class="hero-copy reveal">
+              <p class="eyebrow">Cybersecurity / Cloud Administration / Vulnerability Research</p>
+              <h1>Security work that is technical, measurable, and clearly communicated.</h1>
+              <p class="lead">
+                I am Bijay Kumar Khatri, a cybersecurity student and practitioner focused on vulnerability discovery, identity hardening, cloud administration, and secure operational support.
               </p>
-              <p class="mt-6 text-lg leading-8 text-textSoft">
-                Through independent research, I have reported over 100 validated vulnerabilities across web, mobile, and API platforms. That experience sharpened my technical depth, communication style, and ability to work within responsible disclosure programs.
-              </p>
-              <p class="mt-6 text-lg leading-8 text-textSoft">
-                I enjoy building secure systems, improving identity controls, and translating technical findings into action that teams can use. My goal is to blend hands on security work with clean design, strong documentation, and measurable results.
-              </p>
-            </article>
 
-            <div class="grid gap-6">
-              <article class="section-card card-hover reveal rounded-[2rem] p-6">
-                <p class="text-xs uppercase tracking-[0.24em] text-textMuted">Education</p>
-                <h3 class="mt-3 text-xl font-semibold text-white">University of Akron</h3>
-                <p class="mt-2 text-textSoft">B.S. Computer Information Systems</p>
-                <p class="text-cyan-200">Cybersecurity Concentration</p>
-                <p class="mt-4 text-sm text-textMuted">Expected Dec 2027 · Dean’s List 2024–2025</p>
+              <div class="hero-actions">
+                <a class="button" href="#projects">View Projects</a>
+                <a class="button button--ghost" href="#contact">Get In Touch</a>
+              </div>
+
+              <ul class="hero-metrics" aria-label="Highlights">
+                <li>
+                  <strong>100+</strong>
+                  <span>validated vulnerabilities reported</span>
+                </li>
+                <li>
+                  <strong>$35K+</strong>
+                  <span>earned through responsible disclosure</span>
+                </li>
+                <li>
+                  <strong>5th Place</strong>
+                  <span>CCDC Blue Team defensive placement</span>
+                </li>
+              </ul>
+            </div>
+
+            <aside class="hero-card reveal">
+              <div class="status-row">
+                <span class="status-dot"></span>
+                <span>Open to internships and cybersecurity opportunities</span>
+              </div>
+
+              <div class="profile-block">
+                <p class="label">Current focus</p>
+                <p>Cybersecurity internships, vulnerability research, cloud security, and identity administration</p>
+              </div>
+
+              <div class="profile-block">
+                <p class="label">Recognition</p>
+                <p>Meta Gold League researcher, hackathon invitee, and international media coverage</p>
+              </div>
+
+              <div class="profile-block">
+                <p class="label">Education</p>
+                <p>B.S. in Computer Information Systems, Cybersecurity Concentration, University of Akron</p>
+              </div>
+
+              <div class="profile-links">
+                <a href="https://www.linkedin.com/in/bijaykcc/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="https://github.com/bjkc01" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="mailto:bk198@uakron.edu">Email</a>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section class="section" id="about">
+          <div class="container">
+            <div class="section-heading reveal">
+              <p class="eyebrow">About</p>
+              <h2>A professional portfolio built around practical security work.</h2>
+            </div>
+
+            <div class="about-grid">
+              <article class="panel reveal">
+                <p>
+                  I am currently pursuing a Bachelor of Science in Computer Information Systems with a cybersecurity concentration at the University of Akron. My work centers on vulnerability discovery, secure system administration, identity management, and practical cloud security.
+                </p>
+                <p>
+                  Through independent research, I have reported more than 100 validated vulnerabilities across web, mobile, and API environments. That experience has strengthened both my technical depth and my ability to communicate risk clearly to engineering and security teams.
+                </p>
+                <p>
+                  I care about building secure systems, improving operational hygiene, and turning technical findings into useful action. I approach security work with a balance of hands-on analysis, documentation, and accountability.
+                </p>
               </article>
 
-              <article class="section-card card-hover reveal rounded-[2rem] p-6">
-                <p class="text-xs uppercase tracking-[0.24em] text-textMuted">Recognition</p>
-                <ul class="mt-4 space-y-3 text-textSoft">
-                  <li>Featured by BBC and international media</li>
-                  <li>Meta and Google hackathon invitee</li>
-                  <li>Meta Gold League Researcher</li>
+              <div class="stack">
+                <article class="panel panel--compact reveal">
+                  <p class="label">Education</p>
+                  <h3>University of Akron</h3>
+                  <p>B.S. Computer Information Systems</p>
+                  <p class="accent">Cybersecurity Concentration</p>
+                  <p class="muted">Expected December 2027 / Dean's List 2024-2025</p>
+                </article>
+
+                <article class="panel panel--compact reveal">
+                  <p class="label">Recognition</p>
+                  <ul class="simple-list">
+                    <li>Featured by BBC and other international media outlets</li>
+                    <li>Invited to Meta and Google hackathon programs</li>
+                    <li>Recognized as a Meta Gold League researcher</li>
+                  </ul>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="experience">
+          <div class="container">
+            <div class="section-heading reveal">
+              <p class="eyebrow">Experience</p>
+              <h2>Work across security research, identity administration, endpoint protection, and IT operations.</h2>
+            </div>
+
+            <div class="timeline">
+              <article class="panel timeline-item reveal">
+                <div class="timeline-head">
+                  <div>
+                    <p class="kicker">Meta</p>
+                    <h3>Independent Whitehat Security Researcher</h3>
+                  </div>
+                  <span class="tag">2021-Present</span>
+                </div>
+                <ul class="simple-list">
+                  <li>Reported more than 100 verified vulnerabilities across web, mobile, and API surfaces.</li>
+                  <li>Worked with platform security teams to validate issues, communicate impact, and support remediation.</li>
+                  <li>Used Burp Suite, Nmap, Wireshark, Python, JavaScript, and OSINT techniques during testing and reporting workflows.</li>
+                </ul>
+              </article>
+
+              <article class="panel timeline-item reveal">
+                <div class="timeline-head">
+                  <div>
+                    <p class="kicker">G. Stephens, Inc.</p>
+                    <h3>Information Technology and Security Intern</h3>
+                  </div>
+                  <span class="tag">2025-Present</span>
+                </div>
+                <ul class="simple-list">
+                  <li>Administered Active Directory, Intune, and Azure environments using secure identity practices.</li>
+                  <li>Improved endpoint protection through Huntress, Microsoft Defender, and NinjaOne support.</li>
+                  <li>Led SharePoint Online migration and permission review efforts to reduce risk and improve governance.</li>
                 </ul>
               </article>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section id="experience" class="px-4 py-24 sm:px-6 lg:px-8">
-        <div class="mx-auto max-w-7xl">
-          <div class="mb-12 reveal">
-            <p class="mb-3 text-sm uppercase tracking-[0.3em] text-textMuted">Experience</p>
-            <h2 class="text-3xl font-semibold text-white sm:text-5xl">Hands on work across vulnerability research, identity, cloud, and internal IT security.</h2>
-          </div>
+        <section class="section" id="projects">
+          <div class="container">
+            <div class="section-heading reveal">
+              <p class="eyebrow">Projects</p>
+              <h2>Selected projects that reflect security-first implementation and operational thinking.</h2>
+            </div>
 
-          <div class="grid gap-6">
-            <article class="section-card card-hover reveal rounded-[2rem] p-8">
-              <div class="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
-                <div>
-                  <p class="text-sm uppercase tracking-[0.24em] text-cyan-200">Meta</p>
-                  <h3 class="mt-2 text-2xl font-semibold text-white">Independent Whitehat Security Researcher</h3>
+            <div class="card-grid">
+              <article class="panel reveal">
+                <p class="label">Project 01</p>
+                <h3>SecureVault Password Manager</h3>
+                <p>
+                  A locally encrypted password manager designed around AES-256 encryption, PBKDF2 key derivation, and a privacy-focused architecture intended to keep user data under local control.
+                </p>
+                <div class="chip-row">
+                  <span>Python</span>
+                  <span>AES-256</span>
+                  <span>SQLite</span>
+                  <span>PBKDF2</span>
                 </div>
-                <div class="flex flex-wrap gap-2">
-                  <span class="rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-textSoft">2021 – Present</span>
-                  <span class="rounded-full border border-yellow-300/15 bg-yellow-300/10 px-4 py-1.5 text-sm text-yellow-100">Gold League</span>
+              </article>
+
+              <article class="panel reveal">
+                <p class="label">Project 02</p>
+                <h3>SharePoint Migration and Security Initiative</h3>
+                <p>
+                  A structured SharePoint migration effort using role-based access control, permission reviews, and governance-focused security controls to reduce unauthorized access and improve operational consistency.
+                </p>
+                <div class="chip-row">
+                  <span>SharePoint</span>
+                  <span>Azure</span>
+                  <span>PowerShell</span>
+                  <span>RBAC</span>
                 </div>
-              </div>
-              <ul class="mt-6 space-y-3 text-textSoft">
-                <li>Reported over 100 verified vulnerabilities across web, mobile, and API platforms.</li>
-                <li>Worked with security teams to validate issues, communicate risk clearly, and support remediation.</li>
-                <li>Used Burp Suite, Nmap, Wireshark, custom Python and JavaScript scripts, and OSINT techniques.</li>
-              </ul>
-              <div class="mt-6 flex flex-wrap gap-2">
-                <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-textSoft">Burp Suite</span>
-                <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-textSoft">Nmap</span>
-                <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-textSoft">Wireshark</span>
-                <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-textSoft">Python</span>
-                <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-textSoft">API Testing</span>
-              </div>
-            </article>
-
-            <article class="section-card card-hover reveal rounded-[2rem] p-8">
-              <div class="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
-                <div>
-                  <p class="text-sm uppercase tracking-[0.24em] text-cyan-200">G. Stephens, Inc.</p>
-                  <h3 class="mt-2 text-2xl font-semibold text-white">Information Technology & Security Intern</h3>
-                </div>
-                <div class="flex flex-wrap gap-2">
-                  <span class="rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-textSoft">2025 – Present</span>
-                </div>
-              </div>
-              <ul class="mt-6 space-y-3 text-textSoft">
-                <li>Administered Active Directory, Intune, and Azure environments using secure identity practices.</li>
-                <li>Improved endpoint protection using Huntress, Microsoft Defender, and NinjaOne.</li>
-                <li>Led SharePoint Online migrations and permission audits to reduce risk and strengthen governance.</li>
-              </ul>
-              <div class="mt-6 flex flex-wrap gap-2">
-                <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-textSoft">Azure AD</span>
-                <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-textSoft">Intune</span>
-                <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-textSoft">Huntress</span>
-                <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-textSoft">Defender</span>
-                <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-textSoft">NIST</span>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="projects" class="px-4 py-24 sm:px-6 lg:px-8">
-        <div class="mx-auto max-w-7xl">
-          <div class="mb-12 reveal">
-            <p class="mb-3 text-sm uppercase tracking-[0.3em] text-textMuted">Projects</p>
-            <h2 class="text-3xl font-semibold text-white sm:text-5xl">Selected work with security first thinking and real technical depth.</h2>
-          </div>
-
-          <div class="grid gap-6 md:grid-cols-2">
-            <article class="section-card card-hover reveal rounded-[2rem] p-8">
-              <p class="text-xs uppercase tracking-[0.24em] text-textMuted">Project 01</p>
-              <h3 class="mt-3 text-2xl font-semibold text-white">SecureVault Password Manager</h3>
-              <p class="mt-4 leading-7 text-textSoft">
-                A secure locally encrypted password manager with AES-256 encryption, PBKDF2 key derivation, and a zero knowledge style architecture focused on privacy and control.
-              </p>
-              <div class="mt-6 flex flex-wrap gap-2">
-                <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-textSoft">Python</span>
-                <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-textSoft">AES-256</span>
-                <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-textSoft">SQLite</span>
-                <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-textSoft">PBKDF2</span>
-              </div>
-            </article>
-
-            <article class="section-card card-hover reveal rounded-[2rem] p-8">
-              <p class="text-xs uppercase tracking-[0.24em] text-textMuted">Project 02</p>
-              <h3 class="mt-3 text-2xl font-semibold text-white">SharePoint Migration & Security Initiative</h3>
-              <p class="mt-4 leading-7 text-textSoft">
-                A secure SharePoint migration effort that used structured permissions, role based access control, and security controls to reduce unauthorized access and improve governance.
-              </p>
-              <div class="mt-6 flex flex-wrap gap-2">
-                <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-textSoft">SharePoint</span>
-                <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-textSoft">Azure</span>
-                <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-textSoft">PowerShell</span>
-                <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-sm text-textSoft">RBAC</span>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="skills" class="px-4 py-24 sm:px-6 lg:px-8">
-        <div class="mx-auto max-w-7xl">
-          <div class="mb-12 reveal">
-            <p class="mb-3 text-sm uppercase tracking-[0.3em] text-textMuted">Skills</p>
-            <h2 class="text-3xl font-semibold text-white sm:text-5xl">Technical skills presented with the same clean product style.</h2>
-          </div>
-
-          <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-            <article class="section-card card-hover reveal rounded-[2rem] p-6">
-              <h3 class="text-xl font-semibold text-white">Security Operations</h3>
-              <div class="mt-5 flex flex-wrap gap-2">
-                <span class="rounded-full border border-cyan-300/15 bg-cyan-300/10 px-3 py-1.5 text-sm text-cyan-100">Incident Response</span>
-                <span class="rounded-full border border-cyan-300/15 bg-cyan-300/10 px-3 py-1.5 text-sm text-cyan-100">Vulnerability Assessment</span>
-                <span class="rounded-full border border-cyan-300/15 bg-cyan-300/10 px-3 py-1.5 text-sm text-cyan-100">Threat Modeling</span>
-              </div>
-            </article>
-
-            <article class="section-card card-hover reveal rounded-[2rem] p-6">
-              <h3 class="text-xl font-semibold text-white">Security Tools</h3>
-              <div class="mt-5 flex flex-wrap gap-2">
-                <span class="rounded-full border border-cyan-300/15 bg-cyan-300/10 px-3 py-1.5 text-sm text-cyan-100">Burp Suite</span>
-                <span class="rounded-full border border-cyan-300/15 bg-cyan-300/10 px-3 py-1.5 text-sm text-cyan-100">Nmap</span>
-                <span class="rounded-full border border-cyan-300/15 bg-cyan-300/10 px-3 py-1.5 text-sm text-cyan-100">Wireshark</span>
-              </div>
-            </article>
-
-            <article class="section-card card-hover reveal rounded-[2rem] p-6">
-              <h3 class="text-xl font-semibold text-white">Cloud & Identity</h3>
-              <div class="mt-5 flex flex-wrap gap-2">
-                <span class="rounded-full border border-cyan-300/15 bg-cyan-300/10 px-3 py-1.5 text-sm text-cyan-100">Azure</span>
-                <span class="rounded-full border border-cyan-300/15 bg-cyan-300/10 px-3 py-1.5 text-sm text-cyan-100">Azure AD</span>
-                <span class="rounded-full border border-cyan-300/15 bg-cyan-300/10 px-3 py-1.5 text-sm text-cyan-100">Intune</span>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" class="px-4 py-24 sm:px-6 lg:px-8">
-        <div class="mx-auto max-w-4xl">
-          <div class="section-card reveal rounded-[2rem] p-8 sm:p-12">
-            <p class="mb-3 text-sm uppercase tracking-[0.3em] text-textMuted">Contact</p>
-            <h2 class="text-3xl font-semibold text-white sm:text-5xl">Let’s build, secure, and improve systems that matter.</h2>
-            <p class="mt-5 max-w-2xl text-lg leading-8 text-textSoft">
-              I’m open to cybersecurity internships, project work, and conversations around vulnerability research, security operations, and cloud administration.
-            </p>
-
-            <div class="mt-10 grid gap-4 sm:grid-cols-3">
-              <a href="mailto:bk198@uakron.edu" class="rounded-[1.5rem] border border-white/10 bg-white/5 p-5 transition hover:border-cyan-300/30 hover:bg-cyan-300/10">
-                <p class="text-xs uppercase tracking-[0.24em] text-textMuted">Email</p>
-                <p class="mt-2 text-white">bk198@uakron.edu</p>
-              </a>
-              <a href="https://www.linkedin.com/in/bijaykcc/" target="_blank" rel="noopener noreferrer" class="rounded-[1.5rem] border border-white/10 bg-white/5 p-5 transition hover:border-cyan-300/30 hover:bg-cyan-300/10">
-                <p class="text-xs uppercase tracking-[0.24em] text-textMuted">LinkedIn</p>
-                <p class="mt-2 text-white">bijaykcc</p>
-              </a>
-              <a href="https://github.com/bjkc01" target="_blank" rel="noopener noreferrer" class="rounded-[1.5rem] border border-white/10 bg-white/5 p-5 transition hover:border-cyan-300/30 hover:bg-cyan-300/10">
-                <p class="text-xs uppercase tracking-[0.24em] text-textMuted">GitHub</p>
-                <p class="mt-2 text-white">bjkc01</p>
-              </a>
+              </article>
             </div>
           </div>
+        </section>
+
+        <section class="section" id="skills">
+          <div class="container">
+            <div class="section-heading reveal">
+              <p class="eyebrow">Skills</p>
+              <h2>Core capabilities across technical security, cloud administration, and defensive operations.</h2>
+            </div>
+
+            <div class="card-grid card-grid--three">
+              <article class="panel panel--compact reveal">
+                <h3>Security Operations</h3>
+                <div class="chip-row">
+                  <span>Incident Response</span>
+                  <span>Vulnerability Assessment</span>
+                  <span>Threat Modeling</span>
+                </div>
+              </article>
+
+              <article class="panel panel--compact reveal">
+                <h3>Security Tooling</h3>
+                <div class="chip-row">
+                  <span>Burp Suite</span>
+                  <span>Nmap</span>
+                  <span>Wireshark</span>
+                </div>
+              </article>
+
+              <article class="panel panel--compact reveal">
+                <h3>Cloud and Identity</h3>
+                <div class="chip-row">
+                  <span>Azure</span>
+                  <span>Azure AD</span>
+                  <span>Intune</span>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section section--contact" id="contact">
+          <div class="container">
+            <article class="contact-panel reveal">
+              <div>
+                <p class="eyebrow">Contact</p>
+                <h2>Available for internships, project work, and security conversations.</h2>
+                <p class="lead lead--compact">
+                  If you are looking for someone who can contribute across vulnerability research, cloud administration, and operational security, I would be glad to connect.
+                </p>
+              </div>
+
+              <div class="contact-grid">
+                <a class="contact-card" href="mailto:bk198@uakron.edu">
+                  <span class="label">Email</span>
+                  <strong>bk198@uakron.edu</strong>
+                </a>
+                <a class="contact-card" href="https://www.linkedin.com/in/bijaykcc/" target="_blank" rel="noopener noreferrer">
+                  <span class="label">LinkedIn</span>
+                  <strong>linkedin.com/in/bijaykcc</strong>
+                </a>
+                <a class="contact-card" href="https://github.com/bjkc01" target="_blank" rel="noopener noreferrer">
+                  <span class="label">GitHub</span>
+                  <strong>github.com/bjkc01</strong>
+                </a>
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="container footer-inner">
+          <p>&copy; <span id="year"></span> Bijay Kumar Khatri</p>
+          <p>Built as a clean, responsive portfolio focused on security work and professional presentation.</p>
         </div>
-      </section>
-    </main>
+      </footer>
+    </div>
 
-    <footer class="px-4 pb-10 sm:px-6 lg:px-8">
-      <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 border-t border-white/8 pt-8 text-sm text-textMuted sm:flex-row">
-        <p>© <span id="year"></span> Bijay Kumar Khatri</p>
-        <p>Designed with a modern product style inspired by premium AI landing pages.</p>
-      </div>
-    </footer>
-
-    <script>
-      const mobileBtn = document.getElementById('mobile-menu-btn')
-      const mobileMenu = document.getElementById('mobile-menu')
-
-      function closeMobileMenu() {
-        mobileMenu.classList.add('hidden')
-        mobileBtn.setAttribute('aria-expanded', 'false')
-      }
-
-      mobileBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden')
-        mobileBtn.setAttribute('aria-expanded', mobileMenu.classList.contains('hidden') ? 'false' : 'true')
-      })
-
-      mobileMenu.querySelectorAll('a').forEach((link) => {
-        link.addEventListener('click', closeMobileMenu)
-      })
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('in-view')
-          }
-        })
-      }, { threshold: 0.15 })
-
-      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el))
-      document.getElementById('year').textContent = new Date().getFullYear()
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>

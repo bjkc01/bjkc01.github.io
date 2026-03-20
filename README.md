@@ -1,15 +1,20 @@
 # Bijay Kumar Khatri Portfolio
 
-Static portfolio site for `bjkc01.github.io`.
+This repo now uses a single deployable file:
 
-## Files
+- `index.html` contains the full page markup, embedded CSS, and embedded JavaScript.
 
-- `index.html`: page structure and portfolio content
-- `style.css`: custom responsive styling
-- `script.js`: mobile navigation and reveal behavior
-- `Resume_Khatri_Bijay_CIS_Cybersecurity.pdf`: linked resume asset
+Future-facing content folders are included to keep ideas, notes, assets, and copy organized without changing the single-file hosting approach.
+
+## Section folders
+
+- `sections/hero-intro/`
+- `sections/experience/`
+- `sections/projects-work/`
+- `sections/skills-tech-stack/`
+- `sections/contact-form/`
 
 ## Notes
 
-- No build step is required.
-- Open `index.html` in a browser to preview locally.
+- The contact form is front-end only until a backend or form service is connected.
+- The resume PDF remains in the repo root because the live page links to it directly.

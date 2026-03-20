@@ -3,200 +3,931 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bijay Kumar Khatri | Cybersecurity Portfolio</title>
+    <title>Bijay Kumar Khatri | Cybersecurity Professional</title>
     <meta
       name="description"
-      content="Cybersecurity portfolio for Bijay Kumar Khatri featuring vulnerability research, cloud security experience, technical projects, and professional contact information."
+      content="Single-page cybersecurity portfolio for Bijay Kumar Khatri featuring experience, projects, skills, and contact information in a premium dark design."
     />
-    <meta
-      name="keywords"
-      content="Bijay Kumar Khatri, cybersecurity, portfolio, vulnerability research, bug bounty, cloud security, identity security"
-    />
-    <meta name="author" content="Bijay Kumar Khatri" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
+    <style>
+      :root {
+        --bg: #050508;
+        --panel: rgba(12, 15, 23, 0.7);
+        --panel-strong: rgba(18, 22, 32, 0.88);
+        --border: rgba(255, 255, 255, 0.09);
+        --text: #f5f7fb;
+        --muted: #a7b1c2;
+        --purple: #b66cff;
+        --cyan: #5de4ff;
+        --green: #7fffb2;
+        --shadow: 0 26px 80px rgba(0, 0, 0, 0.35);
+        --radius: 28px;
+        --container: 1160px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--text);
+        font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.75;
+        background:
+          radial-gradient(circle at 12% 14%, rgba(182, 108, 255, 0.17), transparent 24%),
+          radial-gradient(circle at 84% 18%, rgba(93, 228, 255, 0.14), transparent 25%),
+          radial-gradient(circle at 68% 72%, rgba(127, 255, 178, 0.1), transparent 20%),
+          linear-gradient(180deg, #050508 0%, #06070b 45%, #070911 100%);
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 72px 72px;
+        mask-image: radial-gradient(circle at center, black 35%, transparent 85%);
+        pointer-events: none;
+        z-index: -2;
+      }
+
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background:
+          radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.025), transparent 20%),
+          radial-gradient(circle at 80% 60%, rgba(255, 255, 255, 0.018), transparent 18%);
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button,
+      input,
+      textarea {
+        font: inherit;
+      }
+
+      .cursor-glow {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 18rem;
+        height: 18rem;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(93, 228, 255, 0.12) 0%, rgba(182, 108, 255, 0.08) 35%, rgba(127, 255, 178, 0.05) 55%, transparent 70%);
+        transform: translate3d(-50%, -50%, 0);
+        pointer-events: none;
+        z-index: 5;
+        opacity: 0.9;
+        will-change: transform, opacity;
+        transition: opacity 220ms ease;
+        mix-blend-mode: screen;
+      }
+
+      .container {
+        width: min(var(--container), calc(100% - 2rem));
+        margin: 0 auto;
+      }
+
+      .shell {
+        position: relative;
+        z-index: 1;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 30;
+        padding: 1rem 0 0;
+        backdrop-filter: blur(18px);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.9rem 1rem;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        background: rgba(8, 10, 15, 0.75);
+        box-shadow: var(--shadow);
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.85rem;
+        min-width: 0;
+      }
+
+      .brand-mark {
+        display: grid;
+        place-items: center;
+        width: 2.85rem;
+        height: 2.85rem;
+        border-radius: 20px;
+        background: linear-gradient(135deg, rgba(182, 108, 255, 0.24), rgba(93, 228, 255, 0.16)), rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        font-size: 0.86rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        color: #fff;
+      }
+
+      .brand-copy {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+      }
+
+      .brand-copy strong {
+        font-size: 0.96rem;
+      }
+
+      .brand-copy span {
+        color: var(--muted);
+        font-size: 0.78rem;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+      }
+
+      .nav-links a {
+        color: var(--muted);
+        font-size: 0.95rem;
+        transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+        will-change: transform, opacity;
+      }
+
+      .nav-links a:hover,
+      .nav-links a:focus-visible {
+        color: var(--text);
+        transform: scale(1.03);
+        text-shadow: 0 0 24px rgba(93, 228, 255, 0.28);
+      }
+
+      .menu-toggle {
+        display: none;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--text);
+        padding: 0.7rem 0.85rem;
+        cursor: pointer;
+      }
+
+      .section {
+        padding: 5.5rem 0;
+      }
+
+      .section-intro {
+        max-width: 44rem;
+        margin-bottom: 2rem;
+      }
+
+      .eyebrow {
+        margin: 0 0 0.9rem;
+        color: #d0d7e4;
+        font-size: 0.82rem;
+        text-transform: uppercase;
+        letter-spacing: 0.22em;
+      }
+
+      h1,
+      h2,
+      h3,
+      p,
+      ul {
+        margin-top: 0;
+      }
+
+      h1,
+      h2,
+      h3 {
+        line-height: 1.05;
+        letter-spacing: -0.04em;
+      }
+
+      h1 {
+        margin-bottom: 1rem;
+        font-size: clamp(3.3rem, 9vw, 6.8rem);
+      }
+
+      h2 {
+        margin-bottom: 0.85rem;
+        font-size: clamp(2.1rem, 5vw, 3.8rem);
+      }
+
+      h3 {
+        margin-bottom: 0.65rem;
+        font-size: 1.4rem;
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      .hero {
+        min-height: 100vh;
+        display: grid;
+        align-items: center;
+        position: relative;
+        padding-top: 6rem;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.8fr);
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .hero-copy {
+        max-width: 46rem;
+      }
+
+      .hero-title {
+        display: block;
+        color: var(--text);
+      }
+
+      .hero-role {
+        display: block;
+        color: transparent;
+        background: linear-gradient(90deg, #fff 0%, #d9beff 22%, #91f0ff 62%, #a7ffcf 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+      }
+
+      .hero-copy p {
+        font-size: 1.1rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin: 2rem 0 2.3rem;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 3.25rem;
+        padding: 0.95rem 1.35rem;
+        border-radius: 999px;
+        border: 1px solid rgba(93, 228, 255, 0.18);
+        background: linear-gradient(135deg, rgba(182, 108, 255, 0.18), rgba(93, 228, 255, 0.18)), rgba(255, 255, 255, 0.05);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 0 0 1px rgba(93, 228, 255, 0.08), 0 14px 42px rgba(93, 228, 255, 0.12);
+        color: var(--text);
+        font-weight: 600;
+        transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+        will-change: transform, opacity;
+      }
+
+      .button:hover,
+      .button:focus-visible {
+        transform: scale(1.03);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 0 0 1px rgba(127, 255, 178, 0.14), 0 18px 50px rgba(182, 108, 255, 0.18);
+      }
+
+      .button.secondary {
+        background: rgba(255, 255, 255, 0.03);
+        border-color: var(--border);
+      }
+
+      .hero-meta {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+      }
+
+      .metric,
+      .glass-card,
+      .timeline-item,
+      .project-card,
+      .skill-group,
+      .contact-card,
+      .contact-form {
+        background: linear-gradient(180deg, rgba(18, 20, 28, 0.76), rgba(10, 12, 18, 0.72));
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(18px);
+      }
+
+      .metric {
+        border-radius: 22px;
+        padding: 1.1rem 1.2rem;
+      }
+
+      .metric strong {
+        display: block;
+        margin-bottom: 0.35rem;
+        font-size: 1.38rem;
+      }
+
+      .hero-side {
+        position: relative;
+      }
+
+      .glass-card {
+        position: relative;
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        overflow: hidden;
+      }
+
+      .glass-card::before {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        background: radial-gradient(circle at top left, rgba(182, 108, 255, 0.2), transparent 30%), radial-gradient(circle at bottom right, rgba(93, 228, 255, 0.16), transparent 28%);
+        pointer-events: none;
+      }
+
+      .glass-card > * {
+        position: relative;
+      }
+
+      .scan-panel {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .scan-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.9rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .scan-row:last-child {
+        border-bottom: 0;
+      }
+
+      .status-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.55rem 0.8rem;
+        border-radius: 999px;
+        color: #dffcf0;
+        background: rgba(127, 255, 178, 0.09);
+        border: 1px solid rgba(127, 255, 178, 0.16);
+      }
+
+      .status-pill::before {
+        content: "";
+        width: 0.55rem;
+        height: 0.55rem;
+        border-radius: 50%;
+        background: var(--green);
+        box-shadow: 0 0 16px rgba(127, 255, 178, 0.9);
+      }
+
+      .particle-field {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      .particle {
+        position: absolute;
+        width: 0.38rem;
+        height: 0.38rem;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.75);
+        opacity: 0.25;
+        box-shadow: 0 0 18px rgba(93, 228, 255, 0.4), 0 0 32px rgba(182, 108, 255, 0.18);
+        animation: floatParticle var(--duration) ease-in-out infinite;
+        will-change: transform, opacity;
+      }
+
+      @keyframes floatParticle {
+        0%,
+        100% {
+          transform: translate3d(0, 0, 0);
+          opacity: 0.18;
+        }
+        50% {
+          transform: translate3d(0, -14px, 0);
+          opacity: 0.4;
+        }
+      }
+
+      .timeline {
+        display: grid;
+        gap: 1.1rem;
+      }
+
+      .timeline-item {
+        position: relative;
+        border-radius: 24px;
+        padding: 1.45rem 1.45rem 1.45rem 1.7rem;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        will-change: transform, opacity;
+      }
+
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: linear-gradient(180deg, rgba(182, 108, 255, 0.95), rgba(93, 228, 255, 0.9), rgba(127, 255, 178, 0.7));
+        box-shadow: 0 0 32px rgba(93, 228, 255, 0.55);
+      }
+
+      .timeline-item:hover,
+      .timeline-item:focus-within,
+      .project-card:hover,
+      .project-card:focus-within,
+      .skill-group:hover,
+      .contact-card:hover,
+      .contact-card:focus-visible {
+        transform: scale(1.03);
+        border-color: rgba(93, 228, 255, 0.16);
+      }
+
+      .timeline-head {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .kicker {
+        margin: 0 0 0.45rem;
+        color: #d8e4f0;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+      }
+
+      .date-tag {
+        white-space: nowrap;
+        padding: 0.45rem 0.75rem;
+        border-radius: 999px;
+        color: #d5dcf0;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        font-size: 0.9rem;
+      }
+
+      .bullet-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .bullet-list li {
+        position: relative;
+        padding-left: 1.15rem;
+        color: var(--muted);
+      }
+
+      .bullet-list li + li {
+        margin-top: 0.6rem;
+      }
+
+      .bullet-list li::before {
+        content: "";
+        position: absolute;
+        top: 0.8rem;
+        left: 0;
+        width: 0.38rem;
+        height: 0.38rem;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--purple), var(--cyan));
+        box-shadow: 0 0 18px rgba(93, 228, 255, 0.5);
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.15rem;
+      }
+
+      .project-card {
+        position: relative;
+        border-radius: 24px;
+        padding: 1.45rem;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        will-change: transform, opacity;
+      }
+
+      .project-card::before {
+        content: "";
+        position: absolute;
+        inset: 0 0 auto 0;
+        height: 3px;
+        background: linear-gradient(90deg, rgba(182, 108, 255, 0.92), rgba(93, 228, 255, 0.92), rgba(127, 255, 178, 0.8));
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .project-card:hover::before,
+      .project-card:focus-within::before {
+        opacity: 1;
+      }
+
+      .tag-row,
+      .pill-cloud,
+      .social-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem;
+      }
+
+      .tag,
+      .pill,
+      .social-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        min-height: 2.1rem;
+        padding: 0.45rem 0.78rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.04);
+        color: #d8e1ee;
+        transition: transform 0.3s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+        will-change: transform, opacity;
+      }
+
+      .tag:hover,
+      .pill:hover,
+      .social-link:hover,
+      .social-link:focus-visible {
+        transform: scale(1.03);
+        box-shadow: 0 0 24px rgba(182, 108, 255, 0.12);
+      }
+
+      .project-links {
+        display: flex;
+        gap: 0.8rem;
+        margin-top: 1.2rem;
+      }
+
+      .project-link {
+        color: #f2f6ff;
+        font-size: 0.95rem;
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.1rem;
+      }
+
+      .skill-group {
+        border-radius: 24px;
+        padding: 1.35rem;
+        transition: transform 0.3s ease, border-color 0.3s ease;
+        will-change: transform, opacity;
+      }
+
+      .contact-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 0.95fr) minmax(320px, 1.05fr);
+        gap: 1.2rem;
+      }
+
+      .contact-card,
+      .contact-form {
+        border-radius: 26px;
+        padding: 1.45rem;
+      }
+
+      .contact-stack {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .field {
+        display: grid;
+        gap: 0.45rem;
+      }
+
+      .field label {
+        color: #d5dbeb;
+        font-size: 0.94rem;
+      }
+
+      .field input,
+      .field textarea {
+        width: 100%;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--text);
+        padding: 0.9rem 1rem;
+        outline: none;
+        transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+      }
+
+      .field input:focus,
+      .field textarea:focus {
+        border-color: rgba(93, 228, 255, 0.24);
+        box-shadow: 0 0 0 1px rgba(93, 228, 255, 0.12), 0 0 32px rgba(93, 228, 255, 0.08);
+        transform: translate3d(0, 0, 0);
+      }
+
+      .field textarea {
+        min-height: 11rem;
+        resize: vertical;
+      }
+
+      .form-note {
+        color: var(--muted);
+        font-size: 0.92rem;
+      }
+
+      .footer {
+        padding: 0 0 2.4rem;
+      }
+
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-top: 1.4rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        color: var(--muted);
+        font-size: 0.94rem;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translate3d(0, 24px, 0);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+        will-change: transform, opacity;
+      }
+
+      .reveal.is-visible {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
+
+      @media (max-width: 960px) {
+        .hero-grid,
+        .contact-layout,
+        .skills-grid,
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-meta {
+          grid-template-columns: 1fr;
+        }
+
+        .timeline-head,
+        .footer-inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+
+      @media (max-width: 760px) {
+        .topbar {
+          padding-top: 0.75rem;
+        }
+
+        .nav {
+          border-radius: 28px;
+          align-items: flex-start;
+          flex-wrap: wrap;
+        }
+
+        .menu-toggle {
+          display: inline-flex;
+        }
+
+        .nav-links {
+          display: none;
+          width: 100%;
+          flex-direction: column;
+          align-items: flex-start;
+          padding-top: 0.55rem;
+        }
+
+        .nav-links.is-open {
+          display: flex;
+        }
+
+        .hero {
+          min-height: auto;
+          padding: 7rem 0 4.5rem;
+        }
+
+        .section {
+          padding: 4.5rem 0;
+        }
+
+        .cursor-glow {
+          display: none;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+
+        .reveal {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+        }
+      }
+    </style>
   </head>
   <body>
-    <div class="page-shell">
-      <header class="site-header">
+    <div class="cursor-glow" id="cursor-glow" aria-hidden="true"></div>
+
+    <div class="shell">
+      <header class="topbar">
         <div class="container">
           <nav class="nav" aria-label="Primary">
-            <a class="brand" href="#top" aria-label="Go to top">
+            <a class="brand" href="#hero">
               <span class="brand-mark">BKK</span>
               <span class="brand-copy">
                 <strong>Bijay Khatri</strong>
-                <span>Cybersecurity Portfolio</span>
+                <span>Cybersecurity Professional</span>
               </span>
             </a>
 
-            <button
-              class="nav-toggle"
-              id="nav-toggle"
-              type="button"
-              aria-expanded="false"
-              aria-controls="nav-links"
-              aria-label="Open navigation menu"
-            >
-              <span></span>
-              <span></span>
-              <span></span>
+            <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+              Menu
             </button>
 
             <div class="nav-links" id="nav-links">
-              <a href="#about">About</a>
               <a href="#experience">Experience</a>
               <a href="#projects">Projects</a>
               <a href="#skills">Skills</a>
               <a href="#contact">Contact</a>
-              <a class="button button--ghost" href="Resume_Khatri_Bijay_CIS_Cybersecurity.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
+              <a href="Resume_Khatri_Bijay_CIS_Cybersecurity.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
             </div>
           </nav>
         </div>
       </header>
 
-      <main id="top">
-        <section class="hero section">
+      <main>
+        <section class="hero" id="hero">
+          <div class="particle-field" aria-hidden="true">
+            <span class="particle" style="top:14%; left:12%; --duration:8s;"></span>
+            <span class="particle" style="top:22%; left:28%; --duration:9.5s;"></span>
+            <span class="particle" style="top:17%; left:74%; --duration:7.8s;"></span>
+            <span class="particle" style="top:44%; left:84%; --duration:10.2s;"></span>
+            <span class="particle" style="top:58%; left:18%; --duration:8.7s;"></span>
+            <span class="particle" style="top:68%; left:62%; --duration:9.8s;"></span>
+            <span class="particle" style="top:79%; left:34%; --duration:7.5s;"></span>
+            <span class="particle" style="top:83%; left:86%; --duration:11s;"></span>
+          </div>
+
           <div class="container hero-grid">
             <div class="hero-copy reveal">
-              <p class="eyebrow">Cybersecurity / Cloud Administration / Vulnerability Research</p>
-              <h1>Security work that is technical, measurable, and clearly communicated.</h1>
-              <p class="lead">
-                I am Bijay Kumar Khatri, a cybersecurity student and practitioner focused on vulnerability discovery, identity hardening, cloud administration, and secure operational support.
+              <p class="eyebrow">Offensive Security / Cloud Defense / Practical Research</p>
+              <h1>
+                <span class="hero-title">Bijay Kumar Khatri</span>
+                <span class="hero-role">Cybersecurity Professional</span>
+              </h1>
+              <p class="muted">
+                I build secure systems, investigate weaknesses, and translate technical risk into action across penetration testing, cloud administration, and defensive operations.
               </p>
 
               <div class="hero-actions">
-                <a class="button" href="#projects">View Projects</a>
-                <a class="button button--ghost" href="#contact">Get In Touch</a>
+                <a class="button" href="#projects">View My Work</a>
+                <a class="button secondary" href="#contact">Let's Connect</a>
               </div>
 
-              <ul class="hero-metrics" aria-label="Highlights">
-                <li>
+              <div class="hero-meta">
+                <div class="metric">
                   <strong>100+</strong>
-                  <span>validated vulnerabilities reported</span>
-                </li>
-                <li>
+                  <span class="muted">validated findings reported across real platforms</span>
+                </div>
+                <div class="metric">
                   <strong>$35K+</strong>
-                  <span>earned through responsible disclosure</span>
-                </li>
-                <li>
-                  <strong>5th Place</strong>
-                  <span>CCDC Blue Team defensive placement</span>
-                </li>
-              </ul>
+                  <span class="muted">earned through responsible disclosure and research</span>
+                </div>
+                <div class="metric">
+                  <strong>Blue Team</strong>
+                  <span class="muted">competitive defense experience with operational focus</span>
+                </div>
+              </div>
             </div>
 
-            <aside class="hero-card reveal">
-              <div class="status-row">
-                <span class="status-dot"></span>
-                <span>Open to internships and cybersecurity opportunities</span>
-              </div>
-
-              <div class="profile-block">
-                <p class="label">Current focus</p>
-                <p>Cybersecurity internships, vulnerability research, cloud security, and identity administration</p>
-              </div>
-
-              <div class="profile-block">
-                <p class="label">Recognition</p>
-                <p>Meta Gold League researcher, hackathon invitee, and international media coverage</p>
-              </div>
-
-              <div class="profile-block">
-                <p class="label">Education</p>
-                <p>B.S. in Computer Information Systems, Cybersecurity Concentration, University of Akron</p>
-              </div>
-
-              <div class="profile-links">
-                <a href="https://www.linkedin.com/in/bijaykcc/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                <a href="https://github.com/bjkc01" target="_blank" rel="noopener noreferrer">GitHub</a>
-                <a href="mailto:bk198@uakron.edu">Email</a>
+            <aside class="hero-side reveal">
+              <div class="glass-card">
+                <div class="status-pill">Available for internships and security-focused opportunities</div>
+                <div class="scan-panel">
+                  <div class="scan-row">
+                    <span class="muted">Primary focus</span>
+                    <strong>Vulnerability Research</strong>
+                  </div>
+                  <div class="scan-row">
+                    <span class="muted">Environment</span>
+                    <strong>Cloud, Identity, Endpoint</strong>
+                  </div>
+                  <div class="scan-row">
+                    <span class="muted">Tooling</span>
+                    <strong>Burp Suite, Nmap, Wireshark</strong>
+                  </div>
+                  <div class="scan-row">
+                    <span class="muted">Education</span>
+                    <strong>University of Akron</strong>
+                  </div>
+                </div>
               </div>
             </aside>
           </div>
         </section>
 
-        <section class="section" id="about">
-          <div class="container">
-            <div class="section-heading reveal">
-              <p class="eyebrow">About</p>
-              <h2>A professional portfolio built around practical security work.</h2>
-            </div>
-
-            <div class="about-grid">
-              <article class="panel reveal">
-                <p>
-                  I am currently pursuing a Bachelor of Science in Computer Information Systems with a cybersecurity concentration at the University of Akron. My work centers on vulnerability discovery, secure system administration, identity management, and practical cloud security.
-                </p>
-                <p>
-                  Through independent research, I have reported more than 100 validated vulnerabilities across web, mobile, and API environments. That experience has strengthened both my technical depth and my ability to communicate risk clearly to engineering and security teams.
-                </p>
-                <p>
-                  I care about building secure systems, improving operational hygiene, and turning technical findings into useful action. I approach security work with a balance of hands-on analysis, documentation, and accountability.
-                </p>
-              </article>
-
-              <div class="stack">
-                <article class="panel panel--compact reveal">
-                  <p class="label">Education</p>
-                  <h3>University of Akron</h3>
-                  <p>B.S. Computer Information Systems</p>
-                  <p class="accent">Cybersecurity Concentration</p>
-                  <p class="muted">Expected December 2027 / Dean's List 2024-2025</p>
-                </article>
-
-                <article class="panel panel--compact reveal">
-                  <p class="label">Recognition</p>
-                  <ul class="simple-list">
-                    <li>Featured by BBC and other international media outlets</li>
-                    <li>Invited to Meta and Google hackathon programs</li>
-                    <li>Recognized as a Meta Gold League researcher</li>
-                  </ul>
-                </article>
-              </div>
-            </div>
-          </div>
-        </section>
-
         <section class="section" id="experience">
           <div class="container">
-            <div class="section-heading reveal">
+            <div class="section-intro reveal">
               <p class="eyebrow">Experience</p>
-              <h2>Work across security research, identity administration, endpoint protection, and IT operations.</h2>
+              <h2>Applied security work across research, cloud administration, and IT operations.</h2>
+              <p class="muted">
+                My experience blends hands-on offensive testing with defensive controls, endpoint hardening, and identity-aware infrastructure support.
+              </p>
             </div>
 
             <div class="timeline">
-              <article class="panel timeline-item reveal">
+              <article class="timeline-item reveal">
                 <div class="timeline-head">
                   <div>
                     <p class="kicker">Meta</p>
                     <h3>Independent Whitehat Security Researcher</h3>
                   </div>
-                  <span class="tag">2021-Present</span>
+                  <span class="date-tag">2021 - Present</span>
                 </div>
-                <ul class="simple-list">
-                  <li>Reported more than 100 verified vulnerabilities across web, mobile, and API surfaces.</li>
-                  <li>Worked with platform security teams to validate issues, communicate impact, and support remediation.</li>
-                  <li>Used Burp Suite, Nmap, Wireshark, Python, JavaScript, and OSINT techniques during testing and reporting workflows.</li>
+                <ul class="bullet-list">
+                  <li>Reported validated vulnerabilities across web, mobile, and API surfaces using structured testing and clear disclosure workflows.</li>
+                  <li>Used Burp Suite, Nmap, Wireshark, OSINT, and custom automation to investigate impact and prove exploitability responsibly.</li>
+                  <li>Worked through remediation cycles by communicating technical risk in a way that was useful to security and engineering teams.</li>
                 </ul>
               </article>
 
-              <article class="panel timeline-item reveal">
+              <article class="timeline-item reveal">
                 <div class="timeline-head">
                   <div>
                     <p class="kicker">G. Stephens, Inc.</p>
                     <h3>Information Technology and Security Intern</h3>
                   </div>
-                  <span class="tag">2025-Present</span>
+                  <span class="date-tag">2025 - Present</span>
                 </div>
-                <ul class="simple-list">
-                  <li>Administered Active Directory, Intune, and Azure environments using secure identity practices.</li>
-                  <li>Improved endpoint protection through Huntress, Microsoft Defender, and NinjaOne support.</li>
-                  <li>Led SharePoint Online migration and permission review efforts to reduce risk and improve governance.</li>
+                <ul class="bullet-list">
+                  <li>Supported Azure, Intune, Active Directory, and endpoint tooling with a strong emphasis on secure identity and operational hygiene.</li>
+                  <li>Improved endpoint visibility and protection through Microsoft Defender, Huntress, and NinjaOne administration.</li>
+                  <li>Led SharePoint migration and permission review efforts to reduce unnecessary access and strengthen governance.</li>
+                </ul>
+              </article>
+
+              <article class="timeline-item reveal">
+                <div class="timeline-head">
+                  <div>
+                    <p class="kicker">Competition / Lab Work</p>
+                    <h3>CTF and Defensive Operations Participant</h3>
+                  </div>
+                  <span class="date-tag">Ongoing</span>
+                </div>
+                <ul class="bullet-list">
+                  <li>Practiced exploitation, privilege escalation, enumeration, and incident triage across capture-the-flag and blue-team environments.</li>
+                  <li>Documented methodology, indicators, and remediation notes to reinforce repeatable learning rather than one-off solves.</li>
+                  <li>Built confidence across web exploitation, Linux analysis, networking, and log-driven investigation.</li>
                 </ul>
               </article>
             </div>
@@ -205,37 +936,84 @@
 
         <section class="section" id="projects">
           <div class="container">
-            <div class="section-heading reveal">
+            <div class="section-intro reveal">
               <p class="eyebrow">Projects</p>
-              <h2>Selected projects that reflect security-first implementation and operational thinking.</h2>
+              <h2>Selected work shaped by offensive thinking and production-minded discipline.</h2>
+              <p class="muted">
+                These projects focus on real security workflows, practical tooling, and the kind of problem-solving that holds up beyond a demo.
+              </p>
             </div>
 
-            <div class="card-grid">
-              <article class="panel reveal">
-                <p class="label">Project 01</p>
+            <div class="projects-grid">
+              <article class="project-card reveal">
+                <p class="kicker">Project 01</p>
                 <h3>SecureVault Password Manager</h3>
-                <p>
-                  A locally encrypted password manager designed around AES-256 encryption, PBKDF2 key derivation, and a privacy-focused architecture intended to keep user data under local control.
+                <p class="muted">
+                  A local-first password manager concept using strong encryption, structured secrets handling, and a minimal attack surface design.
                 </p>
-                <div class="chip-row">
-                  <span>Python</span>
-                  <span>AES-256</span>
-                  <span>SQLite</span>
-                  <span>PBKDF2</span>
+                <div class="tag-row">
+                  <span class="tag">Python</span>
+                  <span class="tag">AES-256</span>
+                  <span class="tag">PBKDF2</span>
+                  <span class="tag">Secure Storage</span>
+                </div>
+                <div class="project-links">
+                  <a class="project-link" href="https://github.com/bjkc01" target="_blank" rel="noopener noreferrer">GitHub</a>
+                  <a class="project-link" href="#contact">Request Demo</a>
                 </div>
               </article>
 
-              <article class="panel reveal">
-                <p class="label">Project 02</p>
-                <h3>SharePoint Migration and Security Initiative</h3>
-                <p>
-                  A structured SharePoint migration effort using role-based access control, permission reviews, and governance-focused security controls to reduce unauthorized access and improve operational consistency.
+              <article class="project-card reveal">
+                <p class="kicker">Project 02</p>
+                <h3>SharePoint Migration and Security Review</h3>
+                <p class="muted">
+                  A governance-focused migration effort that paired role-based access control with permission review and safer collaboration defaults.
                 </p>
-                <div class="chip-row">
-                  <span>SharePoint</span>
-                  <span>Azure</span>
-                  <span>PowerShell</span>
-                  <span>RBAC</span>
+                <div class="tag-row">
+                  <span class="tag">SharePoint</span>
+                  <span class="tag">PowerShell</span>
+                  <span class="tag">RBAC</span>
+                  <span class="tag">Governance</span>
+                </div>
+                <div class="project-links">
+                  <a class="project-link" href="https://github.com/bjkc01" target="_blank" rel="noopener noreferrer">GitHub</a>
+                  <a class="project-link" href="#contact">Discuss</a>
+                </div>
+              </article>
+
+              <article class="project-card reveal">
+                <p class="kicker">Project 03</p>
+                <h3>Web App Pentest Playbook</h3>
+                <p class="muted">
+                  A repeatable methodology for recon, authentication review, parameter tampering, and reporting built around modern web application testing.
+                </p>
+                <div class="tag-row">
+                  <span class="tag">Penetration Testing</span>
+                  <span class="tag">Burp Suite</span>
+                  <span class="tag">OWASP</span>
+                  <span class="tag">Reporting</span>
+                </div>
+                <div class="project-links">
+                  <a class="project-link" href="https://github.com/bjkc01" target="_blank" rel="noopener noreferrer">GitHub</a>
+                  <a class="project-link" href="#contact">Live Notes</a>
+                </div>
+              </article>
+
+              <article class="project-card reveal">
+                <p class="kicker">Project 04</p>
+                <h3>CTF Recon and Enumeration Toolkit</h3>
+                <p class="muted">
+                  A lightweight set of scripts and notes for service discovery, subdomain mapping, and privilege escalation triage during lab and CTF workflows.
+                </p>
+                <div class="tag-row">
+                  <span class="tag">CTF</span>
+                  <span class="tag">OSINT</span>
+                  <span class="tag">Nmap</span>
+                  <span class="tag">Enumeration</span>
+                </div>
+                <div class="project-links">
+                  <a class="project-link" href="https://github.com/bjkc01" target="_blank" rel="noopener noreferrer">GitHub</a>
+                  <a class="project-link" href="#contact">View Scope</a>
                 </div>
               </article>
             </div>
@@ -244,80 +1022,230 @@
 
         <section class="section" id="skills">
           <div class="container">
-            <div class="section-heading reveal">
-              <p class="eyebrow">Skills</p>
-              <h2>Core capabilities across technical security, cloud administration, and defensive operations.</h2>
+            <div class="section-intro reveal">
+              <p class="eyebrow">Skills / Tech Stack</p>
+              <h2>Technical depth presented as capability, not decoration.</h2>
+              <p class="muted">
+                My stack spans offensive testing, cloud and identity controls, security tooling, scripting, and the documentation needed to make findings useful.
+              </p>
             </div>
 
-            <div class="card-grid card-grid--three">
-              <article class="panel panel--compact reveal">
-                <h3>Security Operations</h3>
-                <div class="chip-row">
-                  <span>Incident Response</span>
-                  <span>Vulnerability Assessment</span>
-                  <span>Threat Modeling</span>
+            <div class="skills-grid">
+              <article class="skill-group reveal">
+                <p class="kicker">Offensive Security</p>
+                <div class="pill-cloud">
+                  <span class="pill">Web App Testing</span>
+                  <span class="pill">API Testing</span>
+                  <span class="pill">Burp Suite</span>
+                  <span class="pill">Nmap</span>
+                  <span class="pill">OSINT</span>
+                  <span class="pill">Privilege Escalation</span>
                 </div>
               </article>
 
-              <article class="panel panel--compact reveal">
-                <h3>Security Tooling</h3>
-                <div class="chip-row">
-                  <span>Burp Suite</span>
-                  <span>Nmap</span>
-                  <span>Wireshark</span>
+              <article class="skill-group reveal">
+                <p class="kicker">Defensive Tools</p>
+                <div class="pill-cloud">
+                  <span class="pill">Microsoft Defender</span>
+                  <span class="pill">Huntress</span>
+                  <span class="pill">NinjaOne</span>
+                  <span class="pill">Wireshark</span>
+                  <span class="pill">Endpoint Hardening</span>
+                  <span class="pill">Incident Triage</span>
                 </div>
               </article>
 
-              <article class="panel panel--compact reveal">
-                <h3>Cloud and Identity</h3>
-                <div class="chip-row">
-                  <span>Azure</span>
-                  <span>Azure AD</span>
-                  <span>Intune</span>
+              <article class="skill-group reveal">
+                <p class="kicker">Programming</p>
+                <div class="pill-cloud">
+                  <span class="pill">Python</span>
+                  <span class="pill">JavaScript</span>
+                  <span class="pill">PowerShell</span>
+                  <span class="pill">HTML</span>
+                  <span class="pill">CSS</span>
+                  <span class="pill">Automation Scripting</span>
+                </div>
+              </article>
+
+              <article class="skill-group reveal">
+                <p class="kicker">Certifications / Focus Areas</p>
+                <div class="pill-cloud">
+                  <span class="pill">Cloud Security</span>
+                  <span class="pill">Identity Management</span>
+                  <span class="pill">Responsible Disclosure</span>
+                  <span class="pill">Threat Modeling</span>
+                  <span class="pill">Security Documentation</span>
+                  <span class="pill">CTF Practice</span>
                 </div>
               </article>
             </div>
           </div>
         </section>
 
-        <section class="section section--contact" id="contact">
+        <section class="section" id="contact">
           <div class="container">
-            <article class="contact-panel reveal">
-              <div>
-                <p class="eyebrow">Contact</p>
-                <h2>Available for internships, project work, and security conversations.</h2>
-                <p class="lead lead--compact">
-                  If you are looking for someone who can contribute across vulnerability research, cloud administration, and operational security, I would be glad to connect.
-                </p>
+            <div class="section-intro reveal">
+              <p class="eyebrow">Contact</p>
+              <h2>Let's build something secure, useful, and technically sharp.</h2>
+              <p class="muted">
+                I am open to internships, security engineering conversations, research collaboration, and project-based work.
+              </p>
+            </div>
+
+            <div class="contact-layout">
+              <div class="contact-stack">
+                <article class="contact-card reveal">
+                  <p class="kicker">Direct</p>
+                  <h3>Email</h3>
+                  <p class="muted">bk198@uakron.edu</p>
+                </article>
+
+                <article class="contact-card reveal">
+                  <p class="kicker">Profiles</p>
+                  <div class="social-links">
+                    <a class="social-link" href="https://www.linkedin.com/in/bijaykcc/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                      <span>LinkedIn</span>
+                    </a>
+                    <a class="social-link" href="https://github.com/bjkc01" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                      <span>GitHub</span>
+                    </a>
+                    <a class="social-link" href="https://tryhackme.com/" target="_blank" rel="noopener noreferrer" aria-label="TryHackMe">
+                      <span>TryHackMe</span>
+                    </a>
+                    <a class="social-link" href="https://www.hackthebox.com/" target="_blank" rel="noopener noreferrer" aria-label="Hack The Box">
+                      <span>Hack The Box</span>
+                    </a>
+                  </div>
+                </article>
               </div>
 
-              <div class="contact-grid">
-                <a class="contact-card" href="mailto:bk198@uakron.edu">
-                  <span class="label">Email</span>
-                  <strong>bk198@uakron.edu</strong>
-                </a>
-                <a class="contact-card" href="https://www.linkedin.com/in/bijaykcc/" target="_blank" rel="noopener noreferrer">
-                  <span class="label">LinkedIn</span>
-                  <strong>linkedin.com/in/bijaykcc</strong>
-                </a>
-                <a class="contact-card" href="https://github.com/bjkc01" target="_blank" rel="noopener noreferrer">
-                  <span class="label">GitHub</span>
-                  <strong>github.com/bjkc01</strong>
-                </a>
-              </div>
-            </article>
+              <form class="contact-form reveal">
+                <div class="field">
+                  <label for="name">Name</label>
+                  <input id="name" name="name" type="text" placeholder="Your name" />
+                </div>
+
+                <div class="field">
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" placeholder="you@example.com" />
+                </div>
+
+                <div class="field">
+                  <label for="message">Message</label>
+                  <textarea id="message" name="message" placeholder="Tell me about the role, project, or challenge."></textarea>
+                </div>
+
+                <div class="hero-actions">
+                  <button class="button" type="submit">Send Message</button>
+                </div>
+
+                <p class="form-note">This demo form is front-end only. Connect it to Formspree, Netlify Forms, or your preferred backend when you are ready.</p>
+              </form>
+            </div>
           </div>
         </section>
       </main>
 
-      <footer class="site-footer">
+      <footer class="footer">
         <div class="container footer-inner">
           <p>&copy; <span id="year"></span> Bijay Kumar Khatri</p>
-          <p>Built as a clean, responsive portfolio focused on security work and professional presentation.</p>
+          <p>Single-file portfolio with embedded CSS and JavaScript.</p>
         </div>
       </footer>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+      const menuToggle = document.getElementById("menu-toggle");
+      const navLinks = document.getElementById("nav-links");
+      const yearNode = document.getElementById("year");
+      const cursorGlow = document.getElementById("cursor-glow");
+      const revealItems = document.querySelectorAll(".reveal");
+      const mediaReduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+      if (yearNode) {
+        yearNode.textContent = new Date().getFullYear();
+      }
+
+      if (menuToggle && navLinks) {
+        menuToggle.addEventListener("click", () => {
+          const isOpen = navLinks.classList.toggle("is-open");
+          menuToggle.setAttribute("aria-expanded", String(isOpen));
+        });
+
+        navLinks.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => {
+            navLinks.classList.remove("is-open");
+            menuToggle.setAttribute("aria-expanded", "false");
+          });
+        });
+      }
+
+      if (!mediaReduced.matches && cursorGlow) {
+        let pointerX = window.innerWidth / 2;
+        let pointerY = window.innerHeight / 2;
+        let currentX = pointerX;
+        let currentY = pointerY;
+
+        window.addEventListener("pointermove", (event) => {
+          pointerX = event.clientX;
+          pointerY = event.clientY;
+          cursorGlow.style.opacity = "0.95";
+        });
+
+        window.addEventListener("pointerleave", () => {
+          cursorGlow.style.opacity = "0";
+        });
+
+        const animateGlow = () => {
+          currentX += (pointerX - currentX) * 0.12;
+          currentY += (pointerY - currentY) * 0.12;
+          cursorGlow.style.transform = "translate3d(" + currentX + "px, " + currentY + "px, 0) translate3d(-50%, -50%, 0)";
+          requestAnimationFrame(animateGlow);
+        };
+
+        requestAnimationFrame(animateGlow);
+      }
+
+      if ("IntersectionObserver" in window && !mediaReduced.matches) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.16,
+            rootMargin: "0px 0px -10% 0px",
+          }
+        );
+
+        revealItems.forEach((item) => observer.observe(item));
+      } else {
+        revealItems.forEach((item) => item.classList.add("is-visible"));
+      }
+
+      const contactForm = document.querySelector(".contact-form");
+
+      if (contactForm) {
+        contactForm.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const button = contactForm.querySelector("button[type='submit']");
+
+          if (button) {
+            const originalText = button.textContent;
+            button.textContent = "Message Ready";
+            button.disabled = true;
+
+            setTimeout(() => {
+              button.textContent = originalText;
+              button.disabled = false;
+            }, 1800);
+          }
+        });
+      }
+    </script>
   </body>
 </html>

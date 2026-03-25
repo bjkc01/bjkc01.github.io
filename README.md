@@ -11,10 +11,6 @@ A single-page cybersecurity portfolio website for Bijay Kumar Khatri. The site h
 
 Visit the portfolio here: [https://bjkc01.github.io/](https://bjkc01.github.io/)
 
-## Screenshot
-
-A preview image has not been committed yet. If you want, I can still set this up later once a screenshot file is added to the repository.
-
 ## Project Overview
 
 - `index.html` contains the full page markup, embedded CSS, and embedded JavaScript.

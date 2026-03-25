@@ -1,9 +1,9 @@
 # Bijay Kumar Khatri Portfolio
 
 [![Live Site](https://img.shields.io/badge/Live%20Site-bjkc01.github.io-0a0f1c?style=for-the-badge)](https://bjkc01.github.io/)
-![HTML](https://img.shields.io/badge/HTML-Single%20File-e34f26?style=for-the-badge&logo=html5&logoColor=white)
-![CSS](https://img.shields.io/badge/CSS-Embedded-1572b6?style=for-the-badge&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-Vanilla-f7df1e?style=for-the-badge&logo=javascript&logoColor=111111)
+<img alt="HTML single file badge" src="https://img.shields.io/badge/HTML-Single%20File-e34f26?style=for-the-badge&logo=html5&logoColor=white" />
+<img alt="CSS embedded badge" src="https://img.shields.io/badge/CSS-Embedded-1572b6?style=for-the-badge&logo=css3&logoColor=white" />
+<img alt="JavaScript vanilla badge" src="https://img.shields.io/badge/JavaScript-Vanilla-f7df1e?style=for-the-badge&logo=javascript&logoColor=111111" />
 
 A single-page cybersecurity portfolio website for Bijay Kumar Khatri. The site highlights experience, projects, skills, and contact information in a static GitHub Pages-friendly format.
 

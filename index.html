@@ -1742,83 +1742,195 @@
         const T = window.THREE;
         const renderer = new T.WebGLRenderer({ canvas, alpha: true, antialias: false });
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-
         const setSize = () => renderer.setSize(hero.offsetWidth, hero.offsetHeight);
         setSize();
 
-        const scene  = new T.Scene();
-        const cam    = new T.PerspectiveCamera(65, hero.offsetWidth / hero.offsetHeight, 0.1, 2000);
-        cam.position.z = 520;
+        const scene = new T.Scene();
+        const cam   = new T.PerspectiveCamera(62, hero.offsetWidth / hero.offsetHeight, 0.1, 2000);
+        cam.position.z = 560;
 
-        const COUNT    = 110;
-        const HALF     = { x: 440, y: 320, z: 220 };
-        const MAX_DIST = 160;
-        const MAX_SEGS = 280;
+        // ── Tool definitions ───────────────────────────────────────
+        const TOOLS = [
+          { name: "Burp Suite",   color: 0xFF6C37 },
+          { name: "Nmap",         color: 0x4CAF50 },
+          { name: "Wireshark",    color: 0x1B8BE0 },
+          { name: "Metasploit",   color: 0xE53935 },
+          { name: "Kali Linux",   color: 0x7C9EC9 },
+          { name: "Python",       color: 0xFFD43B },
+          { name: "Azure",        color: 0x0096FF },
+          { name: "Intune",       color: 0x00B7C3 },
+          { name: "Defender",     color: 0x00A8E0 },
+          { name: "Shodan",       color: 0xFF4444 },
+          { name: "HackTheBox",   color: 0x9FEF00 },
+          { name: "TryHackMe",    color: 0xFF6B6B },
+          { name: "GitHub",       color: 0xCCCCCC },
+          { name: "Splunk",       color: 0xFF6600 },
+          { name: "CrowdStrike",  color: 0xFF3030 },
+          { name: "Huntress",     color: 0x00D4AA },
+          { name: "NinjaOne",     color: 0xF97316 },
+          { name: "OWASP",        color: 0x6CC3D5 },
+          { name: "Nessus",       color: 0x00CFFF },
+          { name: "Active Dir",   color: 0x0078D4 },
+          { name: "Bash",         color: 0x4EAA25 },
+          { name: "PowerShell",   color: 0x5391FE },
+          { name: "BloodHound",   color: 0xFF2266 },
+          { name: "Gobuster",     color: 0xA78BFA },
+        ];
 
-        // per-particle state
-        const px = new Float32Array(COUNT), py = new Float32Array(COUNT), pz = new Float32Array(COUNT);
-        const vx = new Float32Array(COUNT), vy = new Float32Array(COUNT), vz = new Float32Array(COUNT);
-        for (let i = 0; i < COUNT; i++) {
-          px[i] = (Math.random() - .5) * HALF.x * 2;
-          py[i] = (Math.random() - .5) * HALF.y * 2;
-          pz[i] = (Math.random() - .5) * HALF.z * 2;
-          vx[i] = (Math.random() - .5) * .35;
-          vy[i] = (Math.random() - .5) * .35;
-          vz[i] = (Math.random() - .5) * .18;
+        // ── Build glowing badge sprite texture ─────────────────────
+        function makeBadge(name, hex) {
+          const TW = 280, TH = 76;
+          const c = document.createElement("canvas");
+          c.width = TW; c.height = TH;
+          const ctx = c.getContext("2d");
+          const r = (hex >> 16) & 0xff, g = (hex >> 8) & 0xff, b = hex & 0xff;
+          const col = (a) => `rgba(${r},${g},${b},${a})`;
+
+          // outer glow halo
+          const grd = ctx.createRadialGradient(TW/2, TH/2, 2, TW/2, TH/2, TW * 0.58);
+          grd.addColorStop(0, col(0.35));
+          grd.addColorStop(1, col(0));
+          ctx.fillStyle = grd;
+          ctx.fillRect(0, 0, TW, TH);
+
+          // pill background
+          const pad = 7, rad = 14;
+          ctx.beginPath();
+          ctx.moveTo(pad + rad, pad);
+          ctx.lineTo(TW - pad - rad, pad);
+          ctx.quadraticCurveTo(TW - pad, pad, TW - pad, pad + rad);
+          ctx.lineTo(TW - pad, TH - pad - rad);
+          ctx.quadraticCurveTo(TW - pad, TH - pad, TW - pad - rad, TH - pad);
+          ctx.lineTo(pad + rad, TH - pad);
+          ctx.quadraticCurveTo(pad, TH - pad, pad, TH - pad - rad);
+          ctx.lineTo(pad, pad + rad);
+          ctx.quadraticCurveTo(pad, pad, pad + rad, pad);
+          ctx.closePath();
+          ctx.fillStyle = `rgba(4,6,14,0.72)`;
+          ctx.fill();
+          ctx.strokeStyle = col(0.8);
+          ctx.lineWidth = 1.6;
+          ctx.stroke();
+
+          // left accent bar
+          ctx.fillStyle = col(0.9);
+          ctx.fillRect(pad, pad + rad, 3, TH - pad * 2 - rad * 2);
+
+          // label text
+          ctx.shadowColor = col(1);
+          ctx.shadowBlur  = 14;
+          ctx.fillStyle   = "#ffffff";
+          ctx.font        = `600 19px "Courier New", monospace`;
+          ctx.textAlign   = "center";
+          ctx.textBaseline = "middle";
+          ctx.fillText(name, TW / 2 + 4, TH / 2);
+
+          return new T.CanvasTexture(c);
         }
 
-        // point cloud
-        const ptGeo = new T.BufferGeometry();
-        const ptPos = new Float32Array(COUNT * 3);
-        const ptCol = new Float32Array(COUNT * 3);
-        const palette = [[0.71, 0.42, 1.0], [0.36, 0.89, 1.0], [0.50, 1.0, 0.70]];
-        for (let i = 0; i < COUNT; i++) {
-          ptPos[i*3]=px[i]; ptPos[i*3+1]=py[i]; ptPos[i*3+2]=pz[i];
-          const c = palette[i % 3];
-          ptCol[i*3]=c[0]; ptCol[i*3+1]=c[1]; ptCol[i*3+2]=c[2];
-        }
-        ptGeo.setAttribute("position", new T.BufferAttribute(ptPos, 3));
-        ptGeo.setAttribute("color",    new T.BufferAttribute(ptCol, 3));
-        const ptMat  = new T.PointsMaterial({ size: 3.2, vertexColors: true, transparent: true, opacity: .75, sizeAttenuation: true });
-        scene.add(new T.Points(ptGeo, ptMat));
+        // ── Create sprite group ────────────────────────────────────
+        const group   = new T.Group();
+        scene.add(group);
+        const entries = [];
 
-        // line segments (pre-allocated)
-        const lnPos = new Float32Array(MAX_SEGS * 2 * 3);
+        TOOLS.forEach((tool, i) => {
+          const tex = makeBadge(tool.name, tool.color);
+          const mat = new T.SpriteMaterial({ map: tex, transparent: true, depthWrite: false });
+          const spr = new T.Sprite(mat);
+
+          // Fibonacci sphere distribution for even spread
+          const phi   = Math.acos(1 - 2 * (i + 0.5) / TOOLS.length);
+          const theta = Math.PI * (1 + Math.sqrt(5)) * i;
+          const rad   = 210 + Math.random() * 130;
+          const x = rad * Math.sin(phi) * Math.cos(theta);
+          const y = rad * Math.sin(phi) * Math.sin(theta) * 0.65; // flatten vertically
+          const z = rad * Math.cos(phi);
+
+          spr.position.set(x, y, z);
+          spr.scale.set(5.7, 1.55, 1); // 280:76 ≈ 3.68 → scale up for visibility
+
+          const vx = (Math.random() - .5) * .45;
+          const vy = (Math.random() - .5) * .38;
+          const vz = (Math.random() - .5) * .22;
+
+          entries.push({ spr, mat, vx, vy, vz,
+            phase: Math.random() * Math.PI * 2,
+            speed: 0.4 + Math.random() * 1.2,
+          });
+          group.add(spr);
+        });
+
+        // ── Network connection lines (inside group) ────────────────
+        const MAX_SEGS = 50;
+        const lnBuf = new Float32Array(MAX_SEGS * 6);
         const lnGeo = new T.BufferGeometry();
-        lnGeo.setAttribute("position", new T.BufferAttribute(lnPos, 3));
+        lnGeo.setAttribute("position", new T.BufferAttribute(lnBuf, 3));
         lnGeo.setDrawRange(0, 0);
-        const lnMat = new T.LineBasicMaterial({ color: 0x5de4ff, transparent: true, opacity: .16 });
-        scene.add(new T.LineSegments(lnGeo, lnMat));
+        const lnMat = new T.LineBasicMaterial({ color: 0x5de4ff, transparent: true, opacity: .13 });
+        group.add(new T.LineSegments(lnGeo, lnMat));
 
+        // ── Data-pulse effect: animated dot racing along a line ────
+        const pulseDot = new T.Mesh(
+          new T.SphereGeometry(4, 6, 6),
+          new T.MeshBasicMaterial({ color: 0x5de4ff, transparent: true, opacity: 0 })
+        );
+        scene.add(pulseDot);
+        let pulseFrom = null, pulseTo = null, pulseT = 1;
+
+        function triggerPulse() {
+          const a = entries[Math.floor(Math.random() * entries.length)];
+          const b = entries[Math.floor(Math.random() * entries.length)];
+          if (a === b) return;
+          const wa = new T.Vector3(), wb = new T.Vector3();
+          a.spr.getWorldPosition(wa);
+          b.spr.getWorldPosition(wb);
+          pulseFrom = wa; pulseTo = wb; pulseT = 0;
+          pulseDot.material.opacity = 0.9;
+        }
+        setInterval(triggerPulse, 1800);
+
+        // ── Mouse parallax ─────────────────────────────────────────
         let mx = 0, my = 0;
         window.addEventListener("mousemove", e => {
           mx = e.clientX / window.innerWidth  - .5;
           my = e.clientY / window.innerHeight - .5;
         });
 
+        // ── Render loop ────────────────────────────────────────────
+        const clock = new T.Clock();
         let frame = 0;
-        const animate = () => {
-          requestAnimationFrame(animate);
+
+        const tick = () => {
+          requestAnimationFrame(tick);
           frame++;
+          const t = clock.getElapsedTime();
 
-          for (let i = 0; i < COUNT; i++) {
-            px[i] += vx[i]; py[i] += vy[i]; pz[i] += vz[i];
-            if (Math.abs(px[i]) > HALF.x) vx[i] *= -1;
-            if (Math.abs(py[i]) > HALF.y) vy[i] *= -1;
-            if (Math.abs(pz[i]) > HALF.z) vz[i] *= -1;
-            ptPos[i*3]=px[i]; ptPos[i*3+1]=py[i]; ptPos[i*3+2]=pz[i];
-          }
-          ptGeo.attributes.position.needsUpdate = true;
+          // drift + pulse opacity per badge
+          entries.forEach(e => {
+            e.spr.position.x += e.vx; e.spr.position.y += e.vy; e.spr.position.z += e.vz;
+            if (Math.abs(e.spr.position.x) > 360) e.vx *= -1;
+            if (Math.abs(e.spr.position.y) > 240) e.vy *= -1;
+            if (Math.abs(e.spr.position.z) > 240) e.vz *= -1;
+            e.mat.opacity = 0.6 + 0.3 * Math.sin(t * e.speed + e.phase);
+          });
 
-          if (frame % 2 === 0) {
+          // slow cinematic scene rotation
+          group.rotation.y  = t * 0.055;
+          group.rotation.x  = Math.sin(t * 0.035) * 0.12;
+
+          // rebuild connection lines every 3 frames
+          if (frame % 3 === 0) {
             let si = 0;
-            outer: for (let i = 0; i < COUNT; i++) {
-              for (let j = i + 1; j < COUNT; j++) {
-                const dx=px[i]-px[j], dy=py[i]-py[j], dz=pz[i]-pz[j];
-                if (dx*dx + dy*dy + dz*dz < MAX_DIST*MAX_DIST) {
+            const MAXD = 175 * 175;
+            outer: for (let i = 0; i < entries.length; i++) {
+              const pi = entries[i].spr.position;
+              for (let j = i + 1; j < entries.length; j++) {
+                const pj = entries[j].spr.position;
+                const dx = pi.x-pj.x, dy = pi.y-pj.y, dz = pi.z-pj.z;
+                if (dx*dx + dy*dy + dz*dz < MAXD) {
                   const b = si * 6;
-                  lnPos[b]=px[i]; lnPos[b+1]=py[i]; lnPos[b+2]=pz[i];
-                  lnPos[b+3]=px[j]; lnPos[b+4]=py[j]; lnPos[b+5]=pz[j];
+                  lnBuf[b]=pi.x; lnBuf[b+1]=pi.y; lnBuf[b+2]=pi.z;
+                  lnBuf[b+3]=pj.x; lnBuf[b+4]=pj.y; lnBuf[b+5]=pj.z;
                   if (++si >= MAX_SEGS) break outer;
                 }
               }
@@ -1827,12 +1939,21 @@
             lnGeo.setDrawRange(0, si * 2);
           }
 
-          cam.position.x += (mx * 70 - cam.position.x) * .04;
-          cam.position.y += (-my * 50 - cam.position.y) * .04;
+          // animate data pulse dot
+          if (pulseT < 1 && pulseFrom && pulseTo) {
+            pulseT = Math.min(pulseT + 0.018, 1);
+            pulseDot.position.lerpVectors(pulseFrom, pulseTo, pulseT);
+            if (pulseT >= 1) pulseDot.material.opacity = 0;
+          }
+
+          // camera mouse parallax
+          cam.position.x += (mx * 75 - cam.position.x) * .035;
+          cam.position.y += (-my * 55 - cam.position.y) * .035;
           cam.lookAt(0, 0, 0);
+
           renderer.render(scene, cam);
         };
-        animate();
+        tick();
 
         window.addEventListener("resize", () => {
           setSize();

@@ -290,17 +290,33 @@
         position: relative;
         padding-top: 6rem;
         overflow: hidden;
+        isolation: isolate;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at 18% 22%, rgba(24, 106, 155, 0.22), transparent 32%),
+          radial-gradient(circle at 78% 18%, rgba(46, 200, 255, 0.14), transparent 28%),
+          radial-gradient(circle at 72% 72%, rgba(61, 255, 173, 0.08), transparent 26%),
+          linear-gradient(180deg, rgba(3, 8, 20, 0.94) 0%, rgba(3, 8, 18, 0.72) 48%, rgba(4, 8, 15, 0.36) 100%);
+        z-index: 0;
+        pointer-events: none;
       }
 
       .hero-grid {
         display: grid;
         grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.8fr);
-        gap: 2rem;
+        gap: 2.5rem;
         align-items: center;
       }
 
       .hero-copy {
         max-width: 46rem;
+        position: relative;
+        z-index: 2;
       }
 
       .hero-title {
@@ -311,13 +327,21 @@
       .hero-role {
         display: block;
         color: transparent;
-        background: linear-gradient(90deg, #fff 0%, #d9beff 22%, #91f0ff 62%, #a7ffcf 100%);
+        margin-top: 0.55rem;
+        font-size: clamp(1.05rem, 2vw, 1.45rem);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        background: linear-gradient(90deg, #e9f5ff 0%, #8adfff 58%, #94ffcb 100%);
         background-clip: text;
         -webkit-background-clip: text;
       }
 
       .hero-copy p {
         font-size: 1.1rem;
+      }
+
+      .hero-summary {
+        max-width: 39rem;
       }
 
       .hero-actions {
@@ -335,9 +359,9 @@
         min-height: 3.25rem;
         padding: 0.95rem 1.35rem;
         border-radius: 999px;
-        border: 1px solid rgba(93, 228, 255, 0.18);
-        background: linear-gradient(135deg, rgba(182, 108, 255, 0.18), rgba(93, 228, 255, 0.18)), rgba(255, 255, 255, 0.05);
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 0 0 1px rgba(93, 228, 255, 0.08), 0 14px 42px rgba(93, 228, 255, 0.12);
+        border: 1px solid rgba(98, 223, 255, 0.22);
+        background: linear-gradient(135deg, rgba(14, 91, 136, 0.3), rgba(67, 225, 255, 0.12)), rgba(255, 255, 255, 0.04);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.09), 0 0 0 1px rgba(93, 228, 255, 0.08), 0 18px 48px rgba(17, 88, 126, 0.2);
         color: var(--text);
         font-weight: 600;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -347,12 +371,12 @@
       .button:hover,
       .button:focus-visible {
         transform: translateY(-2px) scale(1.02);
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 0 0 1px rgba(127, 255, 178, 0.14), 0 18px 50px rgba(182, 108, 255, 0.18);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 0 0 1px rgba(127, 255, 178, 0.16), 0 20px 54px rgba(19, 123, 178, 0.28);
       }
 
       .button.secondary {
-        background: rgba(255, 255, 255, 0.03);
-        border-color: var(--border);
+        background: rgba(5, 16, 30, 0.54);
+        border-color: rgba(126, 220, 255, 0.12);
       }
 
       .hero-meta {
@@ -398,6 +422,7 @@
 
       .hero-side {
         position: relative;
+        z-index: 2;
       }
 
       .glass-card {
@@ -519,20 +544,120 @@
       }
 
       .hero-3d-wrap {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 1.25rem;
         position: relative;
-        z-index: 2;
+        min-height: 28rem;
+        border-radius: 30px;
+        overflow: hidden;
+        border: 1px solid rgba(98, 223, 255, 0.14);
+        background:
+          linear-gradient(180deg, rgba(3, 12, 24, 0.92), rgba(3, 10, 20, 0.76)),
+          radial-gradient(circle at 72% 20%, rgba(93, 228, 255, 0.12), transparent 24%);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.05),
+          0 28px 80px rgba(0, 0, 0, 0.38),
+          0 0 0 1px rgba(93, 228, 255, 0.03);
       }
 
       #hero-3d-canvas {
         display: block;
-        border-radius: 50%;
-        box-shadow:
-          0 0 60px rgba(93, 228, 255, 0.18),
-          0 0 120px rgba(182, 108, 255, 0.12);
+        width: 100%;
+        height: 100%;
         background: transparent;
+      }
+
+      .hero-visual-copy {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        align-content: space-between;
+        padding: 1.35rem;
+        pointer-events: none;
+      }
+
+      .hero-panel-top,
+      .hero-panel-bottom {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .hero-panel-chip,
+      .hero-panel-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 0.8rem;
+        border-radius: 999px;
+        border: 1px solid rgba(98, 223, 255, 0.16);
+        background: rgba(5, 16, 30, 0.56);
+        color: #d9f4ff;
+        font-size: 0.78rem;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+        backdrop-filter: blur(12px);
+      }
+
+      .hero-panel-chip::before {
+        content: "";
+        width: 0.45rem;
+        height: 0.45rem;
+        border-radius: 50%;
+        background: var(--green);
+        box-shadow: 0 0 14px rgba(127, 255, 178, 0.8);
+      }
+
+      .hero-panel-tag {
+        color: #9edfff;
+      }
+
+      .hero-panel-cluster {
+        align-self: center;
+        max-width: 18rem;
+        padding: 1rem 1.1rem;
+        border-radius: 20px;
+        border: 1px solid rgba(98, 223, 255, 0.14);
+        background: linear-gradient(180deg, rgba(6, 20, 36, 0.72), rgba(4, 12, 25, 0.34));
+        box-shadow: 0 0 32px rgba(35, 169, 219, 0.16);
+        backdrop-filter: blur(12px);
+      }
+
+      .hero-panel-cluster span {
+        display: block;
+      }
+
+      .hero-panel-cluster .kicker {
+        margin-bottom: 0.55rem;
+        color: #8ddfff;
+      }
+
+      .hero-panel-cluster strong {
+        display: block;
+        margin-bottom: 0.4rem;
+        font-size: 1.05rem;
+        line-height: 1.3;
+      }
+
+      .hero-panel-cluster p {
+        margin: 0;
+        color: #aabfd1;
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+
+      .hero-scan-line {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, transparent 0%, rgba(103, 229, 255, 0.04) 46%, rgba(103, 229, 255, 0.16) 50%, rgba(103, 229, 255, 0.05) 54%, transparent 100%);
+        mix-blend-mode: screen;
+        opacity: 0.55;
+        animation: heroScan 9s linear infinite;
+        pointer-events: none;
+      }
+
+      @keyframes heroScan {
+        0% { transform: translateY(-100%); }
+        100% { transform: translateY(100%); }
       }
 
       /* keep old particle keyframes in case */
@@ -989,6 +1114,10 @@
           grid-template-columns: 1fr;
         }
 
+        .hero-side {
+          max-width: 42rem;
+        }
+
         .mini-grid {
           grid-template-columns: 1fr;
         }
@@ -1039,6 +1168,23 @@
         .hero {
           min-height: auto;
           padding: 7rem 0 4.5rem;
+        }
+
+        .hero-3d-wrap {
+          min-height: 22rem;
+        }
+
+        .hero-visual-copy {
+          padding: 1rem;
+        }
+
+        .hero-panel-top,
+        .hero-panel-bottom {
+          flex-direction: column;
+        }
+
+        .hero-panel-cluster {
+          max-width: none;
         }
 
         .section {
@@ -1123,18 +1269,22 @@
 
           <div class="container hero-grid">
             <div class="hero-copy reveal">
-              <p class="eyebrow">Offensive Security / Cloud Defense / Practical Research</p>
+              <p class="eyebrow">Interactive Security Network Command Surface</p>
               <h1>
                 <span class="hero-title">Bijay Kumar Khatri</span>
-                <span class="hero-role">Cybersecurity Professional</span>
+                <span class="hero-role">Cybersecurity Student &bull; Vulnerability Researcher &bull; Cloud Security</span>
               </h1>
-              <p class="muted">
-                I build secure systems, investigate weaknesses, and translate technical risk into action across penetration testing, cloud administration, and defensive operations.
+              <p class="muted hero-summary">
+                I investigate weaknesses, secure modern systems, and turn technical risk into practical action.
+              </p>
+              <p class="muted hero-summary">
+                My work spans vulnerability research, cloud and identity administration, incident response, and defensive operations built around clear analysis.
               </p>
 
               <div class="hero-actions">
-                <a class="button" href="#projects">View My Work</a>
-                <a class="button secondary" href="#contact">Let's Connect</a>
+                <a class="button" href="#projects">View Projects</a>
+                <a class="button secondary" href="Resume_Khatri_Bijay_CIS_Cybersecurity.pdf" target="_blank" rel="noopener noreferrer">Resume</a>
+                <a class="button secondary" href="#contact">Contact</a>
               </div>
 
               <div class="hero-meta">
@@ -1155,45 +1305,23 @@
 
             <aside class="hero-side reveal">
               <div class="hero-3d-wrap" aria-hidden="true">
-                <canvas id="hero-3d-canvas" width="260" height="260"></canvas>
-              </div>
-              <div class="glass-card">
-                <div class="status-pill">Available for internships and security-focused opportunities</div>
-                <div class="scan-panel">
-                  <div>
-                    <p class="kicker">Current Snapshot</p>
-                    <h3 class="profile-heading">Security research with practical systems experience.</h3>
-                    <p class="profile-copy">
-                      I focus on vulnerability discovery, cloud and identity administration, endpoint defense, and technical communication that teams can act on.
-                    </p>
+                <canvas id="hero-3d-canvas" width="520" height="560"></canvas>
+                <div class="hero-scan-line"></div>
+                <div class="hero-visual-copy">
+                  <div class="hero-panel-top">
+                    <div class="hero-panel-chip">Live telemetry</div>
+                    <div class="hero-panel-tag">Trust through analysis</div>
                   </div>
 
-                  <div class="mini-grid">
-                    <div class="mini-card">
-                      <span class="muted">Primary focus</span>
-                      <strong>Vulnerability Research</strong>
-                    </div>
-                    <div class="mini-card">
-                      <span class="muted">Environment</span>
-                      <strong>Cloud, Identity, Endpoint</strong>
-                    </div>
+                  <div class="hero-panel-cluster">
+                    <p class="kicker">Highlighted cluster</p>
+                    <strong>Research, detection, and cloud defense moving in one surface.</strong>
+                    <p>Slow signal movement keeps the scene active while the copy stays in control.</p>
                   </div>
 
-                  <div class="detail-block">
-                    <h3>Core Tooling</h3>
-                    <div class="tool-cloud">
-                      <span class="tool-chip">Burp Suite</span>
-                      <span class="tool-chip">Nmap</span>
-                      <span class="tool-chip">Wireshark</span>
-                      <span class="tool-chip">Azure</span>
-                      <span class="tool-chip">Intune</span>
-                      <span class="tool-chip">Defender</span>
-                    </div>
-                  </div>
-
-                  <div class="detail-block">
-                    <h3>Education</h3>
-                    <p class="muted">B.S. in Computer Information Systems, Cybersecurity Concentration, University of Akron</p>
+                  <div class="hero-panel-bottom">
+                    <div class="hero-panel-tag">Threat scan depth field</div>
+                    <div class="hero-panel-tag">Node traffic stabilized</div>
                   </div>
                 </div>
               </div>
@@ -1734,7 +1862,8 @@
         });
       }
       // ── Three.js 3D hero background ─────────────────────────────
-      (function initHeroBG() {
+      (function legacyHeroBGDisabled() {
+        return;
         const canvas = document.getElementById("hero-bg-canvas");
         const hero   = document.getElementById("hero");
         if (!canvas || !hero || !window.THREE) return;
@@ -1963,7 +2092,8 @@
       })();
 
       // ── Three.js 3D orb (hero side) ──────────────────────────────
-      (function initHeroOrb() {
+      (function legacyHeroOrbDisabled() {
+        return;
         const canvas = document.getElementById("hero-3d-canvas");
         if (!canvas || !window.THREE) return;
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -2044,6 +2174,386 @@
           renderer.render(scene, cam);
         };
         tick();
+      })();
+
+      (function initHeroBG() {
+        const canvas = document.getElementById("hero-bg-canvas");
+        const hero = document.getElementById("hero");
+        if (!canvas || !hero || !window.THREE) return;
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+        const T = window.THREE;
+        const renderer = new T.WebGLRenderer({ canvas, alpha: true, antialias: true });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+        const setSize = () => renderer.setSize(hero.offsetWidth, hero.offsetHeight, false);
+        setSize();
+
+        const scene = new T.Scene();
+        scene.fog = new T.FogExp2(0x030814, 0.0012);
+
+        const cam = new T.PerspectiveCamera(54, hero.offsetWidth / hero.offsetHeight, 1, 2200);
+        cam.position.set(0, 40, 520);
+
+        scene.add(new T.AmbientLight(0x88ccff, 0.2));
+
+        const pointA = new T.PointLight(0x41d4ff, 1.2, 1000, 2);
+        pointA.position.set(-180, 120, 220);
+        scene.add(pointA);
+
+        const pointB = new T.PointLight(0x5cffb3, 0.4, 800, 2);
+        pointB.position.set(220, -80, 140);
+        scene.add(pointB);
+
+        const network = new T.Group();
+        scene.add(network);
+
+        const nodes = [];
+        const drift = [];
+        const nodeGeo = new T.SphereGeometry(3.8, 10, 10);
+        const lineGroup = new T.Group();
+        network.add(lineGroup);
+
+        for (let i = 0; i < 68; i++) {
+          const isCluster = i < 18;
+          const x = isCluster ? -130 + Math.random() * 170 : -320 + Math.random() * 640;
+          const y = isCluster ? 20 + Math.random() * 150 : -170 + Math.random() * 320;
+          const z = -360 + Math.random() * 540;
+          const node = new T.Mesh(
+            nodeGeo,
+            new T.MeshBasicMaterial({
+              color: isCluster ? (i % 4 === 0 ? 0x74ffc4 : 0x6bdcff) : 0x45c9ff,
+              transparent: true,
+              opacity: isCluster ? 0.95 : 0.6
+            })
+          );
+          node.position.set(x, y, z);
+          node.userData = {
+            base: new T.Vector3(x, y, z),
+            amp: 6 + Math.random() * 16,
+            speed: 0.12 + Math.random() * 0.26,
+            phase: Math.random() * Math.PI * 2,
+            cluster: isCluster
+          };
+          network.add(node);
+          nodes.push(node);
+          drift.push(node.userData);
+        }
+
+        for (let i = 0; i < nodes.length; i++) {
+          let links = 0;
+          for (let j = i + 1; j < nodes.length && links < 3; j++) {
+            const threshold = nodes[i].userData.cluster || nodes[j].userData.cluster ? 170 : 135;
+            if (nodes[i].position.distanceToSquared(nodes[j].position) < threshold * threshold) {
+              const line = new T.Line(
+                new T.BufferGeometry().setFromPoints([nodes[i].position.clone(), nodes[j].position.clone()]),
+                new T.LineBasicMaterial({ color: 0x4ad7ff, transparent: true, opacity: 0.18 })
+              );
+              line.userData = { from: nodes[i], to: nodes[j], phase: Math.random() * Math.PI * 2 };
+              lineGroup.add(line);
+              links++;
+            }
+          }
+        }
+
+        const particlePositions = new Float32Array(180 * 3);
+        const particleMeta = [];
+        for (let i = 0; i < 180; i++) {
+          const x = -340 + Math.random() * 680;
+          const y = -220 + Math.random() * 420;
+          const z = -420 + Math.random() * 700;
+          particlePositions[i * 3] = x;
+          particlePositions[i * 3 + 1] = y;
+          particlePositions[i * 3 + 2] = z;
+          particleMeta.push({
+            x,
+            y,
+            z,
+            driftX: (Math.random() - 0.5) * 0.08,
+            driftY: 0.08 + Math.random() * 0.18,
+            driftZ: (Math.random() - 0.5) * 0.04
+          });
+        }
+        const particleGeometry = new T.BufferGeometry();
+        particleGeometry.setAttribute("position", new T.BufferAttribute(particlePositions, 3));
+        const particles = new T.Points(
+          particleGeometry,
+          new T.PointsMaterial({
+            color: 0x89e6ff,
+            size: 2.8,
+            transparent: true,
+            opacity: 0.45,
+            depthWrite: false
+          })
+        );
+        scene.add(particles);
+
+        const gridPoints = [];
+        for (let i = -390; i <= 390; i += 52) {
+          gridPoints.push(new T.Vector3(i, -210, -520), new T.Vector3(i, -210, 240));
+          gridPoints.push(new T.Vector3(-390, -210, i), new T.Vector3(390, -210, i));
+        }
+        const grid = new T.LineSegments(
+          new T.BufferGeometry().setFromPoints(gridPoints),
+          new T.LineBasicMaterial({ color: 0x1d7eaa, transparent: true, opacity: 0.17 })
+        );
+        grid.rotation.x = -0.14;
+        scene.add(grid);
+
+        const sweep = new T.Mesh(
+          new T.RingGeometry(92, 98, 72),
+          new T.MeshBasicMaterial({ color: 0x66e0ff, transparent: true, opacity: 0.12, side: T.DoubleSide })
+        );
+        sweep.position.set(-120, 40, -30);
+        sweep.rotation.x = Math.PI / 2.3;
+        scene.add(sweep);
+
+        const pulse = new T.Mesh(
+          new T.SphereGeometry(4.5, 10, 10),
+          new T.MeshBasicMaterial({ color: 0x7effc9, transparent: true, opacity: 0 })
+        );
+        scene.add(pulse);
+
+        let pulseLine = null;
+        let pulseProgress = 1;
+        let pulseClock = 0;
+        let mx = 0;
+        let my = 0;
+        let scrollTarget = 0;
+        let buttonBoost = 0;
+
+        document.querySelectorAll(".hero-actions .button").forEach((button) => {
+          button.addEventListener("mouseenter", () => { buttonBoost = 1; });
+          button.addEventListener("mouseleave", () => { buttonBoost = 0; });
+        });
+
+        window.addEventListener("mousemove", (event) => {
+          mx = event.clientX / window.innerWidth - 0.5;
+          my = event.clientY / window.innerHeight - 0.5;
+        });
+
+        window.addEventListener("scroll", () => {
+          scrollTarget = Math.min(window.scrollY / Math.max(hero.offsetHeight, 1), 1);
+        }, { passive: true });
+
+        const triggerPulse = () => {
+          if (!lineGroup.children.length) return;
+          pulseLine = lineGroup.children[Math.floor(Math.random() * lineGroup.children.length)];
+          pulseProgress = 0;
+          pulse.material.opacity = 0.95;
+        };
+
+        const clock = new T.Clock();
+        const tick = () => {
+          requestAnimationFrame(tick);
+          const time = clock.getElapsedTime();
+          pulseClock += clock.getDelta();
+
+          if (pulseClock > 2.1) {
+            triggerPulse();
+            pulseClock = 0;
+          }
+
+          nodes.forEach((node, index) => {
+            const meta = drift[index];
+            node.position.x = meta.base.x + Math.sin(time * meta.speed + meta.phase) * meta.amp;
+            node.position.y = meta.base.y + Math.cos(time * (meta.speed * 0.7) + meta.phase) * meta.amp * 0.45;
+            node.position.z = meta.base.z + Math.sin(time * (meta.speed * 0.45) + meta.phase) * meta.amp * 0.35;
+            const targetOpacity = (meta.cluster ? 0.88 : 0.5) + (meta.cluster ? 0.18 + buttonBoost * 0.4 : buttonBoost * 0.1);
+            node.material.opacity += (targetOpacity - node.material.opacity) * 0.08;
+          });
+
+          lineGroup.children.forEach((line) => {
+            line.geometry.setFromPoints([line.userData.from.position, line.userData.to.position]);
+            const clusterLine = line.userData.from.userData.cluster || line.userData.to.userData.cluster;
+            const baseOpacity = clusterLine ? 0.12 + 0.06 * Math.sin(time * 1.2 + line.userData.phase) : 0.08 + 0.04 * Math.sin(time + line.userData.phase);
+            line.material.opacity += ((baseOpacity + (clusterLine ? buttonBoost * 0.2 : 0)) - line.material.opacity) * 0.08;
+          });
+
+          const particleAttr = particleGeometry.attributes.position.array;
+          particleMeta.forEach((meta, index) => {
+            meta.x += meta.driftX;
+            meta.y += meta.driftY + scrollTarget * 0.16;
+            meta.z += meta.driftZ;
+            if (meta.y > 220) meta.y = -220;
+            if (meta.x > 360) meta.x = -360;
+            if (meta.x < -360) meta.x = 360;
+            if (meta.z > 280) meta.z = -420;
+            if (meta.z < -420) meta.z = 280;
+            particleAttr[index * 3] = meta.x;
+            particleAttr[index * 3 + 1] = meta.y;
+            particleAttr[index * 3 + 2] = meta.z;
+          });
+          particleGeometry.attributes.position.needsUpdate = true;
+
+          sweep.rotation.z = time * 0.12;
+          sweep.material.opacity = 0.08 + buttonBoost * 0.08;
+
+          if (pulseLine) {
+            pulseProgress = Math.min(pulseProgress + 0.018, 1);
+            pulse.position.lerpVectors(pulseLine.userData.from.position, pulseLine.userData.to.position, pulseProgress);
+            if (pulseProgress >= 1) {
+              pulse.material.opacity = 0;
+              pulseLine = null;
+            }
+          }
+
+          network.rotation.y += ((mx * 0.18) - network.rotation.y) * 0.04;
+          network.rotation.x += (((-my * 0.08) + 0.06) - network.rotation.x) * 0.04;
+          network.position.z += ((-scrollTarget * 70) - network.position.z) * 0.04;
+          cam.position.x += (mx * 60 - cam.position.x) * 0.032;
+          cam.position.y += ((20 - my * 48) - cam.position.y) * 0.032;
+          cam.position.z += ((520 - scrollTarget * 60) - cam.position.z) * 0.03;
+          cam.lookAt(-60, 20, -80);
+
+          renderer.render(scene, cam);
+        };
+        tick();
+
+        window.addEventListener("resize", () => {
+          setSize();
+          cam.aspect = hero.offsetWidth / hero.offsetHeight;
+          cam.updateProjectionMatrix();
+        });
+      })();
+
+      (function initHeroPanel() {
+        const canvas = document.getElementById("hero-3d-canvas");
+        if (!canvas || !window.THREE) return;
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+        const T = window.THREE;
+        const renderer = new T.WebGLRenderer({ canvas, alpha: true, antialias: true });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.8));
+
+        const parent = canvas.parentElement;
+        const setSize = () => renderer.setSize(parent.clientWidth, parent.clientHeight, false);
+        setSize();
+
+        const scene = new T.Scene();
+        const cam = new T.PerspectiveCamera(46, parent.clientWidth / parent.clientHeight, 0.1, 100);
+        cam.position.set(0, 0.25, 8.8);
+        scene.add(new T.AmbientLight(0x82d8ff, 0.45));
+
+        const glow = new T.PointLight(0x56daff, 2.1, 26, 2);
+        glow.position.set(-1.8, 1.4, 4.2);
+        scene.add(glow);
+
+        const group = new T.Group();
+        scene.add(group);
+
+        const nodes = [];
+        const links = new T.Group();
+        const nodeGeo = new T.SphereGeometry(0.065, 10, 10);
+        group.add(links);
+
+        for (let i = 0; i < 28; i++) {
+          const isCluster = i < 9;
+          const x = isCluster ? -1.2 + Math.random() * 1.6 : -2.7 + Math.random() * 5.4;
+          const y = isCluster ? 0.1 + Math.random() * 1.4 : -1.9 + Math.random() * 3.8;
+          const z = -1.8 + Math.random() * 3.6;
+          const node = new T.Mesh(
+            nodeGeo,
+            new T.MeshBasicMaterial({
+              color: isCluster ? (i % 3 === 0 ? 0x85ffd0 : 0x76dcff) : 0x3ebeff,
+              transparent: true,
+              opacity: isCluster ? 1 : 0.72
+            })
+          );
+          node.position.set(x, y, z);
+          node.userData = {
+            base: new T.Vector3(x, y, z),
+            speed: 0.25 + Math.random() * 0.35,
+            phase: Math.random() * Math.PI * 2,
+            cluster: isCluster
+          };
+          group.add(node);
+          nodes.push(node);
+        }
+
+        for (let i = 0; i < nodes.length; i++) {
+          let linked = 0;
+          for (let j = i + 1; j < nodes.length && linked < 3; j++) {
+            const threshold = nodes[i].userData.cluster || nodes[j].userData.cluster ? 1.65 : 1.2;
+            if (nodes[i].position.distanceTo(nodes[j].position) < threshold) {
+              const line = new T.Line(
+                new T.BufferGeometry().setFromPoints([nodes[i].position.clone(), nodes[j].position.clone()]),
+                new T.LineBasicMaterial({ color: 0x5cdcff, transparent: true, opacity: nodes[i].userData.cluster ? 0.34 : 0.18 })
+              );
+              line.userData = { from: nodes[i], to: nodes[j], phase: Math.random() * Math.PI * 2 };
+              links.add(line);
+              linked++;
+            }
+          }
+        }
+
+        const pulse = new T.Mesh(
+          new T.SphereGeometry(0.08, 10, 10),
+          new T.MeshBasicMaterial({ color: 0x8cffcb, transparent: true, opacity: 0 })
+        );
+        scene.add(pulse);
+
+        let mx = 0;
+        let my = 0;
+        let pulseLine = null;
+        let pulseProgress = 1;
+        let pulseClock = 0;
+
+        window.addEventListener("mousemove", (event) => {
+          mx = event.clientX / window.innerWidth - 0.5;
+          my = event.clientY / window.innerHeight - 0.5;
+        });
+
+        const triggerPulse = () => {
+          if (!links.children.length) return;
+          pulseLine = links.children[Math.floor(Math.random() * links.children.length)];
+          pulseProgress = 0;
+          pulse.material.opacity = 1;
+        };
+
+        const clock = new T.Clock();
+        const tick = () => {
+          requestAnimationFrame(tick);
+          const time = clock.getElapsedTime();
+          pulseClock += clock.getDelta();
+
+          if (pulseClock > 2.8) {
+            triggerPulse();
+            pulseClock = 0;
+          }
+
+          nodes.forEach((node) => {
+            node.position.x = node.userData.base.x + Math.sin(time * node.userData.speed + node.userData.phase) * 0.12;
+            node.position.y = node.userData.base.y + Math.cos(time * (node.userData.speed * 0.8) + node.userData.phase) * 0.08;
+            node.position.z = node.userData.base.z + Math.sin(time * (node.userData.speed * 0.55) + node.userData.phase) * 0.12;
+          });
+
+          links.children.forEach((line) => {
+            line.geometry.setFromPoints([line.userData.from.position, line.userData.to.position]);
+            line.material.opacity = (line.userData.from.userData.cluster || line.userData.to.userData.cluster)
+              ? 0.26 + 0.14 * Math.sin(time * 1.6 + line.userData.phase)
+              : 0.12 + 0.06 * Math.sin(time * 1.2 + line.userData.phase);
+          });
+
+          if (pulseLine) {
+            pulseProgress = Math.min(pulseProgress + 0.024, 1);
+            pulse.position.lerpVectors(pulseLine.userData.from.position, pulseLine.userData.to.position, pulseProgress);
+            if (pulseProgress >= 1) {
+              pulse.material.opacity = 0;
+              pulseLine = null;
+            }
+          }
+
+          group.rotation.y += ((mx * 0.25) - group.rotation.y) * 0.045;
+          group.rotation.x += (((-my * 0.18) + 0.12) - group.rotation.x) * 0.045;
+          renderer.render(scene, cam);
+        };
+        tick();
+
+        window.addEventListener("resize", () => {
+          setSize();
+          cam.aspect = parent.clientWidth / parent.clientHeight;
+          cam.updateProjectionMatrix();
+        });
       })();
     </script>
   </body>

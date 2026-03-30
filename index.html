@@ -16,7 +16,7 @@
         --border: rgba(255, 255, 255, 0.09);
         --text: #f5f7fb;
         --muted: #a7b1c2;
-        --purple: #b66cff;
+        --purple: #4da3ff;
         --cyan: #5de4ff;
         --green: #7fffb2;
         --shadow: 0 26px 80px rgba(0, 0, 0, 0.35);
@@ -39,10 +39,11 @@
         font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         line-height: 1.75;
         background:
-          radial-gradient(circle at 12% 14%, rgba(182, 108, 255, 0.17), transparent 24%),
-          radial-gradient(circle at 84% 18%, rgba(93, 228, 255, 0.14), transparent 25%),
+          radial-gradient(circle at 50% -8%, rgba(46, 121, 188, 0.34), transparent 34%),
+          radial-gradient(circle at 12% 14%, rgba(51, 118, 188, 0.22), transparent 26%),
+          radial-gradient(circle at 84% 18%, rgba(93, 228, 255, 0.18), transparent 28%),
           radial-gradient(circle at 68% 72%, rgba(127, 255, 178, 0.1), transparent 20%),
-          linear-gradient(180deg, #050508 0%, #06070b 45%, #070911 100%);
+          linear-gradient(180deg, #07111d 0%, #07101a 18%, #060a12 46%, #07101a 100%);
         overflow-x: hidden;
       }
 
@@ -101,7 +102,7 @@
         width: 18rem;
         height: 18rem;
         border-radius: 50%;
-        background: radial-gradient(circle, rgba(93, 228, 255, 0.12) 0%, rgba(182, 108, 255, 0.08) 35%, rgba(127, 255, 178, 0.05) 55%, transparent 70%);
+        background: radial-gradient(circle, rgba(93, 228, 255, 0.12) 0%, rgba(77, 163, 255, 0.08) 35%, rgba(127, 255, 178, 0.05) 55%, transparent 70%);
         transform: translate3d(-50%, -50%, 0);
         pointer-events: none;
         z-index: 5;
@@ -127,6 +128,19 @@
         z-index: 30;
         padding: 1rem 0 0;
         backdrop-filter: blur(18px);
+        isolation: isolate;
+      }
+
+      .topbar::before {
+        content: "";
+        position: absolute;
+        inset: 0 0 auto 0;
+        height: 9rem;
+        background:
+          linear-gradient(180deg, rgba(6, 14, 24, 0.92) 0%, rgba(6, 14, 24, 0.62) 62%, rgba(6, 14, 24, 0) 100%),
+          radial-gradient(circle at 50% 0%, rgba(73, 170, 255, 0.12), transparent 42%);
+        pointer-events: none;
+        z-index: -1;
       }
 
       .nav {
@@ -137,13 +151,13 @@
         padding: 0.9rem 1rem;
         border: 1px solid var(--border);
         border-radius: 999px;
-        background: rgba(8, 10, 15, 0.75);
+        background: rgba(7, 14, 24, 0.72);
         box-shadow: var(--shadow);
         transition: background 0.3s ease, box-shadow 0.3s ease;
       }
 
       .nav.scrolled {
-        background: rgba(5, 7, 12, 0.94);
+        background: rgba(6, 13, 22, 0.92);
         box-shadow: 0 4px 40px rgba(0, 0, 0, 0.55);
       }
 
@@ -709,6 +723,242 @@
         gap: 1.1rem;
       }
 
+      .about-section {
+        position: relative;
+        overflow: hidden;
+        padding-top: 2.25rem;
+      }
+
+      .about-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at 18% 18%, rgba(90, 176, 255, 0.08), transparent 24%),
+          radial-gradient(circle at 82% 26%, rgba(127, 255, 178, 0.06), transparent 20%),
+          linear-gradient(180deg, rgba(4, 9, 18, 0.36), rgba(4, 9, 18, 0.12));
+        pointer-events: none;
+      }
+
+      .about-section::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, rgba(84, 201, 255, 0.08) 0%, rgba(84, 201, 255, 0.02) 12%, transparent 28%),
+          radial-gradient(circle at 50% 8%, rgba(63, 156, 234, 0.18), transparent 26%),
+          radial-gradient(circle at 42% 22%, rgba(110, 225, 255, 0.08), transparent 18%);
+        pointer-events: none;
+        mask-image: linear-gradient(180deg, black 0%, black 72%, transparent 100%);
+      }
+
+      .cyber-section {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .cyber-section::before,
+      .cyber-section::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      .cyber-section::before {
+        background:
+          radial-gradient(circle at 12% 18%, rgba(74, 179, 255, 0.08), transparent 22%),
+          radial-gradient(circle at 84% 24%, rgba(127, 255, 178, 0.06), transparent 20%),
+          linear-gradient(180deg, rgba(4, 10, 20, 0.22), rgba(4, 10, 20, 0.08));
+      }
+
+      .cyber-section::after {
+        background-image:
+          linear-gradient(rgba(77, 167, 219, 0.045) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(77, 167, 219, 0.045) 1px, transparent 1px);
+        background-size: 56px 56px;
+        mask-image: radial-gradient(circle at center, black 32%, transparent 92%);
+        opacity: 0.28;
+      }
+
+      .cyber-section > .container {
+        position: relative;
+        z-index: 1;
+      }
+
+      .about-layout,
+      .experience-layout {
+        position: relative;
+        z-index: 1;
+      }
+
+      .about-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+        gap: 1.5rem;
+        align-items: start;
+      }
+
+      .ambient-particles {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .ambient-particles span {
+        position: absolute;
+        width: 0.4rem;
+        height: 0.4rem;
+        border-radius: 50%;
+        background: rgba(118, 219, 255, 0.55);
+        box-shadow: 0 0 18px rgba(118, 219, 255, 0.35);
+        animation: ambientFloat 12s ease-in-out infinite;
+      }
+
+      .ambient-particles span:nth-child(1) { top: 18%; left: 10%; animation-delay: 0s; }
+      .ambient-particles span:nth-child(2) { top: 30%; left: 44%; width: 0.3rem; height: 0.3rem; animation-delay: 1.8s; }
+      .ambient-particles span:nth-child(3) { top: 56%; left: 18%; width: 0.5rem; height: 0.5rem; animation-delay: 2.7s; }
+      .ambient-particles span:nth-child(4) { top: 22%; right: 16%; animation-delay: 3.6s; }
+      .ambient-particles span:nth-child(5) { bottom: 24%; right: 28%; width: 0.3rem; height: 0.3rem; animation-delay: 4.5s; }
+      .ambient-particles span:nth-child(6) { bottom: 18%; left: 34%; width: 0.32rem; height: 0.32rem; animation-delay: 5.2s; }
+      .ambient-particles span:nth-child(7) { top: 10%; left: 56%; width: 0.22rem; height: 0.22rem; animation-delay: 2.1s; }
+      .ambient-particles span:nth-child(8) { top: 14%; right: 10%; width: 0.24rem; height: 0.24rem; animation-delay: 4.1s; }
+      .ambient-particles span:nth-child(9) { top: 26%; left: 72%; width: 0.18rem; height: 0.18rem; animation-delay: 6.2s; }
+      .ambient-particles span:nth-child(10) { top: 16%; left: 24%; width: 0.2rem; height: 0.2rem; animation-delay: 3.3s; }
+
+      @keyframes ambientFloat {
+        0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.25; }
+        50% { transform: translate3d(0, -14px, 0); opacity: 0.7; }
+      }
+
+      .about-flow {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .about-flow span {
+        position: absolute;
+        width: 14rem;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(99, 217, 255, 0.4), transparent);
+        opacity: 0.4;
+        animation: aboutTrace 11s linear infinite;
+      }
+
+      .about-flow span:nth-child(1) { top: 11%; left: -10rem; animation-delay: 0s; }
+      .about-flow span:nth-child(2) { top: 19%; left: -16rem; width: 18rem; animation-delay: 3.6s; }
+      .about-flow span:nth-child(3) { top: 27%; left: -12rem; width: 16rem; animation-delay: 7s; }
+
+      @keyframes aboutTrace {
+        0% { transform: translateX(0); opacity: 0; }
+        20% { opacity: 0.38; }
+        80% { opacity: 0.38; }
+        100% { transform: translateX(calc(100vw + 20rem)); opacity: 0; }
+      }
+
+      .about-strip {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+        perspective: 1200px;
+      }
+
+      .about-card {
+        position: relative;
+        border-radius: 24px;
+        padding: 1.3rem;
+        min-height: 11.5rem;
+        background: linear-gradient(180deg, rgba(10, 18, 30, 0.82), rgba(5, 12, 22, 0.64));
+        border: 1px solid rgba(101, 216, 255, 0.1);
+        box-shadow: 0 26px 60px rgba(0, 0, 0, 0.22);
+        transform-style: preserve-3d;
+        animation: aboutCardFloat 8s ease-in-out infinite;
+      }
+
+      .about-card:nth-child(2) { animation-delay: 1.2s; }
+      .about-card:nth-child(3) { animation-delay: 2.2s; }
+      .about-card:nth-child(4) { animation-delay: 3.2s; }
+
+      .about-card::before {
+        content: "";
+        position: absolute;
+        inset: auto 1.2rem 1.2rem 1.2rem;
+        height: 1px;
+        background: linear-gradient(90deg, rgba(124, 223, 255, 0.28), transparent);
+      }
+
+      @keyframes aboutCardFloat {
+        0%, 100% { transform: translate3d(0, 0, 0) rotateX(0deg) rotateY(0deg); }
+        50% { transform: translate3d(0, -8px, 0) rotateX(1deg) rotateY(-1.2deg); }
+      }
+
+      .about-card h3 {
+        margin-bottom: 0.55rem;
+      }
+
+      .about-card p {
+        margin-bottom: 0;
+        color: var(--muted);
+      }
+
+      .about-card-tag {
+        display: inline-flex;
+        margin-top: 1rem;
+        padding: 0.42rem 0.72rem;
+        border-radius: 999px;
+        border: 1px solid rgba(127, 255, 178, 0.14);
+        background: rgba(127, 255, 178, 0.06);
+        color: #d9ffee;
+        font-size: 0.82rem;
+      }
+
+      .experience-section {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .experience-shell {
+        position: relative;
+        padding: 1.1rem;
+        border-radius: 30px;
+        background: linear-gradient(180deg, rgba(6, 12, 22, 0.52), rgba(4, 8, 16, 0.26));
+        border: 1px solid rgba(95, 206, 255, 0.08);
+      }
+
+      .experience-shell::before,
+      .experience-shell::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        pointer-events: none;
+      }
+
+      .experience-shell::before {
+        background:
+          linear-gradient(120deg, transparent 0%, rgba(89, 204, 255, 0.08) 28%, transparent 42%),
+          linear-gradient(160deg, transparent 40%, rgba(127, 255, 178, 0.05) 62%, transparent 78%);
+        opacity: 0.7;
+      }
+
+      .experience-shell::after {
+        background-image:
+          linear-gradient(rgba(95, 206, 255, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(95, 206, 255, 0.05) 1px, transparent 1px);
+        background-size: 54px 54px;
+        mask-image: linear-gradient(180deg, transparent, black 16%, black 84%, transparent);
+        opacity: 0.18;
+      }
+
+      .experience-shell > *,
+      .section-surface > * {
+        position: relative;
+        z-index: 1;
+      }
+
       .timeline-item {
         position: relative;
         border-radius: 24px;
@@ -736,9 +986,123 @@
 
       .timeline-item:hover,
       .timeline-item:focus-within {
-        transform: translateY(-4px) scale(1.01);
+        transform: translateY(-7px) scale(1.012);
         border-color: rgba(93, 228, 255, 0.16);
-        box-shadow: 0 34px 90px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(93, 228, 255, 0.06);
+        box-shadow: 0 40px 94px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(93, 228, 255, 0.06);
+      }
+
+      .timeline-item[data-exp="meta"] {
+        background:
+          radial-gradient(circle at top right, rgba(105, 190, 255, 0.12), transparent 28%),
+          linear-gradient(180deg, rgba(12, 20, 34, 0.88), rgba(7, 12, 22, 0.72));
+      }
+
+      .timeline-item[data-exp="gstephens"] {
+        background:
+          radial-gradient(circle at top right, rgba(127, 255, 178, 0.09), transparent 28%),
+          linear-gradient(180deg, rgba(12, 20, 34, 0.88), rgba(7, 12, 22, 0.72));
+      }
+
+      .timeline-item[data-exp="lab"] {
+        background:
+          radial-gradient(circle at top right, rgba(148, 175, 255, 0.08), transparent 24%),
+          linear-gradient(180deg, rgba(12, 20, 34, 0.88), rgba(7, 12, 22, 0.72));
+      }
+
+      .experience-badges,
+      .experience-icons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem;
+        margin-bottom: 1rem;
+      }
+
+      .experience-badge,
+      .experience-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 2.2rem;
+        padding: 0.5rem 0.78rem;
+        border-radius: 999px;
+        border: 1px solid rgba(95, 206, 255, 0.12);
+        background: rgba(8, 18, 32, 0.72);
+        color: #d7efff;
+        font-size: 0.84rem;
+        letter-spacing: 0.04em;
+      }
+
+      .experience-metrics {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.8rem;
+        margin: 1rem 0 1.1rem;
+      }
+
+      .experience-metric {
+        padding: 0.95rem 1rem;
+        border-radius: 18px;
+        border: 1px solid rgba(95, 206, 255, 0.1);
+        background: rgba(5, 16, 28, 0.68);
+      }
+
+      .experience-metric strong {
+        display: block;
+        margin-bottom: 0.28rem;
+        font-size: 1.05rem;
+        color: #ebf7ff;
+      }
+
+      .experience-metric span {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .section-surface {
+        position: relative;
+        padding: 1.1rem;
+        border-radius: 30px;
+        background: linear-gradient(180deg, rgba(7, 14, 26, 0.62), rgba(5, 10, 18, 0.28));
+        border: 1px solid rgba(95, 206, 255, 0.08);
+      }
+
+      .section-surface::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background:
+          linear-gradient(120deg, transparent 0%, rgba(89, 204, 255, 0.05) 24%, transparent 42%),
+          linear-gradient(180deg, transparent 35%, rgba(127, 255, 178, 0.035) 70%, transparent 100%);
+        pointer-events: none;
+      }
+
+      .trace-strip {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+        border-radius: inherit;
+      }
+
+      .trace-strip span {
+        position: absolute;
+        height: 1px;
+        width: 12rem;
+        background: linear-gradient(90deg, transparent, rgba(96, 214, 255, 0.42), transparent);
+        opacity: 0.45;
+        animation: traceDrift 10s linear infinite;
+      }
+
+      .trace-strip span:nth-child(1) { top: 18%; left: -8rem; animation-delay: 0s; }
+      .trace-strip span:nth-child(2) { top: 42%; left: -4rem; width: 15rem; animation-delay: 2.6s; }
+      .trace-strip span:nth-child(3) { top: 68%; left: -10rem; width: 18rem; animation-delay: 5.1s; }
+
+      @keyframes traceDrift {
+        0% { transform: translateX(0); opacity: 0; }
+        15% { opacity: 0.42; }
+        85% { opacity: 0.42; }
+        100% { transform: translateX(calc(100vw + 18rem)); opacity: 0; }
       }
 
       .project-card:hover,
@@ -827,7 +1191,7 @@
         position: absolute;
         inset: 0 0 auto 0;
         height: 3px;
-        background: linear-gradient(90deg, rgba(182, 108, 255, 0.92), rgba(93, 228, 255, 0.92), rgba(127, 255, 178, 0.8));
+        background: linear-gradient(90deg, rgba(77, 163, 255, 0.92), rgba(93, 228, 255, 0.92), rgba(127, 255, 178, 0.8));
         opacity: 0;
         transition: opacity 0.3s ease;
       }
@@ -874,8 +1238,8 @@
       .social-link:focus-visible,
       .tool-chip:hover {
         transform: translateY(-2px) scale(1.04);
-        box-shadow: 0 0 20px rgba(182, 108, 255, 0.14);
-        border-color: rgba(182, 108, 255, 0.2);
+        box-shadow: 0 0 20px rgba(93, 228, 255, 0.14);
+        border-color: rgba(93, 228, 255, 0.2);
       }
 
       .tool-chip {
@@ -883,16 +1247,16 @@
       }
 
       /* Colored pills per category */
-      .skill-group[data-cat="offensive"] .kicker { color: rgba(182, 108, 255, 0.9); }
+      .skill-group[data-cat="offensive"] .kicker { color: rgba(77, 163, 255, 0.9); }
       .skill-group[data-cat="offensive"] .pill {
-        border-color: rgba(182, 108, 255, 0.15);
-        background: rgba(182, 108, 255, 0.06);
-        color: #ead8ff;
+        border-color: rgba(77, 163, 255, 0.15);
+        background: rgba(77, 163, 255, 0.06);
+        color: #d9eaff;
       }
       .skill-group[data-cat="offensive"] .pill:hover {
-        background: rgba(182, 108, 255, 0.12);
-        border-color: rgba(182, 108, 255, 0.3);
-        box-shadow: 0 0 18px rgba(182, 108, 255, 0.2);
+        background: rgba(77, 163, 255, 0.12);
+        border-color: rgba(77, 163, 255, 0.3);
+        box-shadow: 0 0 18px rgba(77, 163, 255, 0.2);
       }
 
       .skill-group[data-cat="defensive"] .kicker { color: rgba(93, 228, 255, 0.9); }
@@ -1138,9 +1502,15 @@
 
       @media (max-width: 960px) {
         .hero-grid,
+        .about-layout,
         .contact-layout,
         .skills-grid,
         .projects-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .about-strip,
+        .experience-metrics {
           grid-template-columns: 1fr;
         }
 
@@ -1202,6 +1572,10 @@
 
         .hero-3d-wrap {
           min-height: 22rem;
+        }
+
+        .about-card {
+          min-height: auto;
         }
 
         .hero-visual-copy {
@@ -1283,6 +1657,7 @@
             </button>
 
             <div class="nav-links" id="nav-links">
+              <a href="#about" data-section="about">About</a>
               <a href="#experience" data-section="experience">Experience</a>
               <a href="#projects" data-section="projects">Projects</a>
               <a href="#skills" data-section="skills">Skills</a>
@@ -1358,24 +1733,107 @@
           </div>
         </section>
 
-        <section class="section" id="experience">
+        <section class="section about-section" id="about">
+          <div class="ambient-particles" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="about-flow" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <div class="container about-layout">
+            <div class="section-intro reveal" style="margin-bottom:0;">
+              <p class="eyebrow">About</p>
+              <h2>Education, research, and recognition shown as a quieter layer of proof.</h2>
+              <p class="muted">
+                This section stays calmer than the hero with lighter motion, floating glass panels, and enough depth to feel technical without turning the page into constant animation.
+              </p>
+              <p class="muted">
+                It captures the through-line behind my work: formal study, live research, enterprise security operations, and recognition earned through real-world impact.
+              </p>
+            </div>
+
+            <div class="about-strip">
+              <article class="about-card reveal">
+                <p class="kicker">Education</p>
+                <h3>University of Akron</h3>
+                <p>B.S. in Computer Information Systems with a Cybersecurity concentration built around technical depth, practical labs, and disciplined communication.</p>
+                <span class="about-card-tag">Cybersecurity Track</span>
+              </article>
+
+              <article class="about-card reveal">
+                <p class="kicker">Research</p>
+                <h3>Meta Researcher</h3>
+                <p>Independent vulnerability research across real products with sustained reporting, responsible disclosure, and platform-level security collaboration.</p>
+                <span class="about-card-tag">Whitehat Program</span>
+              </article>
+
+              <article class="about-card reveal">
+                <p class="kicker">Operations</p>
+                <h3>G. Stephens IT / Security</h3>
+                <p>Hands-on work across cloud, identity, endpoint defense, and operational hygiene in a live enterprise environment.</p>
+                <span class="about-card-tag">Azure + Intune</span>
+              </article>
+
+              <article class="about-card reveal">
+                <p class="kicker">Recognition</p>
+                <h3>Dean's List, BBC, Hackathon Invitee</h3>
+                <p>Recognition that reflects consistency, curiosity, and the ability to produce security work that others take seriously.</p>
+                <span class="about-card-tag">Earned Authority</span>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section experience-section" id="experience">
           <div class="container">
             <div class="section-intro reveal">
               <p class="eyebrow">Experience</p>
               <h2>Applied security work across research, cloud administration, and IT operations.</h2>
               <p class="muted">
-                My experience blends hands-on offensive testing with defensive controls, endpoint hardening, and identity-aware infrastructure support.
+                This section leans into a security operations dashboard feel with a calmer background, stronger card depth, and clearer visual signals for impact, tooling, and environment.
               </p>
             </div>
 
+            <div class="experience-shell">
             <div class="timeline">
-              <article class="timeline-item reveal">
+              <article class="timeline-item reveal" data-exp="meta">
                 <div class="timeline-head">
                   <div>
                     <p class="kicker">Meta &mdash; Whitehat Bug Bounty Program</p>
                     <h3>Whitehat Security Researcher <span class="muted" style="font-weight:400; font-size:0.9em;">Bronze &rarr; Silver &rarr; Gold League</span></h3>
                   </div>
                   <span class="date-tag">Feb 2021 &ndash; Present</span>
+                </div>
+                <div class="experience-badges">
+                  <span class="experience-badge">Platform Research</span>
+                  <span class="experience-badge">Private Programs</span>
+                  <span class="experience-badge">Responsible Disclosure</span>
+                </div>
+                <div class="experience-metrics">
+                  <div class="experience-metric">
+                    <strong>100+</strong>
+                    <span>validated findings</span>
+                  </div>
+                  <div class="experience-metric">
+                    <strong>$35K+</strong>
+                    <span>earned in bounty payouts</span>
+                  </div>
+                  <div class="experience-metric">
+                    <strong>Gold</strong>
+                    <span>top-tier league status</span>
+                  </div>
                 </div>
                 <ul class="bullet-list">
                   <li>Promoted to Gold League through sustained, high-impact contributions — one of Meta's top-tier researcher tiers awarded for consistent quality and responsible disclosure over 4+ years.</li>
@@ -1386,13 +1844,20 @@
                 </ul>
               </article>
 
-              <article class="timeline-item reveal">
+              <article class="timeline-item reveal" data-exp="gstephens">
                 <div class="timeline-head">
                   <div>
                     <p class="kicker">G. Stephens, Inc.</p>
                     <h3>Information Technology and Security Intern</h3>
                   </div>
                   <span class="date-tag">2025 &ndash; Present</span>
+                </div>
+                <div class="experience-icons">
+                  <span class="experience-icon">Azure</span>
+                  <span class="experience-icon">Intune</span>
+                  <span class="experience-icon">Identity</span>
+                  <span class="experience-icon">Endpoint</span>
+                  <span class="experience-icon">Cloud Ops</span>
                 </div>
                 <ul class="bullet-list">
                   <li>Supported Azure, Intune, Active Directory, and endpoint tooling with a strong emphasis on secure identity and operational hygiene.</li>
@@ -1401,7 +1866,7 @@
                 </ul>
               </article>
 
-              <article class="timeline-item reveal">
+              <article class="timeline-item reveal" data-exp="lab">
                 <div class="timeline-head">
                   <div>
                     <p class="kicker">Competition / Lab Work</p>
@@ -1416,10 +1881,11 @@
                 </ul>
               </article>
             </div>
+            </div>
           </div>
         </section>
 
-        <section class="section" id="projects">
+        <section class="section cyber-section" id="projects">
           <div class="container">
             <div class="section-intro reveal">
               <p class="eyebrow">Projects</p>
@@ -1429,6 +1895,12 @@
               </p>
             </div>
 
+            <div class="section-surface">
+            <div class="trace-strip" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
             <div class="projects-grid">
               <article class="project-card reveal">
                 <p class="kicker">Project 01</p>
@@ -1535,10 +2007,11 @@
                 </div>
               </article>
             </div>
+            </div>
           </div>
         </section>
 
-        <section class="section" id="skills">
+        <section class="section cyber-section" id="skills">
           <div class="container">
             <div class="section-intro reveal">
               <p class="eyebrow">Skills / Tech Stack</p>
@@ -1548,6 +2021,12 @@
               </p>
             </div>
 
+            <div class="section-surface">
+            <div class="trace-strip" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
             <div class="skills-grid">
               <article class="skill-group reveal" data-cat="offensive">
                 <p class="kicker">Offensive Security</p>
@@ -1610,10 +2089,11 @@
                 </div>
               </article>
             </div>
+            </div>
           </div>
         </section>
 
-        <section class="section" id="contact">
+        <section class="section cyber-section" id="contact">
           <div class="container">
             <div class="section-intro reveal">
               <p class="eyebrow">Contact</p>
@@ -1623,6 +2103,12 @@
               </p>
             </div>
 
+            <div class="section-surface">
+            <div class="trace-strip" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
             <div class="contact-layout">
               <div class="contact-stack">
                 <article class="contact-card reveal">
@@ -1670,6 +2156,7 @@
                   <button class="button" type="submit">Send Message</button>
                 </div>
               </form>
+            </div>
             </div>
           </div>
         </section>

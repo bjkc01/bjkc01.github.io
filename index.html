@@ -300,9 +300,10 @@
       .hero {
         min-height: 100vh;
         display: grid;
-        align-items: center;
+        align-items: start;
         position: relative;
-        padding-top: 6rem;
+        padding-top: 1.35rem;
+        padding-bottom: 3.5rem;
         overflow: hidden;
         isolation: isolate;
       }
@@ -325,6 +326,66 @@
         grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.8fr);
         gap: 2.5rem;
         align-items: center;
+        padding-top: 1rem;
+      }
+
+      .hero-top-activity {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .hero-top-activity span {
+        position: absolute;
+        width: 16rem;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(95, 218, 255, 0.42), transparent);
+        opacity: 0.38;
+        animation: heroTopTrace 9s linear infinite;
+      }
+
+      .hero-top-activity span:nth-child(1) { top: 8%; left: -12rem; animation-delay: 0s; }
+      .hero-top-activity span:nth-child(2) { top: 12%; left: -18rem; width: 20rem; animation-delay: 2.8s; }
+      .hero-top-activity span:nth-child(3) { top: 16%; left: -10rem; width: 14rem; animation-delay: 5.3s; }
+      .hero-top-activity span:nth-child(4) { top: 10%; left: 18%; width: 12rem; animation-delay: 1.4s; }
+      .hero-top-activity span:nth-child(5) { top: 14%; left: 44%; width: 15rem; animation-delay: 4.8s; }
+
+      .hero-top-activity::before,
+      .hero-top-activity::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(98, 223, 255, 0.68);
+        box-shadow: 0 0 18px rgba(98, 223, 255, 0.32);
+        animation: heroTopPulse 7.2s ease-in-out infinite;
+      }
+
+      .hero-top-activity::before {
+        top: 10%;
+        left: 34%;
+        width: 0.34rem;
+        height: 0.34rem;
+      }
+
+      .hero-top-activity::after {
+        top: 14%;
+        left: 59%;
+        width: 0.28rem;
+        height: 0.28rem;
+        animation-delay: 2.5s;
+      }
+
+      @keyframes heroTopTrace {
+        0% { transform: translateX(0); opacity: 0; }
+        15% { opacity: 0.36; }
+        85% { opacity: 0.36; }
+        100% { transform: translateX(calc(100vw + 24rem)); opacity: 0; }
+      }
+
+      @keyframes heroTopPulse {
+        0%, 100% { transform: translate3d(0, 0, 0); opacity: 0.28; }
+        50% { transform: translate3d(0, -8px, 0); opacity: 0.8; }
       }
 
       .hero-copy {
@@ -794,9 +855,28 @@
 
       .about-layout {
         display: grid;
-        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-        gap: 1.5rem;
+        grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+        gap: 2rem;
         align-items: start;
+      }
+
+      .about-copy {
+        max-width: 34rem;
+        padding-top: 0.35rem;
+      }
+
+      .about-copy h2 {
+        max-width: 26rem;
+        margin-bottom: 1rem;
+        font-size: clamp(2.4rem, 5.1vw, 4.6rem);
+        line-height: 0.98;
+        letter-spacing: -0.05em;
+      }
+
+      .about-copy .muted {
+        max-width: 31rem;
+        font-size: 1.02rem;
+        line-height: 1.75;
       }
 
       .ambient-particles {
@@ -862,18 +942,20 @@
       .about-strip {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 1rem;
+        gap: 1.15rem;
         perspective: 1200px;
       }
 
       .about-card {
         position: relative;
         border-radius: 24px;
-        padding: 1.3rem;
+        padding: 1.45rem;
         min-height: 11.5rem;
-        background: linear-gradient(180deg, rgba(10, 18, 30, 0.82), rgba(5, 12, 22, 0.64));
-        border: 1px solid rgba(101, 216, 255, 0.1);
-        box-shadow: 0 26px 60px rgba(0, 0, 0, 0.22);
+        background:
+          radial-gradient(circle at top right, rgba(86, 190, 255, 0.08), transparent 28%),
+          linear-gradient(180deg, rgba(12, 21, 35, 0.88), rgba(7, 14, 24, 0.72));
+        border: 1px solid rgba(101, 216, 255, 0.13);
+        box-shadow: 0 28px 64px rgba(0, 0, 0, 0.22);
         transform-style: preserve-3d;
         animation: aboutCardFloat 8s ease-in-out infinite;
       }
@@ -896,12 +978,17 @@
       }
 
       .about-card h3 {
-        margin-bottom: 0.55rem;
+        margin-bottom: 0.65rem;
+        font-size: 1.65rem;
+        line-height: 1.08;
+        letter-spacing: -0.04em;
       }
 
       .about-card p {
         margin-bottom: 0;
         color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.65;
       }
 
       .about-card-tag {
@@ -913,6 +1000,11 @@
         background: rgba(127, 255, 178, 0.06);
         color: #d9ffee;
         font-size: 0.82rem;
+      }
+
+      .about-card .kicker {
+        margin-bottom: 0.75rem;
+        color: #8fdfff;
       }
 
       .experience-section {
@@ -1003,7 +1095,7 @@
           linear-gradient(180deg, rgba(12, 20, 34, 0.88), rgba(7, 12, 22, 0.72));
       }
 
-      .timeline-item[data-exp="lab"] {
+      .timeline-item[data-exp="uak"] {
         background:
           radial-gradient(circle at top right, rgba(148, 175, 255, 0.08), transparent 24%),
           linear-gradient(180deg, rgba(12, 20, 34, 0.88), rgba(7, 12, 22, 0.72));
@@ -1514,6 +1606,11 @@
           grid-template-columns: 1fr;
         }
 
+        .about-copy h2,
+        .about-copy .muted {
+          max-width: none;
+        }
+
         .hero-side {
           max-width: 42rem;
         }
@@ -1567,7 +1664,11 @@
 
         .hero {
           min-height: auto;
-          padding: 7rem 0 4.5rem;
+          padding: 5.6rem 0 4.5rem;
+        }
+
+        .hero-grid {
+          padding-top: 0.2rem;
         }
 
         .hero-3d-wrap {
@@ -1576,6 +1677,10 @@
 
         .about-card {
           min-height: auto;
+        }
+
+        .about-copy {
+          padding-top: 0;
         }
 
         .hero-visual-copy {
@@ -1671,6 +1776,11 @@
       <main>
         <section class="hero" id="hero">
           <canvas id="hero-bg-canvas" aria-hidden="true"></canvas>
+          <div class="hero-top-activity" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
 
           <div class="container hero-grid">
             <div class="hero-copy reveal">
@@ -1753,14 +1863,14 @@
           </div>
 
           <div class="container about-layout">
-            <div class="section-intro reveal" style="margin-bottom:0;">
+            <div class="section-intro about-copy reveal" style="margin-bottom:0;">
               <p class="eyebrow">About</p>
-              <h2>Education, research, and recognition shown as a quieter layer of proof.</h2>
+              <h2>Education, research, and recognition that support the work.</h2>
               <p class="muted">
-                This section stays calmer than the hero with lighter motion, floating glass panels, and enough depth to feel technical without turning the page into constant animation.
+                My background combines formal cybersecurity study, independent vulnerability research, and hands-on enterprise security operations.
               </p>
               <p class="muted">
-                It captures the through-line behind my work: formal study, live research, enterprise security operations, and recognition earned through real-world impact.
+                The goal here is simple: show the proof behind the work without overwhelming the page. The cards to the right highlight the environments, recognition, and experience that shape how I approach security.
               </p>
             </div>
 
@@ -1836,9 +1946,9 @@
                   </div>
                 </div>
                 <ul class="bullet-list">
-                  <li>Promoted to Gold League through sustained, high-impact contributions — one of Meta's top-tier researcher tiers awarded for consistent quality and responsible disclosure over 4+ years.</li>
+                  <li>Promoted to Gold League through sustained, high-impact contributions, one of Meta's top-tier researcher tiers awarded for consistent quality and responsible disclosure over 4+ years.</li>
                   <li>Reported 100+ verified vulnerabilities across web, mobile, and API surfaces including IDOR, SSRF, XSS, GraphQL injection, authentication bypass, and business logic flaws; findings led to coordinated fixes and five-figure cumulative bounties.</li>
-                  <li>Invited to private bounty programs and elite live-hacking events in recognition of top-tier performance — collaborated directly with Meta's platform security team to validate findings and confirm remediation.</li>
+                  <li>Invited to private bounty programs and elite live-hacking events in recognition of top-tier performance, collaborated directly with Meta platform security team to validate findings and confirm remediation.</li>
                   <li>Featured by <a href="https://www.bbc.com/nepali/news-59273184" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:underline; text-underline-offset:3px;">BBC News</a> for discovering critical security flaws in Facebook, earning recognition as a notable independent security researcher.</li>
                   <li>Technical toolkit: Burp Suite (manual auditing and custom extensions), Nmap, Wireshark, custom Python/JS recon scripts, and OSINT for contextual analysis.</li>
                 </ul>
@@ -1850,7 +1960,7 @@
                     <p class="kicker">G. Stephens, Inc.</p>
                     <h3>Information Technology and Security Intern</h3>
                   </div>
-                  <span class="date-tag">2025 &ndash; Present</span>
+                  <span class="date-tag">Feb 2025 &ndash; Present</span>
                 </div>
                 <div class="experience-icons">
                   <span class="experience-icon">Azure</span>
@@ -1860,24 +1970,41 @@
                   <span class="experience-icon">Cloud Ops</span>
                 </div>
                 <ul class="bullet-list">
-                  <li>Supported Azure, Intune, Active Directory, and endpoint tooling with a strong emphasis on secure identity and operational hygiene.</li>
-                  <li>Improved endpoint visibility and protection through Microsoft Defender, Huntress, and NinjaOne administration.</li>
-                  <li>Led SharePoint migration and permission review efforts to reduce unnecessary access and strengthen governance.</li>
+                  <li>Administered Azure AD (Entra ID), Active Directory, and Intune environments, managing identity lifecycle, RBAC roles, Conditional Access policies, and device compliance configurations.</li>
+                  <li>Developed and deployed PowerShell automation scripts for user provisioning, license assignment, and system auditing, reducing manual administrative workload and improving consistency.</li>
+                  <li>Managed and secured endpoint infrastructure (Windows devices) through Intune MDM/MAM policies, including device compliance, configuration profiles, patching, and remote actions.</li>
+                  <li>Strengthened endpoint security posture by configuring and monitoring Microsoft Defender for Endpoint, Huntress, and NinjaOne, including alert triage, threat detection, and remediation workflows.</li>
+                  <li>Assisted in incident response operations, analyzing security alerts, investigating suspicious activities, and applying containment/remediation actions aligned with NIST/CIS best practices.</li>
+                  <li>Led SharePoint Online migration and access governance, including permission audits, least privilege enforcement, and secure site architecture design.</li>
+                  <li>Implemented monitoring and alerting solutions to improve infrastructure visibility, contributing to high system availability and proactive issue detection.</li>
+                  <li>Supported IoT-based monitoring integrations in Azure, working with real-time data pipelines and dashboards to enhance operational awareness and reporting.</li>
+                  <li>Conducted vulnerability assessments and basic threat modeling, identifying misconfigurations, weak access controls, and potential attack vectors.</li>
+                  <li>Delivered security awareness training sessions, educating users on phishing, credential hygiene, and organizational security policies.</li>
                 </ul>
               </article>
 
-              <article class="timeline-item reveal" data-exp="lab">
+              <article class="timeline-item reveal" data-exp="uak">
                 <div class="timeline-head">
                   <div>
-                    <p class="kicker">Competition / Lab Work</p>
-                    <h3>CTF and Defensive Operations Participant</h3>
+                    <p class="kicker">The University of Akron</p>
+                    <h3>Software Engineering Student Assistant - College of Business</h3>
                   </div>
-                  <span class="date-tag">Ongoing</span>
+                  <span class="date-tag">Aug 2024 &ndash; Present</span>
+                </div>
+                <div class="experience-icons">
+                  <span class="experience-icon">SharePoint Online</span>
+                  <span class="experience-icon">Microsoft 365</span>
+                  <span class="experience-icon">Power Automate</span>
+                  <span class="experience-icon">Access Control</span>
+                  <span class="experience-icon">Cloud Governance</span>
                 </div>
                 <ul class="bullet-list">
-                  <li>Practiced exploitation, privilege escalation, enumeration, and incident triage across capture-the-flag and blue-team environments.</li>
-                  <li>Documented methodology, indicators, and remediation notes to reinforce repeatable learning rather than one-off solves.</li>
-                  <li>Built confidence across web exploitation, Linux analysis, networking, and log-driven investigation.</li>
+                  <li>Supported administration of SharePoint Online (Microsoft 365) as a centralized cloud platform for the College of Business, managing site architecture, document libraries, and access models across academic and administrative environments.</li>
+                  <li>Played a key role in cloud governance and access control, designing and maintaining permission structures (M365 groups, role-based access, and folder-level controls) to ensure secure and efficient data sharing.</li>
+                  <li>Conducted access audits and permission reviews, identifying overexposed resources and restructuring access to align with least privilege and data security best practices.</li>
+                  <li>Improved cloud collaboration workflows by organizing SharePoint environments, optimizing file structures, and reducing friction in how faculty and staff access and manage shared data.</li>
+                  <li>Developed and deployed Power Automate workflows to automate business processes (approvals, notifications, document routing), increasing operational efficiency and reducing manual workload.</li>
+                  <li>Acted as a bridge between cloud infrastructure and user experience, troubleshooting Microsoft 365 issues and ensuring reliable day-to-day platform usage.</li>
                 </ul>
               </article>
             </div>

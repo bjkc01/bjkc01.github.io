@@ -558,8 +558,36 @@
           0 0 0 1px rgba(93, 228, 255, 0.03);
       }
 
+      .hero-3d-wrap::before {
+        content: "";
+        position: absolute;
+        inset: 12% 8% 10% 10%;
+        border-radius: 26px;
+        background:
+          radial-gradient(circle at 28% 20%, rgba(120, 226, 255, 0.24), transparent 18%),
+          radial-gradient(circle at 58% 32%, rgba(127, 255, 178, 0.18), transparent 12%),
+          radial-gradient(circle at 74% 62%, rgba(88, 178, 255, 0.2), transparent 16%),
+          linear-gradient(115deg, rgba(23, 89, 132, 0.16), rgba(6, 20, 36, 0.02) 42%, rgba(26, 109, 138, 0.14));
+        opacity: 0.8;
+        filter: blur(1px);
+        pointer-events: none;
+      }
+
+      .hero-3d-wrap::after {
+        content: "";
+        position: absolute;
+        inset: 18% 16% 16% 14%;
+        background-image:
+          linear-gradient(rgba(94, 193, 255, 0.08) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(94, 193, 255, 0.08) 1px, transparent 1px);
+        background-size: 36px 36px;
+        mask-image: radial-gradient(circle at center, black 36%, transparent 86%);
+        opacity: 0.3;
+        pointer-events: none;
+      }
+
       #hero-3d-canvas {
-        display: block;
+        display: none;
         width: 100%;
         height: 100%;
         background: transparent;
@@ -620,6 +648,8 @@
         background: linear-gradient(180deg, rgba(6, 20, 36, 0.72), rgba(4, 12, 25, 0.34));
         box-shadow: 0 0 32px rgba(35, 169, 219, 0.16);
         backdrop-filter: blur(12px);
+        position: relative;
+        z-index: 1;
       }
 
       .hero-panel-cluster span {
@@ -1305,7 +1335,6 @@
 
             <aside class="hero-side reveal">
               <div class="hero-3d-wrap" aria-hidden="true">
-                <canvas id="hero-3d-canvas" width="520" height="560"></canvas>
                 <div class="hero-scan-line"></div>
                 <div class="hero-visual-copy">
                   <div class="hero-panel-top">
@@ -2183,8 +2212,13 @@
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
         const T = window.THREE;
-        const renderer = new T.WebGLRenderer({ canvas, alpha: true, antialias: true });
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+        const renderer = new T.WebGLRenderer({
+          canvas,
+          alpha: true,
+          antialias: false,
+          powerPreference: "low-power"
+        });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.1));
         const setSize = () => renderer.setSize(hero.offsetWidth, hero.offsetHeight, false);
         setSize();
 
@@ -2213,8 +2247,8 @@
         const lineGroup = new T.Group();
         network.add(lineGroup);
 
-        for (let i = 0; i < 68; i++) {
-          const isCluster = i < 18;
+        for (let i = 0; i < 36; i++) {
+          const isCluster = i < 10;
           const x = isCluster ? -130 + Math.random() * 170 : -320 + Math.random() * 640;
           const y = isCluster ? 20 + Math.random() * 150 : -170 + Math.random() * 320;
           const z = -360 + Math.random() * 540;
@@ -2242,7 +2276,7 @@
         for (let i = 0; i < nodes.length; i++) {
           let links = 0;
           for (let j = i + 1; j < nodes.length && links < 3; j++) {
-            const threshold = nodes[i].userData.cluster || nodes[j].userData.cluster ? 170 : 135;
+            const threshold = nodes[i].userData.cluster || nodes[j].userData.cluster ? 165 : 126;
             if (nodes[i].position.distanceToSquared(nodes[j].position) < threshold * threshold) {
               const line = new T.Line(
                 new T.BufferGeometry().setFromPoints([nodes[i].position.clone(), nodes[j].position.clone()]),
@@ -2255,9 +2289,9 @@
           }
         }
 
-        const particlePositions = new Float32Array(180 * 3);
+        const particlePositions = new Float32Array(72 * 3);
         const particleMeta = [];
-        for (let i = 0; i < 180; i++) {
+        for (let i = 0; i < 72; i++) {
           const x = -340 + Math.random() * 680;
           const y = -220 + Math.random() * 420;
           const z = -420 + Math.random() * 700;
@@ -2279,9 +2313,9 @@
           particleGeometry,
           new T.PointsMaterial({
             color: 0x89e6ff,
-            size: 2.8,
+            size: 2.4,
             transparent: true,
-            opacity: 0.45,
+            opacity: 0.32,
             depthWrite: false
           })
         );
@@ -2320,6 +2354,18 @@
         let my = 0;
         let scrollTarget = 0;
         let buttonBoost = 0;
+        let running = true;
+        let heroVisible = true;
+        let frame = 0;
+
+        const observer = new IntersectionObserver((entries) => {
+          heroVisible = entries[0] ? entries[0].isIntersecting : true;
+        }, { threshold: 0.08 });
+        observer.observe(hero);
+
+        document.addEventListener("visibilitychange", () => {
+          running = !document.hidden;
+        });
 
         document.querySelectorAll(".hero-actions .button").forEach((button) => {
           button.addEventListener("mouseenter", () => { buttonBoost = 1; });
@@ -2345,8 +2391,11 @@
         const clock = new T.Clock();
         const tick = () => {
           requestAnimationFrame(tick);
+          if (!running || !heroVisible) return;
+
           const time = clock.getElapsedTime();
           pulseClock += clock.getDelta();
+          frame++;
 
           if (pulseClock > 2.1) {
             triggerPulse();
@@ -2363,27 +2412,31 @@
           });
 
           lineGroup.children.forEach((line) => {
-            line.geometry.setFromPoints([line.userData.from.position, line.userData.to.position]);
             const clusterLine = line.userData.from.userData.cluster || line.userData.to.userData.cluster;
-            const baseOpacity = clusterLine ? 0.12 + 0.06 * Math.sin(time * 1.2 + line.userData.phase) : 0.08 + 0.04 * Math.sin(time + line.userData.phase);
-            line.material.opacity += ((baseOpacity + (clusterLine ? buttonBoost * 0.2 : 0)) - line.material.opacity) * 0.08;
+            const baseOpacity = clusterLine ? 0.1 + 0.05 * Math.sin(time * 1.1 + line.userData.phase) : 0.06 + 0.03 * Math.sin(time + line.userData.phase);
+            line.material.opacity += ((baseOpacity + (clusterLine ? buttonBoost * 0.16 : 0)) - line.material.opacity) * 0.08;
+            if (frame % 2 === 0) {
+              line.geometry.setFromPoints([line.userData.from.position, line.userData.to.position]);
+            }
           });
 
-          const particleAttr = particleGeometry.attributes.position.array;
-          particleMeta.forEach((meta, index) => {
-            meta.x += meta.driftX;
-            meta.y += meta.driftY + scrollTarget * 0.16;
-            meta.z += meta.driftZ;
-            if (meta.y > 220) meta.y = -220;
-            if (meta.x > 360) meta.x = -360;
-            if (meta.x < -360) meta.x = 360;
-            if (meta.z > 280) meta.z = -420;
-            if (meta.z < -420) meta.z = 280;
-            particleAttr[index * 3] = meta.x;
-            particleAttr[index * 3 + 1] = meta.y;
-            particleAttr[index * 3 + 2] = meta.z;
-          });
-          particleGeometry.attributes.position.needsUpdate = true;
+          if (frame % 2 === 0) {
+            const particleAttr = particleGeometry.attributes.position.array;
+            particleMeta.forEach((meta, index) => {
+              meta.x += meta.driftX;
+              meta.y += meta.driftY + scrollTarget * 0.12;
+              meta.z += meta.driftZ;
+              if (meta.y > 220) meta.y = -220;
+              if (meta.x > 360) meta.x = -360;
+              if (meta.x < -360) meta.x = 360;
+              if (meta.z > 280) meta.z = -420;
+              if (meta.z < -420) meta.z = 280;
+              particleAttr[index * 3] = meta.x;
+              particleAttr[index * 3 + 1] = meta.y;
+              particleAttr[index * 3 + 2] = meta.z;
+            });
+            particleGeometry.attributes.position.needsUpdate = true;
+          }
 
           sweep.rotation.z = time * 0.12;
           sweep.material.opacity = 0.08 + buttonBoost * 0.08;
@@ -2417,6 +2470,7 @@
       })();
 
       (function initHeroPanel() {
+        return;
         const canvas = document.getElementById("hero-3d-canvas");
         if (!canvas || !window.THREE) return;
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;

@@ -324,7 +324,7 @@
       .hero-grid {
         display: grid;
         grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.8fr);
-        gap: 2.5rem;
+        gap: 3rem;
         align-items: center;
         padding-top: 1rem;
       }
@@ -389,9 +389,25 @@
       }
 
       .hero-copy {
-        max-width: 46rem;
+        max-width: 42rem;
         position: relative;
         z-index: 2;
+      }
+
+      .hero-copy::before {
+        content: "";
+        position: absolute;
+        top: -2rem;
+        left: -12rem;
+        width: 34rem;
+        height: 44rem;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 520 760'%3E%3Cg fill='none' stroke='rgba(120,190,255,0.18)' stroke-width='1.2'%3E%3Cpath d='M52 118 178 74 244 152 164 248 62 214Z'/%3E%3Cpath d='M164 248 286 222 356 316 252 396 134 360Z'/%3E%3Cpath d='M252 396 380 364 458 458 330 554 210 504Z'/%3E%3Cpath d='M178 74 306 118 286 222'/%3E%3Cpath d='M244 152 392 178 356 316'/%3E%3Cpath d='M134 360 118 492 210 504'/%3E%3Cpath d='M62 214 90 336 134 360'/%3E%3Cpath d='M306 118 430 110 392 178'/%3E%3Cpath d='M330 554 442 630 458 458'/%3E%3C/g%3E%3Cg fill='%2377cfff'%3E%3Ccircle cx='52' cy='118' r='4'/%3E%3Ccircle cx='178' cy='74' r='5'/%3E%3Ccircle cx='244' cy='152' r='4.5'/%3E%3Ccircle cx='164' cy='248' r='5'/%3E%3Ccircle cx='62' cy='214' r='3.5'/%3E%3Ccircle cx='286' cy='222' r='4'/%3E%3Ccircle cx='356' cy='316' r='5'/%3E%3Ccircle cx='134' cy='360' r='4'/%3E%3Ccircle cx='252' cy='396' r='5.5'/%3E%3Ccircle cx='118' cy='492' r='4'/%3E%3Ccircle cx='330' cy='554' r='5'/%3E%3Ccircle cx='442' cy='630' r='4'/%3E%3Ccircle cx='430' cy='110' r='3.5'/%3E%3Ccircle cx='458' cy='458' r='4.5'/%3E%3C/g%3E%3Cg fill='%2397ffd2'%3E%3Ccircle cx='392' cy='178' r='4'/%3E%3Ccircle cx='210' cy='504' r='4.5'/%3E%3C/g%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-size: contain;
+        opacity: 0.24;
+        filter: blur(0.2px);
+        pointer-events: none;
+        z-index: -1;
       }
 
       .hero-title {
@@ -416,7 +432,7 @@
       }
 
       .hero-summary {
-        max-width: 39rem;
+        max-width: 36rem;
       }
 
       .hero-actions {
@@ -620,7 +636,7 @@
 
       .hero-3d-wrap {
         position: relative;
-        min-height: 28rem;
+        min-height: 25.5rem;
         border-radius: 30px;
         overflow: hidden;
         border: 1px solid rgba(98, 223, 255, 0.14);
@@ -675,6 +691,58 @@
         align-content: space-between;
         padding: 1.35rem;
         pointer-events: none;
+        z-index: 2;
+      }
+
+      .hero-photo-card {
+        position: absolute;
+        top: 4.6rem;
+        left: 50%;
+        bottom: 4.8rem;
+        width: min(16.5rem, calc(100% - 8.5rem));
+        transform: translateX(-50%);
+        border-radius: 22px;
+        overflow: hidden;
+        border: 1px solid rgba(117, 226, 255, 0.22);
+        background:
+          linear-gradient(180deg, rgba(5, 15, 26, 0.06) 10%, rgba(3, 9, 18, 0.52) 68%, rgba(2, 6, 12, 0.9) 100%),
+          radial-gradient(circle at 50% 10%, rgba(108, 233, 255, 0.16), transparent 40%);
+        box-shadow:
+          0 20px 60px rgba(0, 0, 0, 0.34),
+          inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        z-index: 1;
+      }
+
+      .hero-photo-card::before {
+        content: "";
+        position: absolute;
+        inset: 0.75rem;
+        border-radius: 16px;
+        border: 1px solid rgba(123, 234, 255, 0.18);
+        box-shadow:
+          inset 0 0 0 1px rgba(9, 33, 55, 0.75),
+          0 0 32px rgba(70, 202, 255, 0.12);
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      .hero-photo-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 12%;
+        display: block;
+        filter: saturate(1.02) contrast(1.04);
+      }
+
+      .hero-photo-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, rgba(1, 6, 14, 0) 12%, rgba(1, 8, 16, 0.2) 46%, rgba(1, 8, 16, 0.9) 100%),
+          linear-gradient(125deg, rgba(93, 228, 255, 0.04), transparent 34%, transparent 68%, rgba(127, 255, 178, 0.08));
+        pointer-events: none;
       }
 
       .hero-panel-top,
@@ -690,15 +758,15 @@
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
-        padding: 0.5rem 0.8rem;
+        padding: 0.45rem 0.75rem;
         border-radius: 999px;
-        border: 1px solid rgba(98, 223, 255, 0.16);
-        background: rgba(5, 16, 30, 0.56);
+        border: 1px solid rgba(98, 223, 255, 0.12);
+        background: rgba(5, 16, 30, 0.44);
         color: #d9f4ff;
-        font-size: 0.78rem;
-        letter-spacing: 0.11em;
+        font-size: 0.74rem;
+        letter-spacing: 0.09em;
         text-transform: uppercase;
-        backdrop-filter: blur(12px);
+        backdrop-filter: blur(8px);
       }
 
       .hero-panel-chip::before {
@@ -711,20 +779,11 @@
       }
 
       .hero-panel-tag {
-        color: #9edfff;
+        color: #b7d5e8;
       }
 
       .hero-panel-cluster {
-        align-self: center;
-        max-width: 18rem;
-        padding: 1rem 1.1rem;
-        border-radius: 20px;
-        border: 1px solid rgba(98, 223, 255, 0.14);
-        background: linear-gradient(180deg, rgba(6, 20, 36, 0.72), rgba(4, 12, 25, 0.34));
-        box-shadow: 0 0 32px rgba(35, 169, 219, 0.16);
-        backdrop-filter: blur(12px);
-        position: relative;
-        z-index: 1;
+        display: none;
       }
 
       .hero-panel-cluster span {
@@ -732,22 +791,25 @@
       }
 
       .hero-panel-cluster .kicker {
-        margin-bottom: 0.55rem;
+        margin-bottom: 0.45rem;
         color: #8ddfff;
+        font-size: 0.72rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
       }
 
       .hero-panel-cluster strong {
         display: block;
-        margin-bottom: 0.4rem;
-        font-size: 1.05rem;
-        line-height: 1.3;
+        margin-bottom: 0.3rem;
+        font-size: 0.95rem;
+        line-height: 1.28;
       }
 
       .hero-panel-cluster p {
         margin: 0;
         color: #aabfd1;
-        font-size: 0.95rem;
-        line-height: 1.6;
+        font-size: 0.8rem;
+        line-height: 1.5;
       }
 
       .hero-scan-line {
@@ -1671,8 +1733,21 @@
           padding-top: 0.2rem;
         }
 
+        .hero-copy::before {
+          left: -6rem;
+          width: 22rem;
+          height: 28rem;
+          opacity: 0.16;
+        }
+
         .hero-3d-wrap {
           min-height: 22rem;
+        }
+
+        .hero-photo-card {
+          top: 4rem;
+          bottom: 4rem;
+          width: min(14.5rem, calc(100% - 4.5rem));
         }
 
         .about-card {
@@ -1784,16 +1859,16 @@
 
           <div class="container hero-grid">
             <div class="hero-copy reveal">
-              <p class="eyebrow">Interactive Security Network Command Surface</p>
+              <p class="eyebrow">Cybersecurity Portfolio</p>
               <h1>
                 <span class="hero-title">Bijay Kumar Khatri</span>
                 <span class="hero-role">Cybersecurity Student &bull; Vulnerability Researcher &bull; Cloud Security</span>
               </h1>
               <p class="muted hero-summary">
-                I investigate weaknesses, secure modern systems, and turn technical risk into practical action.
+                I investigate vulnerabilities, secure modern systems, and turn technical risk into clear, practical action.
               </p>
               <p class="muted hero-summary">
-                My work spans vulnerability research, cloud and identity administration, incident response, and defensive operations built around clear analysis.
+                My work spans vulnerability research, cloud and identity administration, incident response, and defensive operations with an emphasis on analysis, communication, and measurable results.
               </p>
 
               <div class="hero-actions">
@@ -1819,23 +1894,19 @@
             </div>
 
             <aside class="hero-side reveal">
-              <div class="hero-3d-wrap" aria-hidden="true">
+              <div class="hero-3d-wrap">
                 <div class="hero-scan-line"></div>
-                <div class="hero-visual-copy">
-                  <div class="hero-panel-top">
-                    <div class="hero-panel-chip">Live telemetry</div>
-                    <div class="hero-panel-tag">Trust through analysis</div>
+                <div class="hero-photo-card">
+                  <img src="https://avatars.githubusercontent.com/u/180987768?v=4" alt="Portrait of Bijay Kumar Khatri" />
+                </div>
+                <div class="hero-visual-copy" aria-hidden="true">
+                <div class="hero-panel-top">
+                    <div class="hero-panel-chip">Verified profile</div>
+                    <div class="hero-panel-tag">Security research</div>
                   </div>
-
-                  <div class="hero-panel-cluster">
-                    <p class="kicker">Highlighted cluster</p>
-                    <strong>Research, detection, and cloud defense moving in one surface.</strong>
-                    <p>Slow signal movement keeps the scene active while the copy stays in control.</p>
-                  </div>
-
                   <div class="hero-panel-bottom">
-                    <div class="hero-panel-tag">Threat scan depth field</div>
-                    <div class="hero-panel-tag">Node traffic stabilized</div>
+                    <div class="hero-panel-tag">Cloud defense</div>
+                    <div class="hero-panel-tag">Offensive &amp; Defensive Security</div>
                   </div>
                 </div>
               </div>

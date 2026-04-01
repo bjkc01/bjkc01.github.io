@@ -1545,6 +1545,27 @@
         letter-spacing: 0.2em;
       }
 
+      .meta-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.7rem;
+        flex-wrap: wrap;
+      }
+
+      .meta-kicker img {
+        display: block;
+        width: auto;
+        height: 1.78rem;
+        max-width: 9.4rem;
+        object-fit: contain;
+        border-radius: 0.3rem;
+        filter: brightness(1.03) contrast(1.02) saturate(1.02) drop-shadow(0 0 6px rgba(95, 206, 255, 0.06));
+      }
+
+      .meta-kicker span {
+        display: inline-block;
+      }
+
       .date-tag {
         white-space: nowrap;
         padding: 0.45rem 0.75rem;
@@ -2273,7 +2294,10 @@
               <article class="timeline-item reveal" data-exp="meta">
                 <div class="timeline-head">
                   <div>
-                    <p class="kicker">Meta &mdash; Whitehat Bug Bounty Program</p>
+                    <p class="kicker meta-kicker">
+                      <img src="https://static.dezeen.com/uploads/2021/11/meta-facebook-rebranding-name-news_dezeen_2364_col_hero2.jpg" alt="Meta logo" />
+                      <span>Whitehat Bug Bounty Program</span>
+                    </p>
                     <h3>Whitehat Security Researcher <span class="muted" style="font-weight:400; font-size:0.9em;">Bronze &rarr; Silver &rarr; Gold League</span></h3>
                   </div>
                   <span class="date-tag">Feb 2021 &ndash; Present</span>

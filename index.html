@@ -126,7 +126,7 @@
         position: sticky;
         top: 0;
         z-index: 30;
-        padding: 1rem 0 0;
+        padding: 0.65rem 0 0;
         backdrop-filter: blur(18px);
         isolation: isolate;
       }
@@ -148,7 +148,8 @@
         align-items: center;
         justify-content: space-between;
         gap: 1rem;
-        padding: 0.9rem 1rem;
+        min-height: 5.3rem;
+        padding: 1rem 1.35rem;
         border: 1px solid var(--border);
         border-radius: 999px;
         background: rgba(7, 14, 24, 0.72);
@@ -171,16 +172,19 @@
       .brand-copy {
         display: flex;
         flex-direction: column;
+        gap: 0.15rem;
         min-width: 0;
       }
 
       .brand-copy strong {
-        font-size: 0.96rem;
+        font-size: 0.98rem;
+        line-height: 1.2;
       }
 
       .brand-copy span {
         color: var(--muted);
-        font-size: 0.78rem;
+        font-size: 0.8rem;
+        line-height: 1.25;
       }
 
       .nav-links {
@@ -323,9 +327,9 @@
 
       .hero-grid {
         display: grid;
-        grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.8fr);
-        gap: 3rem;
-        align-items: center;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2.5rem;
+        align-items: start;
         padding-top: 1rem;
       }
 
@@ -389,9 +393,19 @@
       }
 
       .hero-copy {
-        max-width: 42rem;
         position: relative;
         z-index: 2;
+      }
+
+      .hero-heading-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 24rem);
+        gap: 2.5rem;
+        align-items: start;
+      }
+
+      .hero-heading-text {
+        min-width: 0;
       }
 
       .hero-copy::before {
@@ -432,7 +446,7 @@
       }
 
       .hero-summary {
-        max-width: 36rem;
+        max-width: 42rem;
       }
 
       .hero-actions {
@@ -514,6 +528,9 @@
       .hero-side {
         position: relative;
         z-index: 2;
+        width: 100%;
+        max-width: 24rem;
+        justify-self: end;
       }
 
       .glass-card {
@@ -1673,8 +1690,14 @@
           max-width: none;
         }
 
+        .hero-heading-row {
+          grid-template-columns: 1fr;
+          gap: 1.75rem;
+        }
+
         .hero-side {
-          max-width: 42rem;
+          max-width: 22rem;
+          justify-self: start;
         }
 
         .mini-grid {
@@ -1859,11 +1882,35 @@
 
           <div class="container hero-grid">
             <div class="hero-copy reveal">
-              <p class="eyebrow">Cybersecurity Portfolio</p>
-              <h1>
-                <span class="hero-title">Bijay Kumar Khatri</span>
-                <span class="hero-role">Cybersecurity Student &bull; Vulnerability Researcher &bull; Cloud Security</span>
-              </h1>
+              <div class="hero-heading-row">
+                <div class="hero-heading-text">
+                  <p class="eyebrow">Cybersecurity Portfolio</p>
+                  <h1>
+                    <span class="hero-title">Bijay Kumar Khatri</span>
+                    <span class="hero-role">Cybersecurity Student &bull; Vulnerability Researcher &bull; Cloud Security</span>
+                  </h1>
+                </div>
+
+                <aside class="hero-side reveal">
+                  <div class="hero-3d-wrap">
+                    <div class="hero-scan-line"></div>
+                    <div class="hero-photo-card">
+                      <img src="https://avatars.githubusercontent.com/u/180987768?v=4" alt="Portrait of Bijay Kumar Khatri" />
+                    </div>
+                    <div class="hero-visual-copy" aria-hidden="true">
+                    <div class="hero-panel-top">
+                        <div class="hero-panel-chip">Verified profile</div>
+                        <div class="hero-panel-tag">Security research</div>
+                      </div>
+                      <div class="hero-panel-bottom">
+                        <div class="hero-panel-tag">Cloud defense</div>
+                        <div class="hero-panel-tag">Offensive &amp; Defensive Security</div>
+                      </div>
+                    </div>
+                  </div>
+                </aside>
+              </div>
+
               <p class="muted hero-summary">
                 I investigate vulnerabilities, secure modern systems, and turn technical risk into clear, practical action.
               </p>
@@ -1892,25 +1939,6 @@
                 </div>
               </div>
             </div>
-
-            <aside class="hero-side reveal">
-              <div class="hero-3d-wrap">
-                <div class="hero-scan-line"></div>
-                <div class="hero-photo-card">
-                  <img src="https://avatars.githubusercontent.com/u/180987768?v=4" alt="Portrait of Bijay Kumar Khatri" />
-                </div>
-                <div class="hero-visual-copy" aria-hidden="true">
-                <div class="hero-panel-top">
-                    <div class="hero-panel-chip">Verified profile</div>
-                    <div class="hero-panel-tag">Security research</div>
-                  </div>
-                  <div class="hero-panel-bottom">
-                    <div class="hero-panel-tag">Cloud defense</div>
-                    <div class="hero-panel-tag">Offensive &amp; Defensive Security</div>
-                  </div>
-                </div>
-              </div>
-            </aside>
           </div>
         </section>
 

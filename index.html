@@ -1229,6 +1229,249 @@
         font-size: 0.9rem;
       }
 
+      .featured-callout {
+        position: relative;
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        gap: 1rem;
+        align-items: center;
+        margin: 1.25rem 0 1.1rem;
+        padding: 1rem 1.15rem;
+        border-radius: 20px;
+        border: 1px solid rgba(95, 206, 255, 0.14);
+        background:
+          radial-gradient(circle at top right, rgba(95, 206, 255, 0.12), transparent 34%),
+          linear-gradient(180deg, rgba(10, 18, 31, 0.92), rgba(7, 14, 24, 0.82));
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.04),
+          0 0 0 1px rgba(95, 206, 255, 0.04),
+          0 0 24px rgba(95, 206, 255, 0.08);
+        overflow: hidden;
+        transform-origin: center;
+      }
+
+      .featured-callout::before {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border-radius: inherit;
+        background: linear-gradient(120deg, transparent 10%, rgba(95, 206, 255, 0.18) 35%, rgba(255, 43, 61, 0.14) 50%, rgba(95, 206, 255, 0.18) 65%, transparent 90%);
+        opacity: 0.55;
+        transform: translateX(-65%);
+        pointer-events: none;
+      }
+
+      .featured-callout::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background:
+          linear-gradient(180deg, rgba(125, 232, 255, 0.12), transparent 22%, transparent 78%, rgba(255, 43, 61, 0.08)),
+          repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 7px);
+        opacity: 0.56;
+        pointer-events: none;
+      }
+
+      .featured-badge {
+        position: relative;
+        z-index: 1;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 5rem;
+        min-height: 4rem;
+        padding: 0.7rem 0.95rem;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: linear-gradient(135deg, rgba(245, 250, 255, 0.96), rgba(221, 237, 248, 0.9));
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.9),
+          0 10px 26px rgba(95, 206, 255, 0.12);
+      }
+
+      .featured-badge img {
+        display: block;
+        width: 3.3rem;
+        height: auto;
+        object-fit: contain;
+        opacity: 1;
+        filter: contrast(1.2) saturate(1.02);
+      }
+
+      .featured-copy {
+        position: relative;
+        z-index: 1;
+        min-width: 0;
+      }
+
+      .featured-label {
+        margin: 0 0 0.2rem;
+        color: #ff2b3d;
+        font-size: 0.88rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        line-height: 1.25;
+        text-transform: uppercase;
+      }
+
+      .featured-copy p:last-child {
+        margin-bottom: 0;
+      }
+
+      .featured-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+        padding: 0.55rem 0.9rem;
+        border-radius: 999px;
+        border: 1px solid rgba(95, 206, 255, 0.16);
+        background: linear-gradient(135deg, rgba(95, 206, 255, 0.12), rgba(95, 206, 255, 0.04));
+        color: #dff6ff;
+        font-size: 0.88rem;
+        font-weight: 600;
+        white-space: nowrap;
+        box-shadow: 0 0 0 0 rgba(95, 206, 255, 0.34);
+        transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+        animation: featuredLinkPulse 2.2s ease-in-out infinite;
+      }
+
+      .featured-link:hover,
+      .featured-link:focus-visible {
+        transform: translateY(-1px);
+        border-color: rgba(95, 206, 255, 0.28);
+        background: rgba(95, 206, 255, 0.12);
+        box-shadow: 0 0 0 0.35rem rgba(95, 206, 255, 0.12);
+      }
+
+      .timeline-item.is-visible .featured-callout {
+        animation: featuredCalloutBump 0.95s cubic-bezier(0.16, 0.88, 0.24, 1.18) 0.12s both;
+      }
+
+      .timeline-item.is-visible .featured-callout::before {
+        animation: featuredSweep 0.95s ease-out 0.14s 1 both;
+      }
+
+      .timeline-item.is-visible .featured-callout::after {
+        animation: featuredScanFlash 0.95s ease-out 0.12s 1 both;
+      }
+
+      .featured-link::after {
+        content: "";
+        position: absolute;
+        inset: -0.22rem;
+        border-radius: inherit;
+        border: 1px solid rgba(95, 206, 255, 0.18);
+        opacity: 0;
+        animation: featuredLinkRing 2.2s ease-out infinite;
+      }
+
+      @keyframes featuredLinkPulse {
+        0%, 100% {
+          box-shadow: 0 0 0 0 rgba(95, 206, 255, 0.22);
+        }
+        50% {
+          box-shadow: 0 0 0 0.42rem rgba(95, 206, 255, 0.1);
+        }
+      }
+
+      @keyframes featuredLinkRing {
+        0% {
+          opacity: 0;
+          transform: scale(0.96);
+        }
+        30% {
+          opacity: 0.55;
+        }
+        100% {
+          opacity: 0;
+          transform: scale(1.08);
+        }
+      }
+
+      @keyframes featuredCalloutBump {
+        0% {
+          transform: translate3d(0, 0, 0) scale(1) skewX(0deg);
+          border-color: rgba(95, 206, 255, 0.14);
+          box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.04),
+            0 0 0 1px rgba(95, 206, 255, 0.04),
+            0 0 24px rgba(95, 206, 255, 0.08);
+        }
+        18% {
+          transform: translate3d(-1px, -2px, 0) scale(1.01) skewX(-1.4deg);
+          border-color: rgba(255, 43, 61, 0.42);
+          box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.06),
+            -8px 0 18px rgba(255, 43, 61, 0.1),
+            10px 0 18px rgba(95, 206, 255, 0.12),
+            0 0 0 1px rgba(255, 43, 61, 0.1),
+            0 0 24px rgba(255, 43, 61, 0.12);
+        }
+        42% {
+          transform: translate3d(0, -6px, 0) scale(1.022) skewX(1.1deg);
+          border-color: rgba(125, 232, 255, 0.42);
+          box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.08),
+            -10px 0 24px rgba(255, 43, 61, 0.12),
+            12px 0 26px rgba(95, 206, 255, 0.16),
+            0 0 0 1px rgba(95, 206, 255, 0.1),
+            0 0 46px rgba(95, 206, 255, 0.2);
+        }
+        62% {
+          transform: translate3d(1px, 1px, 0) scale(0.996) skewX(-0.7deg);
+          border-color: rgba(255, 43, 61, 0.24);
+          box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.05),
+            -5px 0 12px rgba(255, 43, 61, 0.08),
+            6px 0 14px rgba(95, 206, 255, 0.08),
+            0 0 0 1px rgba(95, 206, 255, 0.08),
+            0 0 26px rgba(95, 206, 255, 0.12);
+        }
+        100% {
+          transform: translate3d(0, 0, 0) scale(1) skewX(0deg);
+          border-color: rgba(95, 206, 255, 0.18);
+          box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.04),
+            0 0 0 1px rgba(95, 206, 255, 0.05),
+            0 0 28px rgba(95, 206, 255, 0.1);
+        }
+      }
+
+      @keyframes featuredSweep {
+        0% {
+          transform: translateX(-70%);
+          opacity: 0;
+        }
+        12% {
+          opacity: 0.52;
+        }
+        55% {
+          opacity: 0.3;
+        }
+        100% {
+          transform: translateX(160%);
+          opacity: 0;
+        }
+      }
+
+      @keyframes featuredScanFlash {
+        0% {
+          opacity: 0.12;
+        }
+        24% {
+          opacity: 0.86;
+        }
+        58% {
+          opacity: 0.38;
+        }
+        100% {
+          opacity: 0.56;
+        }
+      }
+
       .section-surface {
         position: relative;
         padding: 1.1rem;
@@ -1708,6 +1951,15 @@
           grid-template-columns: 1fr;
         }
 
+        .featured-callout {
+          grid-template-columns: 1fr;
+          align-items: start;
+        }
+
+        .featured-link {
+          justify-self: start;
+        }
+
         .timeline-head,
         .footer-inner {
           flex-direction: column;
@@ -2045,8 +2297,18 @@
                     <span>top-tier league status</span>
                   </div>
                 </div>
+                <div class="featured-callout">
+                  <div class="featured-badge" aria-hidden="true">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/BBC_Logo_2021.svg/500px-BBC_Logo_2021.svg.png" alt="BBC logo" />
+                  </div>
+                  <div class="featured-copy">
+                    <p class="featured-label">BBC News Featured My Security Research</p>
+                    <p class="muted">BBC News highlighted my discovery of critical Facebook security flaws, giving public recognition to the impact of my vulnerability research.</p>
+                  </div>
+                  <a class="featured-link" href="https://www.bbc.com/nepali/news-59273184" target="_blank" rel="noopener noreferrer">Read Feature</a>
+                </div>
                 <ul class="bullet-list">
-                  <li>Promoted to Gold League through sustained, high-impact contributions, one of Meta's top-tier researcher tiers awarded for consistent quality and responsible disclosure over 4+ years.</li>
+                  <li>Promoted to Gold League through sustained, high-impact contributions, one of Meta top-tier researcher tiers awarded for consistent quality and responsible disclosure over 4+ years.</li>
                   <li>Reported 100+ verified vulnerabilities across web, mobile, and API surfaces including IDOR, SSRF, XSS, GraphQL injection, authentication bypass, and business logic flaws; findings led to coordinated fixes and five-figure cumulative bounties.</li>
                   <li>Invited to private bounty programs and elite live-hacking events in recognition of top-tier performance, collaborated directly with Meta platform security team to validate findings and confirm remediation.</li>
                   <li>Featured by <a href="https://www.bbc.com/nepali/news-59273184" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:underline; text-underline-offset:3px;">BBC News</a> for discovering critical security flaws in Facebook, earning recognition as a notable independent security researcher.</li>

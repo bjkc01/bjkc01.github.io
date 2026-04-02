@@ -1555,8 +1555,8 @@
       .meta-kicker img {
         display: block;
         width: auto;
-        height: 1.78rem;
-        max-width: 9.4rem;
+        height: 2.7rem;
+        max-width: 14rem;
         object-fit: contain;
         border-radius: 0.3rem;
         filter: brightness(1.03) contrast(1.02) saturate(1.02) drop-shadow(0 0 6px rgba(95, 206, 255, 0.06));
@@ -1564,6 +1564,60 @@
 
       .meta-kicker span {
         display: inline-block;
+      }
+
+      .gstephens-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 0;
+        flex-wrap: nowrap;
+        width: min(100%, 11.4rem);
+        margin-bottom: 0.55rem;
+        padding: 0.34rem 0.48rem;
+        border-radius: 0.7rem;
+        background: linear-gradient(135deg, rgba(247, 250, 245, 0.98), rgba(231, 239, 229, 0.92));
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.9),
+          0 10px 26px rgba(0, 0, 0, 0.2),
+          0 0 0 1px rgba(127, 255, 178, 0.06);
+      }
+
+      .gstephens-kicker img {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-width: 11.4rem;
+        object-fit: contain;
+        border-radius: 0.28rem;
+        filter: brightness(1.04) contrast(1.08) saturate(1.02);
+      }
+
+      .uak-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 0;
+        flex-wrap: nowrap;
+        width: min(100%, 15rem);
+        margin-bottom: 0.55rem;
+        padding: 0.3rem 0.4rem;
+        border-radius: 0.7rem;
+        background: linear-gradient(135deg, rgba(247, 250, 255, 0.97), rgba(228, 236, 247, 0.92));
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.9),
+          0 10px 26px rgba(0, 0, 0, 0.2),
+          0 0 0 1px rgba(77, 163, 255, 0.06);
+      }
+
+      .uak-kicker img {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-width: 15rem;
+        object-fit: contain;
+        border-radius: 0.24rem;
+        filter: brightness(1.04) contrast(1.08) saturate(1.02);
       }
 
       .date-tag {
@@ -2343,7 +2397,9 @@
               <article class="timeline-item reveal" data-exp="gstephens">
                 <div class="timeline-head">
                   <div>
-                    <p class="kicker">G. Stephens, Inc.</p>
+                    <p class="kicker gstephens-kicker">
+                      <img src="https://assets.cdn.filesafe.space/krtwhKOkFDctbnILv87I/media/690cf5bc6f6d4cb6ae5c7388.png" alt="G. Stephens, Inc. logo" />
+                    </p>
                     <h3>Information Technology and Security Intern</h3>
                   </div>
                   <span class="date-tag">Feb 2025 &ndash; Present</span>
@@ -2372,7 +2428,9 @@
               <article class="timeline-item reveal" data-exp="uak">
                 <div class="timeline-head">
                   <div>
-                    <p class="kicker">The University of Akron</p>
+                    <p class="kicker uak-kicker">
+                      <img src="https://www.uakron.edu/application/themes/uakron-2/images/UAWordmark_blue.svg" alt="The University of Akron wordmark" />
+                    </p>
                     <h3>Software Engineering Student Assistant - College of Business</h3>
                   </div>
                   <span class="date-tag">Aug 2024 &ndash; Present</span>
